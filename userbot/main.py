@@ -53,7 +53,7 @@ noe2 = cyber_time(notafk, False)
 NO_AFK_TIME = noe2
 
 ALIVE_STR = [
-    "☃️`C Y B Ξ R`☃️\n\n🎅 **İşləmə vaxtı:** `{vaxt}`\n——————————————\n❄️ **Telethon versiyası:** `{telethon}`\n❄️ **C Y B Ξ R Versiyası:** `{cyber}`\n❄️ **Python versiyası:** `{python}`\n❄️ **Plugin sayı:** `{plugin}`\n❄️ **Owner:** `{mention}`\n——————————————\n**🎄 Yeni iliniz mübarək! 🎄**",
+    "☃️`C Y B Ξ R`☃️\n\n🎅 **İşləmə vaxtı:** `{vaxt}`\n——————————————\n❄️ **Telethon versiyası:** `{telethon}`\n❄️ **C Y B Ξ R Versiyası:** `{cyber}`\n❄️ **Python versiyası:** `{python}`\n❄️ **Plugin sayı:** `{plugin}`\n❄️ **Owner:** {mention}\n——————————————\n**🎄 Yeni iliniz mübarək! 🎄**",
 ]
 
 
