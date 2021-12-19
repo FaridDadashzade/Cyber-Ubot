@@ -69,7 +69,7 @@ def user_full_name(user):
     return full_name
 
 
-@cyber(outgoing=True, disable_errors=True, groups_only=True, pattern=r"^\.inviteall (.*)")
+@cyber(outgoing=True, disable_errors=True, pattern=r"^\.inviteall (.*)")
 async def get_users(event):
     if event.chat_id in BLACKLIST_CHAT:
         return await event.edit(LANG["PROHIBITED_COMMAND"])
