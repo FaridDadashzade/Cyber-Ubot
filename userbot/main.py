@@ -322,7 +322,7 @@ async def asistan_aktiv_et():
             with open(name) as f:
                 path1 = Path(f.name)
                 shortname = path1.stem
-                start_assistant(shortname.replace(".py", ""))
+                start_cyber_assistant(shortname.replace(".py", ""))
     else:
         print("Asistan qurularkən xəta baş verdi.")
 
