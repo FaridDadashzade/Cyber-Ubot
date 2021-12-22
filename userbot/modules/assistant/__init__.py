@@ -4,10 +4,8 @@
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 from telethon import Button, custom
-from userbot import DEFAULT_NAME, bot, WHITELIST, MY_ID
+from userbot import *
 from . import *
-
-CYBER_MENTION = f"[{DEFAULT_NAME}](tg://user?id={MY_ID})"
 
 async def setit(cyber, ad, deyer):
     try:
