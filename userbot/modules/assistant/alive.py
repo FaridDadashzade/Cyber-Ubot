@@ -4,10 +4,11 @@
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 from telethon import events
+from . import * 
 from userbot import *
-from . import *
-from userbot import ALIVE_LOGO, CYBER_VERSION, tgbot
 
+ALIVE_LOGO = "https://telegra.ph/file/c3e75eccaeb7f56dfae89.mp4"
+CYBER_VERSION = "3.0.0"
 alive_text = "Cyber Asistanı aktivdir."
 
 @tgbot.on(events.NewMessage(pattern="^/alive"))
