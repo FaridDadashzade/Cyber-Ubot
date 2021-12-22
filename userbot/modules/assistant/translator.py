@@ -6,6 +6,7 @@
 from telethon import events
 from telethon.events import *
 from . import tgbot
+import emoji
 from googletrans import Translator
 
 @tgbot.on(events.NewMessage(pattern="^/tr ?(.*)"))

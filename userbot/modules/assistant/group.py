@@ -30,5 +30,5 @@ async def cyber_id(event):
             )
     else:
         await tgbot.send_message(
-            event.chat_id, "Qrup ID: `{}`".format(str(event.chat_id))
+            event.chat_id, "İstifadəçi ID: `{}`".format(str(event.chat_id))
         )
