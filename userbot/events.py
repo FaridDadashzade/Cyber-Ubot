@@ -4,16 +4,23 @@
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 import sys
+import datetime
+import logging
 from asyncio import create_subprocess_shell as asyncsubshell
+import traceback
 from asyncio import subprocess as asyncsub
+import asyncio
 from os import remove
+import math
 from time import gmtime, strftime
+import time
 from pathlib import Path
 import re
 import inspect
 from traceback import format_exc
 from telethon import events
-from userbot import bot, BOTLOG_CHATID, CYBER_VERSION, LOGSPAMMER, PATTERNS, JARVIS, MYID, SUDO_ID
+import importlib
+from userbot import bot, BOTLOG_CHATID, CYBER_VERSION, LOGSPAMMER, PATTERNS, JARVIS, MYID, SUDO_ID, tgbot
 
 
 def register(**args):
@@ -164,63 +171,22 @@ def register(**args):
     return decorator
 
 
-def startcyberbot(shortname):
+def start_cyber_assistant(shortname):
     if shortname.startswith("__"):
         pass
     elif shortname.endswith("_"):
-        import importlib
-        import sys
-        from pathlib import Path
-
-        path = Path(f"userbot/cyber/{shortname}.py")
-        name = "userbot.cyber.{}".format(shortname)
+        path = Path(f"userbot/modules/assistant/{shortname}.py")
+        name = "userbot.modules.assistant.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        print("Asistan qurulmağa hazırlanır..")
-        print(shortname + "modulu yükləndi")
+        print("Asistan modulu yüklənir: " + shortname)
     else:
-        import importlib
-        import sys
-        from pathlib import Path
-
-        path = Path(f"userbot/cyber/{shortname}.py")
-        name = "userbot.cyber.{}".format(shortname)
+        path = Path(f"userbot/modules/assistant/{shortname}.py")
+        name = "userbot.modules.assistant.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         mod.tgbot = bot.tgbot
         spec.loader.exec_module(mod)
-        sys.modules["userbot.cyber" + shortname] = mod
-        print(shortname + "modulu yükləndi") 
-
-
-def startcyberbot(shortname):
-    if shortname.startswith("__"):
-        pass
-    elif shortname.endswith("_"):
-        import importlib
-        import sys
-        from pathlib import Path
-
-        path = Path(f"userbot/cyber/{shortname}.py")
-        name = "userbot.cyber.{}".format(shortname)
-        spec = importlib.util.spec_from_file_location(name, path)
-        mod = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(mod)
-        print("Asistan qurulmağa hazırlanır..")
-        print(shortname + "modulu yükləndi")
-    else:
-        import importlib
-        import sys
-        from pathlib import Path
-
-        path = Path(f"userbot/cyber/{shortname}.py")
-        name = "userbot.cyber.{}".format(shortname)
-        spec = importlib.util.spec_from_file_location(name, path)
-        mod = importlib.util.module_from_spec(spec)
-        mod.tgbot = bot.tgbot
-        spec.loader.exec_module(mod)
-        sys.modules["userbot.cyber" + shortname] = mod
-        print("CYBΞR ASSISTANT" + shortname)  
-
-        
+        sys.modules["userbot.modules.assistant" + shortname] = mod
+        print("Asistan modulu yüklənir: " + shortname)

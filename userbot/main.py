@@ -15,7 +15,7 @@ import asyncio
 from telethon.tl.types import InputMessagesFilterDocument
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from telethon.tl.functions.channels import GetMessagesRequest
-from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP, LANGUAGE, CYBER_VERSION, PATTERNS, BOTLOG_CHATID, BOTLOG, StartTime, CYBER_BOT
+from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP, LANGUAGE, CYBER_VERSION, PATTERNS, BOTLOG_CHATID, BOTLOG, StartTime
 from .modules import ALL_MODULES
 import userbot.modules.sql_helper.mesaj_sql as MSJ_SQL
 import userbot.modules.sql_helper.galeri_sql as GALERI_SQL
@@ -33,6 +33,7 @@ import userbot.cmdhelp
 from userbot import DEFAULT_NAME, SAHIB_ID, SON_GORULME
 from time import time
 import userbot.events
+from userbot.events import start_cyber_assistant
 
 CYBER_NAME = f"[{DEFAULT_NAME}](tg://user?id={SAHIB_ID})"
 QRUP = BOTLOG_CHATID
@@ -90,20 +91,20 @@ DIZCILIK_STR = [
 ]
 
 AFKSTR = [
-    "☃️ İndi vacib işim var, daha sonra mesaj atsan olmaz? Onsuzda yenə gələcəm.\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ Hörmətli istifadəçi zəng etdiyiniz şəxs hazırda telefona cavab verə bilmir.\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️Bir neçə dəqiqə içində gələcəm lakin gəlməsəm...\nbiraz daha gözlə.\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ İndi burada deyiləm..\nYəqin ki, başqa bir yerdəyəm..\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ Sahibim hal-hazırda AFK-dır!\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ Bəzən həyatdakı ən yaxşı şeylər gözləməyə dəyər…\nGələcəm.\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ Gələcəm,\namma əgər gəlməsəm,\ndaha sonra gələrəm.\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ Hal-hazırda sahibim burada deyil.\nXahiş edirəm biraz sonra əlaqə saxlayın.\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ Çox heyif ki sahibim burada deyil..\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ İndi burada deyiləm..\nTezliklə qayıdacağam..\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ Sahibim burada deyil..\nqayıdanda sizinlə əlaqə saxlayacaqdır.\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ Gələcəm,\namma əgər gəlməsəm,\ndaha sonra gələrəm.\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ Bir neçə dəqiqə içində gələcəm lakin gəlməsəm..\nbiraz daha gözlə.\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
-    "☃️ Hey, sahibim hal-hazırda burada deyil..\nqayıtdığında sizinlə əlaqə saxlayacaqdır.\n**Sahibim** `{last_seen_long}` **aktiv idi.**",
+    "☃️ İndi vacib işim var, daha sonra mesaj atsan olmaz? Onsuzda yenə gələcəm.\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ Hörmətli istifadəçi zəng etdiyiniz şəxs hazırda telefona cavab verə bilmir.\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️Bir neçə dəqiqə içində gələcəm lakin gəlməsəm...\nbiraz daha gözlə.\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ İndi burada deyiləm..\nYəqin ki, başqa bir yerdəyəm..\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ Sahibim hal-hazırda AFK-dır!\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ Bəzən həyatdakı ən yaxşı şeylər gözləməyə dəyər…\nGələcəm.\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ Gələcəm,\namma əgər gəlməsəm,\ndaha sonra gələrəm.\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ Hal-hazırda sahibim burada deyil.\nXahiş edirəm biraz sonra əlaqə saxlayın.\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ Çox heyif ki sahibim burada deyil..\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ İndi burada deyiləm..\nTezliklə qayıdacağam..\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ Sahibim burada deyil..\nqayıdanda sizinlə əlaqə saxlayacaqdır.\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ Gələcəm,\namma əgər gəlməsəm,\ndaha sonra gələrəm.\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ Bir neçə dəqiqə içində gələcəm lakin gəlməsəm..\nbiraz daha gözlə.\nSahibim `{last_seen_long}` aktiv idi.",
+    "☃️ Hey, sahibim hal-hazırda burada deyil..\nqayıtdığında sizinlə əlaqə saxlayacaqdır.\nSahibim `{last_seen_long}` aktiv idi.",
 ]
 
 UNAPPROVED_MSG = ("🎄`Salam,` {mention} `\nBu bir avtomatik mesajdır.\nNarahat olma.\n\n`"
@@ -309,6 +310,22 @@ async def FotoDegistir (foto):
     except:
         return False
 
+aktiv_et = "ON"
+
+async def asistan_aktiv_et():
+    if aktiv_et == "ON":
+        import glob
+
+        path = "userbot/modules/assistant/*.py"
+        fayl = glob.glob(path)
+        for name in fayl:
+            with open(name) as f:
+                path1 = Path(f.name)
+                shortname = path1.stem
+                start_assistant(shortname.replace(".py", ""))
+    else:
+        print("Asistan qurularkən xəta baş verdi.")
+
 
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
@@ -319,4 +336,5 @@ LOGS.info("C Y B Ξ R is working now.")
 LOGS.info("Köməyə ehtiyacınız olarsa, @TheCyberSupport qrupuna yazın.")
 LOGS.info(f"C Y B Ξ R Version: {CYBER_VERSION}")
 bot.loop.create_task(startupcyber())
+bot.loop.create_task(asistan_aktiv_et())
 bot.run_until_disconnected()

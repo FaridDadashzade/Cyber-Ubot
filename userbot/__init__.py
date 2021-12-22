@@ -10,6 +10,7 @@ import asyncio
 from re import compile
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
+from telethon.network import ConnectionTcpAbridged
 from distutils.util import strtobool as sb
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
@@ -302,7 +303,10 @@ if not BOT_TOKEN is None:
     tgbot = TelegramClient(
         "TG_BOT_TOKEN",
         api_id=API_KEY,
-        api_hash=API_HASH
+        api_hash=API_HASH,
+        connection=ConnectionTcpAbridged,
+        auto_reconnect=True,
+        connection_retries=None
     ).start(bot_token=BOT_TOKEN)
 else:
     tgbot = None
@@ -493,7 +497,7 @@ Hesabınızı bot'a çevirə bilərsiniz və bunları istifadə edə bilərsiniz
         LOGS.info(
             "Botunuzda inline dəstəyi deaktivdir. "
             "Aktivləşdirmək üçün bir bot token qeyd edin və botunuzda inline modunu aktivləşdirin. "
-            "Əgər bunun xaricində bir xəts olduğunu düşünürsünüzsə, bizə yazın t.me/TheCyberSupport."
+            "Əgər bunun xaricində bir xəta olduğunu düşünürsünüzsə, bizə yazın t.me/TheCyberSupport."
         )
 
     try:
@@ -519,9 +523,9 @@ else:
 async def cyberasistan():
     if BOT_TOKEN:
         return
-    ASISTAN_LOGO = "https://telegra.ph/file/c4cf01aa4b6e61d5a5312.jpg"    
+    ASISTAN_LOGO = "https://telegra.ph/file/d7b362b0d499ba9c125df.jpg"    
     await bot.start()
-    LOGS.info("C Y B Ξ R asistanı ayarlanır...")
+    LOGS.info("C Y B Ξ R asistanı ayarlanır..")
     DEFAULT_NAME + "-nin asistanı"
     usnm = ISTIFADECI_ADI
     name = DEFAULT_NAME
