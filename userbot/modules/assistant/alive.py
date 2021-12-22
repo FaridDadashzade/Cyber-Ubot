@@ -5,12 +5,11 @@
 
 from telethon import events
 from telethon.events import *
-from . import tgbot, CYBER_VERSION, SAHIB_ID, DEFAULT_NAME
+from . import tgbot, CYBER_VERSION, DEFAULT_NAME
 from platform import python_version
 from telethon import version
 
 ALIVE_LOGO = "https://telegra.ph/file/c3e75eccaeb7f56dfae89.mp4"
-CYBER_MENTION = f"[{DEFAULT_NAME}](tg://user?id={SAHIB_ID})"
 
 alive_text = (
         f"**✦ C Y B Ξ R ASSISTANT ONLINE ✦** \n"

@@ -27,7 +27,8 @@ from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 from userbot.main import PLUGIN_MESAJLAR
 from userbot import SAHIB_ID, DEFAULT_NAME, HEROKU_APPNAME, HEROKU_APIKEY, BOTLOG_CHATID, BOTLOG
-
+from platform import python_version
+from telethon import version
 
 # ---------------------------------- #
 from userbot.language import get_value
@@ -95,8 +96,8 @@ async def salive(alive):
         f"┏━━━━━━━━━━━━━━━━━━━━━━\n"
         f"┣[ 🎅 **Botun işləmə müddəti:** `{islememuddeti}`\n"
         f"┣[ ⛄️ **Mənim sahibim:** `{user.first_name}`\n"
-        f"┣[ ❄️ **Python:** `3.8.6`\n"                               
-        f"┣[ ⛄️ **Telethon:** `1.24.0`\n"
+        f"┣[ ❄️ **Python:** `{python_version()}`\n"                               
+        f"┣[ ⛄️ **Telethon:** `{version.__version__}`\n"
         f"┣[ 🤶 **Plugin sayı:** `{len(CMD_HELP)}`\n"
         f"┣[ 🎇 **İstifadəçi adı:** @{user.username}\n"
         f"┣[ ☃️ **Branch:** `Master`\n"
