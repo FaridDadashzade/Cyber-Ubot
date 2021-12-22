@@ -175,13 +175,22 @@ def start_cyber_assistant(shortname):
     if shortname.startswith("__"):
         pass
     elif shortname.endswith("_"):
+        import importlib
+        import sys
+        from pathlib import Path
+
         path = Path(f"userbot/modules/assistant/{shortname}.py")
         name = "userbot.modules.assistant.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        print("Asistan modulu yüklənir: " + shortname)
+        print("Asistan qurulmağa hazırlanır..")
+        print(shortname + "modulu yükləndi")
     else:
+        import importlib
+        import sys
+        from pathlib import Path
+
         path = Path(f"userbot/modules/assistant/{shortname}.py")
         name = "userbot.modules.assistant.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
@@ -189,4 +198,4 @@ def start_cyber_assistant(shortname):
         mod.tgbot = bot.tgbot
         spec.loader.exec_module(mod)
         sys.modules["userbot.modules.assistant" + shortname] = mod
-        print("Asistan modulu yüklənir: " + shortname)
+        print(shortname + "modulu yükləndi") 
