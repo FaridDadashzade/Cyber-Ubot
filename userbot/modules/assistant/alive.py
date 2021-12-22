@@ -8,14 +8,7 @@ from userbot import *
 from . import *
 from userbot import ALIVE_LOGO, CYBER_VERSION, tgbot
 
-alive_text = f"⚜ CYBER ONLINE ⚜ \n\n"
-alive_text += f"Sahibim:『{CYBER_MENTION}』\n"
-alive_text += f"**╭───────────**\n"
-alive_text += f"┣Ťêlethon ~ `1.24.0` \n"
-alive_text += f"┣ Cyber Version: `{CYBER_VERSION}` \n"
-alive_text += f"╰────────────\n"
-alive_text += f"       »»» [『 CYBER 』](https://t.me/TheCyberUserBot) «««"
-
+alive_text = "Cyber Asistanı aktivdir."
 
 @tgbot.on(events.NewMessage(pattern="^/alive"))
 async def alive(event):

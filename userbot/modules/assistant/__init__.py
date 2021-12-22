@@ -4,14 +4,10 @@
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 from telethon import Button, custom
-from userbot import DEFAULT_NAME, bot, WHITELIST
-
+from userbot import DEFAULT_NAME, bot, WHITELIST, MY_ID
 from . import *
 
-OWNER_NAME = DEFAULT_NAME
-OWNER_ID = bot.uid
-WHITELIST = DEVLIST
-CYBER_MENTION = f"[{DEFAULT_NAME}](tg://user?id={OWNER_ID})"
+CYBER_MENTION = f"[{DEFAULT_NAME}](tg://user?id={MY_ID})"
 
 async def setit(cyber, ad, deyer):
     try:
@@ -20,6 +16,6 @@ async def setit(cyber, ad, deyer):
         return await cyber.edit("`Xəta baş verdi.`")
 
 
-def get_back_button(ad):
+def geri_butonu(ad):
     button = [Button.inline("« Geri", data=f"{ad}")]
     return button
