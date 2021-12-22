@@ -195,7 +195,7 @@ def start_cyber_assistant(shortname):
         name = "userbot.modules.assistant.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
-        mod.tgbot = bot.tgbot
+        mod.tgbot = tgbot
         spec.loader.exec_module(mod)
         sys.modules["userbot.modules.assistant" + shortname] = mod
         print(shortname + "modulu yükləndi") 
