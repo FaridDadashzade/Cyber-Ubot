@@ -4,8 +4,8 @@
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 from telethon import events
-from . import * 
 from telethon.events import *
+from . import tgbot
 
 ALIVE_LOGO = "https://telegra.ph/file/c3e75eccaeb7f56dfae89.mp4"
 CYBER_VERSION = "3.0.0"
