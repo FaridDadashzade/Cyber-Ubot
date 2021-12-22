@@ -5,12 +5,25 @@
 
 from telethon import events
 from telethon.events import *
-from . import tgbot
+from . import tgbot, CYBER_VERSION, SAHIB_ID, DEFAULT_NAME
+from platform import python_version
+from telethon import version
 
 ALIVE_LOGO = "https://telegra.ph/file/c3e75eccaeb7f56dfae89.mp4"
-CYBER_VERSION = "3.0.0"
-alive_text = "Cyber Asistanı aktivdir."
+CYBER_MENTION = f"[{DEFAULT_NAME}](tg://user?id={SAHIB_ID})"
 
-@tgbot.on(events.NewMessage(pattern="^/alive"))
+alive_text = (
+        f"**✦ C Y B Ξ R ASSISTANT ONLINE ✦** \n"
+        f"┏━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"┣[ ⛄️ **Sahibim:** `{DEFAULT_NAME}`\n"
+        f"┣[ ❄️ **Python:** `{python_version()}`\n"                               
+        f"┣[ ⛄️ **Telethon:** `{version.__version__}`\n"
+        f"┣[ ☃️ **Branch:** `Master`\n"
+        f"┗━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"🎄 **C Y B Ξ R Version:** `{CYBER_VERSION}`"
+        )
+
+
+@tgbot.on(events.NewMessage(pattern="^/start"))
 async def alive(event):
     await tgbot.send_file(event.chat_id, ALIVE_LOGO, caption=alive_text)

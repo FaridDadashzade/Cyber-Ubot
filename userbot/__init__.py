@@ -311,7 +311,6 @@ if not BOT_TOKEN is None:
 else:
     tgbot = None
 
-
 def butonlastir(sayfa, moduller):
     Satir = 5
     Kolon = 2
@@ -355,34 +354,7 @@ with bot:
     cyber_mention = f"[{me}](tg://user?id={cyber_m})"
     
     
-    try:
-        @tgbot.on(NewMessage(pattern='/start'))
-        async def start_bot_handler(event):
-            if not event.message.from_id == uid:
-                 await event.reply(f'Salam mən @TheCyberUserBot!\nMən sahibimə {DEFAULT_NAME}-ə kömək etmək üçün varam, yəni sənə kömək edə bilmərəm.\nAmma sən də özünə C Y B Ξ R qura bilərsən.')
-            else:
-                await event.reply(f'`Salam {DEFAULT_NAME}!\nC Y B Ξ R asistanı aktivdir.')
-          
-        
-        @tgbot.on(NewMessage(pattern='/help'))
-        async def helpmesaji(event):
-            if not event.message.from_id == uid:
-                await event.reply(f'Salam mən @TheCyberUserBot!\nMən sahibimə {DEFAULT_NAME}-ə kömək etmək üçün varam, yəni sənə kömək edə bilmərəm.\nAmma sən də özünə C Y B Ξ R qura bilərsən.')
-            else:
-                await event.reply(f'TEZLIKLƏ')
-                
-                
-        """
-        
-        @tgbot.on(NewMessage(pattern='/ping'))
-        async def ping(event)
-            if event.message.from_id != uid:
-                basla = datetime.now()
-                son = datetime.now()
-                pin = (son - basla).microseconds / 1000
-                await tgbot.send_message(event.chat_id, f"**Ping:** `{pin}ms`")
-        """
-                                  
+    try:                            
         @tgbot.on(InlineQuery)  
         async def inline_handler(event):
             builder = event.builder
