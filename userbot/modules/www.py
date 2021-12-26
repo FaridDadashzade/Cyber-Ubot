@@ -17,6 +17,7 @@ LANG = get_value("www")
 
 # ████████████████████████████████ #
 
+
 def convert(speed):
     return round(int(speed) / 1048576, 2)
 
@@ -24,12 +25,10 @@ def convert(speed):
 async def speedtst(spd):
     await spd.edit(LANG['SPEED'])
     speed = speedtest.Speedtest()
-
     speed.get_best_server()
     speed.download()
     speed.upload()
     result = speed.results.dict()
-
     await spd.edit("`"
                    f"{LANG['STARTED_TIME']}"
                    f"{result['timestamp']} \n\n"
