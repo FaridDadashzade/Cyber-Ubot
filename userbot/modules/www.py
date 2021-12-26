@@ -4,7 +4,7 @@
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 from datetime import datetime
-from speedtest import Speedtest
+import speedtest
 from telethon import functions
 from userbot import CMD_HELP, JARVIS, MYID
 from userbot.events import register
@@ -17,24 +17,26 @@ LANG = get_value("www")
 
 # ████████████████████████████████ #
 
+def convert(speed):
+    return round(int(speed) / 1048576, 2)
+
 @register(outgoing=True, pattern="^.speed$")
 async def speedtst(spd):
-    """ CYBER """
     await spd.edit(LANG['SPEED'])
-    test = Speedtest()
+    speed = speedtest.Speedtest()
 
-    test.get_best_server()
-    test.download()
-    test.upload()
-    result = test.results.dict()
+    speed.get_best_server()
+    speed.download()
+    speed.upload()
+    result = speed.results.dict()
 
     await spd.edit("`"
                    f"{LANG['STARTED_TIME']}"
                    f"{result['timestamp']} \n\n"
                    f"{LANG['DOWNLOAD_SPEED']}"
-                   f"{speed_convert(result['download'])} \n"
+                   f"{convert(result['download'])} \n"
                    f"{LANG['UPLOAD_SPEED']}"
-                   f"{speed_convert(result['upload'])} \n"
+                   f"{convert(result['upload'])} \n"
                    "Ping: "
                    f"{result['ping']} \n"
                    f"{LANG['ISP']}"
@@ -43,9 +45,6 @@ async def speedtst(spd):
 
 
 def speed_convert(size):
-    """
-    Salam Cyber, baytları oxuya bilirsən?
-    """
     power = 2**10
     zero = 0
     units = {0: '', 1: 'Kb/s', 2: 'Mb/s', 3: 'Gb/s', 4: 'Tb/s'}
@@ -57,11 +56,10 @@ def speed_convert(size):
 
 @register(outgoing=True, pattern="^.dc$")
 async def neardc(event):
-    """ .dc komutu en yakın datacenter bilgisini verir. """
     result = await event.client(functions.help.GetNearestDcRequest())
-    await event.edit(f"Şehir : `{result.country}`\n"
-                     f"En yakın datacenter : `{result.nearest_dc}`\n"
-                     f"Şu anki datacenter : `{result.this_dc}`")
+    await event.edit(f"Şəhər: `{result.country}`\n"
+                     f"Ən yaxın datacenter : `{result.nearest_dc}`\n"
+                     f"Hal-hazırki datacenter : `{result.this_dc}`")
 
 
 @register(outgoing=True, pattern="^.ping$")
