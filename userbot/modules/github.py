@@ -17,7 +17,7 @@ LANG = get_value("github")
 
 @register(pattern=r".git (.*)", outgoing=True)
 async def github(event):
-    URL = f'https://api.github.com/users/{event.pattern_match.group(1)}'
+    URL = f"https://api.github.com/users/{event.pattern_match.group(1)}"
     chat = await event.get_chat()
     async with aiohttp.ClientSession() as session:
         async with session.get(URL) as request:
@@ -27,12 +27,12 @@ async def github(event):
                 return
 
             result = await request.json()
-            try:
-                url = result['html_url']
-                name = result['name']
-                company = result['company']
-                bio = result['bio']
-                created_at = result['created_at']
+
+            url = result['html_url']
+            name = result['name']
+            company = result['company']
+            bio = result['bio']
+            created_at = result['created_at']
 
             REPLY = f"`{event.pattern_match.group(1)} {LANG['INFO']}:`\
             \n{LANG['NAME']}: `{name}`\
