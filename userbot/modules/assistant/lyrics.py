@@ -14,11 +14,8 @@ API = "https://apis.xditya.me/lyrics?song="
 @tgbot.on(events.NewMessage(pattern="^/lyrics"))
 async def lyrics(event):
     musiqi_adi = await event.get_reply_message()
-    axtarilir = await event.reply("**🔎 Axtarılır..**")
     musiqi_sozleri = lyrics(musiqi_adi)
-    await axtarilir.delete()
     try: 
-        await axtarilir.delete() 
         await event.reply(f"{musiqi_sozleri}")
     except Exception as e:
         await event.reply(f"Bağışlayın, {musiqi_adi} mahnısının sözlərini tapa bilmədim.")
