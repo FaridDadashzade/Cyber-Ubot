@@ -29,7 +29,7 @@ async def translate(event):
     translated = translator.translate(text, dest=lan)
     after_tr_text = translated.text
     output_str = (
-        f"**Tərcümə edildi:** \n" f"{translated.src} dilindən {lan} dilinə\n\n`{after_tr_text}`"
+        f"**Tərcümə edildi:** \n" f"`{translated.src}` **dilindən** `{lan}` **dilinə**\n\n`{after_tr_text}`"
     )
     try:
         await tgbot.send_message(event.chat_id, output_str)
