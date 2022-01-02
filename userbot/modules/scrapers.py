@@ -404,11 +404,10 @@ async def moni(event):
         return
 
 
-@register(outgoing=True, pattern=r"^.google ?(.*)")
+@register(cyber=True, pattern=r"^.google ?(.*)")
 async def gsearch(q_event):
-    """ .google  """
     match = q_event.pattern_match.group(1)
-    page = findall(r"page=\d+", match)
+    page = re.findall(r"page=\d+", match)
     try:
         page = page[0]
         page = page.replace("page=", "")
@@ -419,7 +418,7 @@ async def gsearch(q_event):
     gsearch = GoogleSearch()
     gresults = await gsearch.async_search(*search_args)
     msg = ""
-    for i in range(10):
+    for i in range(len(gresults["links"])):
         try:
             title = gresults["titles"][i]
             link = gresults["links"][i]
@@ -427,9 +426,9 @@ async def gsearch(q_event):
             msg += f"[{title}]({link})\n`{desc}`\n\n"
         except IndexError:
             break
-    await q_event.edit("**Axtardığınız:**\n`" + match + "`\n\n**Nəticə:**\n" +
-                       msg,
-                       link_preview=False)
+    await q_event.edit(
+        "**Axtardığınız:**\n`" + match + "`\n\n**Nəticə:**\n" + msg, link_preview=False
+    )
 
     if BOTLOG:
         await q_event.client.send_message(
