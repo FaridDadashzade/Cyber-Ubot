@@ -33,7 +33,7 @@
             "CYBER_PLUGIN_CAPTION": "Bu [CYBER](https://t.me/TheCyberUserBot) plugini."
         },
         "__cyber": {
-            "NEED_PLUGIN": "**🎁 Iltimos Cyber moduli nomini ko'rsating.**",
+            "NEED_PLUGIN": "Iltimos Cyber moduli nomini ko'rsating.",
             "NEED_MODULE": "Iltimos qaysi Cyber moduli bilan yordam olishni xohlayotganingizni ko'rsating !!\nMasalan: .cyber <modul nomi>"
         },
         "__helpme": {

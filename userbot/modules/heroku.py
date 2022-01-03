@@ -200,23 +200,23 @@ async def dyno_usage(dyno):
 
     return await dyno.edit(
                 "╭┈─╼━━━━━━━━━━━━━━╾─┈╮ \n"
-                "│             🎅🏻**CYBΞRUSERBOT DYNO**🧑🏻‍🎄  \n"
+                "│                  **CYBΞRUSERBOT DYNO**  \n"
                 "├┈─╼━━━━━━━━━━━━━━╾─┈╯ \n"
-                "│  **Bu ay üçün istifadə etdiyiniz dyno saatı:** \n"
-                f"│  🎄 `{AppHours}` saat - `{AppMinutes}` dəqiqə. \n"
-                f"│  🎄 Faizlə: `{AppPercentage}%` \n"
-                f"│  🎄 Proqram adı: `({HEROKU_APPNAME})` \n"
+                "│ Bu ay üçün istifadə etdiyiniz dyno saatı: \n"
+                f"│  ▸ `{AppHours}` saat - `{AppMinutes}` dəqiqə. \n"
+                f"│  ▸ Faizlə: `{AppPercentage}%` \n"
+                f"│  ▸ Proqram adı: `({HEROKU_APPNAME})` \n"
                 "├┈──────────────────┈╮ \n"
-                "│  **Bu ay üçün qalan dyno saatı:** \n"
-                f"│  🎄 `{hours}` saat - `{minutes}` dəqiqə. \n"
-                f"│  🎄 Faizlə: `{percentage}%` \n"
-                f"│  🎄 `{cybergun}` gün sonra dyno bitəcək. \n"
+                "│ Bu ay üçün qalan dyno saatı: \n"
+                f"│  ▸ `{hours}` saat - `{minutes}` dəqiqə. \n"
+                f"│  ▸ Faizlə: `{percentage}%` \n"
+                f"│  ▸ `{cybergun}` gün sonra dyno bitəcək. \n"
                 "╰┈──────────────────┈╯ \n"
-                f"⛄️ **Owner:** `{istifadeci.first_name}` \n"
+                f"🧞‍♂️ **Sahibim:** `{istifadeci.first_name}` \n"
             )
 
 
-@register(cyber=True, pattern=r"^.hlog")
+@register(cyber=True, pattern=r"^.hlog")  # cr: @fvreed
 async def _(dyno):
     try:
         Heroku = heroku3.from_key(HEROKU_APIKEY)

@@ -104,12 +104,12 @@ def register(**args):
 
                     eventtext = str(check.text)
                     xetametni = str(sys.exc_info()[1])
-                    text = "**=== 🎄 C Y B Ξ R ERROR LOG 🎄 ===**\n"
+                    text = "**=== ✘ C Y B Ξ R ERROR LOG ✘ ===**\n"
                     link = "[CYBΞR Dəstək Qrupuna](https://t.me/TheCyberSupport)"
                     if len(eventtext)<10:
-                        text += f"\n**☃️ Səbəb:** `{eventtext}`\n"
-                    text += "\n❄️ **Bir xəta baş verdi❗️**"
-                    text += f"\n\n🎅 **Xətanın nə olduğunu öyrənmək istəyirsinizsə,**\n**bu mesajı {link} göndərin.**\n"
+                        text += f"\n**⚙ Səbəb:** `{eventtext}`\n"
+                    text += "\nℹ️ **Bir xəta baş verdi❗️**"
+                    text += f"\n\n**Xətanın nə olduğunu öyrənmək istəyirsinizsə,**\n**bu mesajı {link} göndərin.**\n"
                     text += "**Xəta və tarix xaricində heç bir şey qeyd edilmir.**\n"
 
                     ftext = "========== XƏBƏRDARLIQ =========="
@@ -152,7 +152,7 @@ def register(**args):
 
                     if LOGSPAMMER:
                         try:
-                            await check.client.send_message(check.chat_id, f"**{xetametni}**\n\n⌚️ **Tarix:** `{date}`\n\n❗️ **Əmr:** `{eventtext}`\n\n✅ **Xəta faylını** `BOTLOG` **qrupunuza göndərdim!**\n\n🎄 **CYBΞR ERROR LOG** 🎄")
+                            await check.client.send_message(check.chat_id, f"**{xetametni}**\n\n⌚️ **Tarix:** `{date}`\n\n❗️ **Əmr:** `{eventtext}`\n\n✅ **Xəta faylını** `BOTLOG` **qrupunuza göndərdim!**\n\n__CYBΞR ERROR LOG__")
                         except:
                             pass
                     await check.client.send_file(send_to,

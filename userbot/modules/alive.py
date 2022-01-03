@@ -94,15 +94,15 @@ async def salive(alive):
     kecid = (
         f"**{ALIVE_TEXT}** \n"
         f"┏━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"┣[ 🎅 **Botun işləmə müddəti:** `{islememuddeti}`\n"
-        f"┣[ ⛄️ **Mənim sahibim:** `{user.first_name}`\n"
-        f"┣[ ❄️ **Python:** `{python_version()}`\n"                               
-        f"┣[ ⛄️ **Telethon:** `{version.__version__}`\n"
-        f"┣[ 🤶 **Plugin sayı:** `{len(CMD_HELP)}`\n"
-        f"┣[ 🎇 **İstifadəçi adı:** @{user.username}\n"
-        f"┣[ ☃️ **Branch:** `Master`\n"
+        f"┣[ 🧭 **Botun işləmə müddəti:** `{islememuddeti}`\n"
+        f"┣[ 👤 **Mənim sahibim:** `{user.first_name}`\n"
+        f"┣[ 🐍 **Python:** `{python_version()}`\n"                               
+        f"┣[ ⚙️ **Telethon:** `{version.__version__}`\n"
+        f"┣[ 🛡 **Plugin sayı:** `{len(CMD_HELP)}`\n"
+        f"┣[ 👁‍🗨 **İstifadəçi adı:** @{user.username}\n"
+        f"┣[ 🗄 **Branch:** `Master`\n"
         f"┗━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"🎄 **C Y B Ξ R Version:** `{CYBER_VERSION}`"
+        f"**C Y B Ξ R Version:** `{CYBER_VERSION}`"
     )
     if LOGO_ALIVE:
         try:
@@ -140,7 +140,7 @@ async def jarvisalive(jarvis):
             xitab = CYBER_NAME
         if ren == MYID:
             Version = str(CYBER_VERSION.replace("v","")) 
-            await jarvis.reply(f"**🎅🏻 Ho ho ho… {CYBER_NAME} C Y B Ξ R işlədir...**\n\n**C Y B Ξ R:** `{CYBER_VERSION}`")
+            await jarvis.reply(f"**{CYBER_NAME} C Y B Ξ R işlədir...**\n**C Y B Ξ R:** `{CYBER_VERSION}`")
         else:
             return
     else:

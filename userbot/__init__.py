@@ -113,7 +113,7 @@ async def get_call(event):
 
 # .cyber əmri üçün
 CYBER_EMOJI = os.environ.get(
-    "CYBER_EMOJI") or "🎄 "
+    "CYBER_EMOJI") or "✦ "
 
 # for .salive command
 ALIVE_TEXT = os.environ.get(

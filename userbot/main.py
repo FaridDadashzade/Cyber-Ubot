@@ -55,9 +55,11 @@ noe2 = cyber_time(notafk, False)
 NO_AFK_TIME = noe2
 
 ALIVE_STR = [
-    "☃️`C Y B Ξ R`☃️\n\n🎅 **İşləmə vaxtı:** `{vaxt}`\n——————————————\n❄️ **Telethon versiyası:** `{telethon}`\n❄️ **C Y B Ξ R Versiyası:** `{cyber}`\n❄️ **Python versiyası:** `{python}`\n❄️ **Plugin sayı:** `{plugin}`\n❄️ **Owner:** {mention}\n——————————————\n**🎄 Yeni iliniz mübarək! 🎄**",
+    "`C Y B Ξ R` {mention}-un `əmirlərinə hazırdır...`",
+    "`Hey` {mention} `narahat olma C Y B Ξ R əla işləyir...`",
+    "✨ `C Y B Ξ R` **{mention}**-in `əmirlərinə hazırdır...`",
+    "⛈️ {mention} `əlimdən gələnin ən yaxşısını etməyə hazıram...`",
 ]
-
 
 LOGO_STR = [
     "https://telegra.ph/file/c3e75eccaeb7f56dfae89.mp4",
@@ -72,46 +74,47 @@ KICKME_STR = [
 ]
 
 NON_AFK = [
-    f"`☃️ Artıq AFK deyiləm.`",
-    f"☃️ {CYBER_NAME} `artıq AFK deyil.`",
-    f"☃️ {CYBER_NAME} `buradadır!`",
-    f"☃️ {CYBER_NAME} `gəldi!✨`",
-    f"☃️ {CYBER_NAME} `artıq sizinlədir!`",
+    f"`Artıq AFK deyiləm.`",
+    f"{CYBER_NAME} `artıq AFK deyil.`",
+    f"{CYBER_NAME} `buradadır!`",
+    f"{CYBER_NAME} `gəldi!✨`",
+    f"{CYBER_NAME} `artıq sizinlədir!`",
 ]
 
 DIZCILIK_STR = [
-    "☃️ Stikeri oğurlayıram...",
-    "☃️ Bu stikeri çox bəyəndimmm...",
-    "☃️ Bu stikeri öz paketimə əlavə edirəm...",
-    "☃️ Bunu oğurlamalıyamm...",
-    "☃️ Hey bu əla stikerdir!\nElə indi oğurlayıram..",
-    "☃️ Stikerini oğurladım\nhahaha.",
-    "☃️ Bu stikeri paketimə əlavə edirəm...",
-    "☃️ Stiker paketə əlavə edilir...",
-    "☃️ Stikeri öz paketimə əlavə edirəm... ",
+    "Stikeri oğurlayıram...",
+    "Bu stikeri çox bəyəndimmm...",
+    "Bu stikeri öz paketimə əlavə edirəm...",
+    "Bunu oğurlamalıyamm...",
+    "Hey bu əla stikerdir!\nElə indi oğurlayıram..",
+    "Stikerini oğurladım\nhahaha.",
+    "Hey bura bax. (☉｡☉)!→\nMən bunu oğurlayarkən...",
+    "Bu stikeri paketimə əlavə edirəm...",
+    "Stiker paketə əlavə edilir...",
+    "Stikeri öz paketimə əlavə edirəm... ",
 ]
 
 AFKSTR = [
-    "☃️ İndi vacib işim var, daha sonra mesaj atsan olmaz? Onsuzda yenə gələcəm.\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ Hörmətli istifadəçi zəng etdiyiniz şəxs hazırda telefona cavab verə bilmir.\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️Bir neçə dəqiqə içində gələcəm lakin gəlməsəm...\nbiraz daha gözlə.\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ İndi burada deyiləm..\nYəqin ki, başqa bir yerdəyəm..\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ Sahibim hal-hazırda AFK-dır!\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ Bəzən həyatdakı ən yaxşı şeylər gözləməyə dəyər…\nGələcəm.\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ Gələcəm,\namma əgər gəlməsəm,\ndaha sonra gələrəm.\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ Hal-hazırda sahibim burada deyil.\nXahiş edirəm biraz sonra əlaqə saxlayın.\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ Çox heyif ki sahibim burada deyil..\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ İndi burada deyiləm..\nTezliklə qayıdacağam..\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ Sahibim burada deyil..\nqayıdanda sizinlə əlaqə saxlayacaqdır.\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ Gələcəm,\namma əgər gəlməsəm,\ndaha sonra gələrəm.\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ Bir neçə dəqiqə içində gələcəm lakin gəlməsəm..\nbiraz daha gözlə.\nSahibim `{last_seen_long}` aktiv idi.",
-    "☃️ Hey, sahibim hal-hazırda burada deyil..\nqayıtdığında sizinlə əlaqə saxlayacaqdır.\nSahibim `{last_seen_long}` aktiv idi.",
+    "İndi vacib işim var, daha sonra mesaj atsan olmaz? Onsuzda yenə gələcəm.\nSahibim `{last_seen_long}` aktiv idi.",
+    "Hörmətli istifadəçi zəng etdiyiniz şəxs hazırda telefona cavab verə bilmir.\nSahibim `{last_seen_long}` aktiv idi.",
+    "Bir neçə dəqiqə içində gələcəm lakin gəlməsəm...\nbiraz daha gözlə.\nSahibim `{last_seen_long}` aktiv idi.",
+    "İndi burada deyiləm..\nYəqin ki, başqa bir yerdəyəm..\nSahibim `{last_seen_long}` aktiv idi.",
+    "Sahibim hal-hazırda AFK-dır!\nSahibim `{last_seen_long}` aktiv idi.",
+    "Bəzən həyatdakı ən yaxşı şeylər gözləməyə dəyər…\nGələcəm.\nSahibim `{last_seen_long}` aktiv idi.",
+    "Gələcəm,\namma əgər gəlməsəm,\ndaha sonra gələrəm.\nSahibim `{last_seen_long}` aktiv idi.",
+    "Hal-hazırda sahibim burada deyil.\nXahiş edirəm biraz sonra əlaqə saxlayın.\nSahibim `{last_seen_long}` aktiv idi.",
+    "Çox heyif ki sahibim burada deyil..\nSahibim `{last_seen_long}` aktiv idi.",
+    "İndi burada deyiləm..\nTezliklə qayıdacağam..\nSahibim `{last_seen_long}` aktiv idi.",
+    "Sahibim burada deyil..\nqayıdanda sizinlə əlaqə saxlayacaqdır.\nSahibim `{last_seen_long}` aktiv idi.",
+    "Gələcəm,\namma əgər gəlməsəm,\ndaha sonra gələrəm.\nSahibim `{last_seen_long}` aktiv idi.",
+    "Bir neçə dəqiqə içində gələcəm lakin gəlməsəm..\nbiraz daha gözlə.\nSahibim `{last_seen_long}` aktiv idi.",
+    "Hey, sahibim hal-hazırda burada deyil..\nqayıtdığında sizinlə əlaqə saxlayacaqdır.\nSahibim `{last_seen_long}` aktiv idi.",
 ]
 
-UNAPPROVED_MSG = ("🎄`Salam,` {mention} `\nBu bir avtomatik mesajdır.\nNarahat olma.\n\n`"
+UNAPPROVED_MSG = ("`Salam,` {mention} `\nBu bir avtomatik mesajdır.\nNarahat olma.\n\n`"
                   "`Sahibim sənə PM yazma icazəsi verməyib. `"
                   "`Zəhmət olmasa sahibimin aktiv olmasını gözləyin, o bəzən PM yazmağa icazə verər.\n\n`"
-                  "`Bildiyim qədəri ilə o beynini itirib insanlara PM icazəsi vermir.`🎄")
+                  "`Bildiyim qədəri ilə o beynini itirib insanlara PM icazəsi vermir.`")
 
 DB = connect("cyber.check")
 CURSOR = DB.cursor()
@@ -290,7 +293,7 @@ async def startupcyber():
         if QRUP != 0:
             await bot.send_message(
                 QRUP,
-                f"**Salam! Mən C Y B Ξ R UserBot**\n**Botumuzu qurduğunuz üçün təşəkkür edirəm!**\n**Botunuz aktivdir.**\n\n**C Y B Ξ R Version:** **{CYBER_VERSION}**\n**Plugin sayı: {len(CMD_HELP)}**\n**Sahib: {CYBER_NAME}**\n**Plugin kanalı:** @TheCyberPlugin\n**Guides:** @TheCyberGuides\n\n**Yardıma ehtiyyacınız olarsa @TheCyberSupport qrupuna yazın :)**\n\n**🎄 Yeni iliniz mübarək! 🎄**",
+                f"**Salam! Mən C Y B Ξ R UserBot**\n**Botumuzu qurduğunuz üçün təşəkkür edirəm!**\n**Botunuz aktivdir.**\n\n**C Y B Ξ R Version:** **{CYBER_VERSION}**\n**Plugin sayı: {len(CMD_HELP)}**\n**Sahib: {CYBER_NAME}**\n**Plugin kanalı:** @TheCyberPlugin\n**Guides:** @TheCyberGuides\n\n**Yardıma ehtiyyacınız olarsa @TheCyberSupport qrupuna yazın :)**",
             )
     except Exception as e:
         LOGS.info(str(e))

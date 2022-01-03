@@ -152,14 +152,14 @@ async def _(event):
         await event.edit("`Xahiş edirəm bir Python faylına cavab verin!`")
         return
     if os.path.isfile(cyber_path):
-        await event.edit("🎄 `Bu plugin onsuzda yüklənib!\nOnu təkrar yükləməyəcəyəm.`")
+        await event.edit("`Bu plugin onsuzda yüklənib!\nOnu təkrar yükləməyəcəyəm.`")
         return
     b = await event.client.download_media(await event.get_reply_message()) 
     a = open(b, "r") 
     c = a.read() 
     a.close() 
-    a = await event.edit("`Plugin skan edilir...`\n`Biraz gözləyin...` 🎄") 
-    for CYBER in DANGERCONFIGS:
+    a = await event.edit("`Plugin skan edilir...`\n`Biraz gözləyin...`") 
+    for CYBER in DANGERCONFIGS: # thanks to https://github.com/TeamExtremePro/Andencento/blob/9d6dc6719b45984237c7d39b6cc2ae5579a71111/plugins/installer.py#L52 for this line
       if re.search(CYBER, c):
         await event.edit(f"`Plugində` **{CYBER}** `dəyəri aşkar edildi!`\n`Plugin təhlükəli olduğundan onu sildim.`")
         return os.remove(b)
@@ -198,21 +198,21 @@ async def _(event):
             if re.search(r'CmdHelp\(.*\)', dosy):
                 cmdhelp = re.findall(r"CmdHelp\([\"'](.*)[\"']\)", dosy)[0]
                 await reply_message.forward_to(PLUGIN_CHANNEL_ID)
-                return await event.edit(f'🎄 **Plugin uğurla yükləndi!**\n\n☃️ **Pluginin istifadəsini öyrənmək üçün** `.cyber {cmdhelp}` **yazın.**')
+                return await event.edit(f'**Plugin uğurla yükləndi!**\n__Pluginin istifadəsini öyrənmək üçün__ `.cyber {cmdhelp}` __yazın.__')
             else:
                 await reply_message.forward_to(PLUGIN_CHANNEL_ID)
-                userbot.cmdhelp.CmdHelp(dosya).add_warning('Əmr tapılmadı').add()
+                userbot.cmdhelp.CmdHelp(dosya).add_warning('Komutlar bulunamadı!').add()
                 return await event.edit(LANG['PLUGIN_DESCLESS'])
         else:
             if re.search(r'CmdHelp\(.*\)', dosy):
                 cmdhelp = re.findall(r"CmdHelp\([\"'](.*)[\"']\)", dosy)[0]
                 await reply_message.forward_to(PLUGIN_CHANNEL_ID)
-                return await event.edit(f'🎄 **Plugin uğurla yükləndi!**\n\n☃️ **Pluginin istifadəsini öyrənmək üçün** `.cyber {cmdhelp}` **yazın.**')
+                return await event.edit(f'**Plugin uğurla yükləndi!**\n__Pluginin istifadəsini öyrənmək üçün__ `.cyber {cmdhelp}` __yazın.__')
             else:
                 dosyaAdi = reply_message.file.name.replace('.py', '')
                 extractCommands(dosya)
                 await reply_message.forward_to(PLUGIN_CHANNEL_ID)
-                return await event.edit(f'🎄 **Plugin uğurla yükləndi!**\n\n☃️ **Pluginin istifadəsini öyrənmək üçün** `.cyber {dosyaAdi}` **yazın.**')
+                return await event.edit(f'**Plugin uğurla yükləndi!**\n__Pluginin istifadəsini öyrənmək üçün__ `.cyber {dosyaAdi}` __yazın.__')
             
                          
                          
@@ -293,8 +293,8 @@ async def ptest(event):
         await event.edit(f"{LANG['PLUGIN_BUGGED']} {e}")
         return os.remove("./userbot/temp_plugins/" + dosya)
 
-    return await event.edit(f'☃️ **Modul uğurla yükləndi!**\n\n🎄 __Modulu yoxlaya bilərsiniz.\nBotu yenidən başlatdığınızda plugin işləməyəcəkdir.__')
-
+    return await event.edit(f'**Modul uğurla yükləndi!**\
+    \n__Modulu yoxlaya bilərsiniz.\nBotu yenidən başlatdığınızda plugin işləməyəcəkdir.__')
 
 async def yoxla(reply_message):
     if reply_message and reply_message.media:

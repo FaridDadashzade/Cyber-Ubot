@@ -2,7 +2,7 @@
     "__CYBERJSON__": true,
     "LANGUAGE": "Azərbaycanca",
     "LANGCODE": "az",
-    "AUTHOR": "t.me/Luciferxz",
+    "AUTHOR": "t.me/luciferxz",
     "STRINGS": {
         "__plugin": {
             "REPLY_FOR_PORT": "`Zəhmət olmasa Plugin-Port üçün bir fayla cavab yazın`",
@@ -34,8 +34,8 @@
         },
         
         "__cyber": {
-            "NEED_PLUGIN": "**🎁 Zəhmət olmasa bir C Y B Ξ R modulu adı qeyd edin.**",
-            "NEED_MODULE": "**☃️ C Y B Ξ R USERBOT HELPER ☃️** \n▬▬▬▬▬▬▬▬▬▬▬▬\n**❄️ İstifadəsi:** `.cyber <modul adı>`"
+            "NEED_PLUGIN": "Zəhmət olmasa bir C Y B Ξ R modulu adı qeyd edin.",
+            "NEED_MODULE": "**C Y B Ξ R USERBOT HELPER** \n▬▬▬▬▬▬▬▬▬▬▬▬\n**İstifadəsi:** `.cyber <modul adı>`"
         },
 
         "__helpme": {
@@ -580,18 +580,18 @@
             "NOT_FOUND": "qovluğu tapa bilmədi",
             "GIT_ERROR": "Git xətası!",
             "NOT_GIT": "qovluğlu bir git reposu kimi görünmür. \nAncaq botu .update now əmri ilə zorla yeniləməklə bu problemi həll edə bilərsiniz.",
-            "INVALID_BRANCH": "**[C Y B Ξ R Güncəlləyici]:**` Düşünürəm ki, C Y B Ξ R botunuzu dəyişdirdiniz və öz filialınızdan istifadə edirsiniz.\nBu vəziyyət yenilənməni edənin başını qarışdırır,\nGüncəllənmə haradan çəkiləcək?\nXahiş edirəm rəsmi repodan C Y B Σ R Botunu istifadə edin.`",
-            "UPDATE": "\n🎄`C Y B Ξ R` **ən güncəl versiyadadır!**\n\n☃️`Branch:` **{}**\n",
-            "WAS_UPDATE": "🎄 **{} üçün yeni güncəlləmə mövcuddur!\n\n☃️Dəyişikliklər:**\n`{}`",
+            "INVALID_BRANCH": "**[C Y B Ξ R Güncəlləyici]:**` Düşünürəm ki, C Y B Σ R botunuzu dəyişdirdiniz və öz filialınızdan istifadə edirsiniz.\nBu vəziyyət yenilənməni edənin başını qarışdırır,\nGüncəllənmə haradan çəkiləcək?\nXahiş edirəm rəsmi repodan C Y B Σ R Botunu istifadə edin.`",
+            "UPDATE": "\n`C Y B Ξ R` **ən güncəl versiyadadır!**\n\n`Branch:` **{}**\n",
+            "WAS_UPDATE": "C Y B Ξ R\n\n**{} üçün yeni güncəlləmə mövcuddur!\n\nDəyişikliklər:**\n`{}`",
             "BIG": "`Dəyişikliklərin siyahısı çox böyükdür, ona bir fayl kimi baxmalısınız.`",
             "DO_UPDATE": "`Güncəllənməni etmək üçün \".update now\" komandasını istifadə edin.`",
             "FORCE_UPDATE": "`Cari sabit istifadəçi bot kodu zorla sinxronizasiya olunur...`",
             "UPDATING": "`🔄 C Y B Ξ R yenilənir...`",
-	        "INVALID_APPNAME": "**C Y B Ξ R UPDATER**\n▬▬▬▬▬▬▬▬▬▬▬\n\n🛠️**Xəta:** __Güncəlləmədən istifadə etmək üçün HEROKU_APPNAME dəyişənini təyin etməlisiniz.__",
-	        "INVALID_HEROKU": "{}\n`Heroku dəyişənləri səhv və ya müəyyənləşdirilmişdir.`",
-            "HEROKU_UPDATING": "**🎁 C Y B Ξ R UPDATER 🎁**\n▬▬▬▬▬▬▬▬▬▬▬\n\n🎄 **Status:** __Güncəllənir...\nBu müddət maksimum 2 dəqiqə çəkir.__",
+	    "INVALID_APPNAME": "**C Y B Ξ R UPDATER**\n▬▬▬▬▬▬▬▬▬\n\n🛠️**Xəta:** __Güncəlləmədən istifadə etmək üçün HEROKU_APPNAME dəyişənini təyin etməlisiniz.__",
+	    "INVALID_HEROKU": "{}\n`Heroku dəyişənləri səhv və ya müəyyənləşdirilmişdir.`",
+            "HEROKU_UPDATING": "**C Y B Ξ R UPDATER**\n▬▬▬▬▬▬▬▬▬\n\n🇦🇿**Status:** __Güncəllənir...\n Bu müddət maksimum 2 dəqiqə çəkir.__",
             "ERRORS": "Qarşılaşdığımız səhflər bunlardır",
-            "SUCCESSFULLY": "**🎁 C Y B Ξ R UPDATER 🎁**\n▬▬▬▬▬▬▬▬▬▬▬\n\n🎄 **Status:** __Yeniləmə uğurla başa çatdı!\nYenidən yüklənir ...__"
+            "SUCCESSFULLY": "**C Y B Ξ R UPDATER**\n▬▬▬▬▬▬▬▬▬\n\n🇦🇿**Status:** __Yeniləmə uğurla başa çatdı! \n Yenidən yüklənir ...__"
         },
 
         "upload_download": {

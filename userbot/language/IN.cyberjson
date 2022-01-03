@@ -32,7 +32,7 @@
             "CYBER_PLUGIN_CAPTION": "This is a plugin of [C Y B Ξ R](https://t.me/TheCyberUserBot)."
         },
         "__cyber": {
-            "NEED_PLUGIN": "**🎁 Please specify an C Y B Ξ R module name.**",
+            "NEED_PLUGIN": "Please specify an C Y B Ξ R module name.",
             "NEED_MODULE": "**C Y B Ξ R USERBOT HELPER** \n▬▬▬▬▬▬▬▬▬▬▬▬\n**Use:** `.cyber <module name>`"
         },
         "__helpme": {

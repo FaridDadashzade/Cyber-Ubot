@@ -53,11 +53,11 @@ class CmdHelp:
         Sonuç getirir.
         """
 
-        result = f"**🎄 Fayl adı:** `{self.FILE}`\n"
+        result = f"**▶️ Fayl adı:** `{self.FILE}`\n"
         if self.WARNING == '' and self.INFO == '':
-            result += f"**☃️ Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n\n"
+            result += f"**⬇️ Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n\n"
         else:
-            result += f"**☃️ Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n"
+            result += f"**⬇️ Rəsmi:** {'✅' if self.IS_OFFICIAL else '❌'}\n"
             
             if self.INFO == '':
                 if self.WARNING != '':
@@ -75,9 +75,9 @@ class CmdHelp:
                 result += f"**🛠 Əmr:** `{PATTERNS[:1]}{command['command']} {command['params']}`\n"
                 
             if command['example'] == None:
-                result += f"**❄️ Açıqlama:** `{command['usage']}`\n\n"
+                result += f"**✉ Açıqlama:** `{command['usage']}`\n\n"
             else:
-                result += f"**❄️ Açıqlama:** `{command['usage']}`\n"
+                result += f"**✉ Açıqlama:** `{command['usage']}`\n"
                 result += f"**⌨️ Nümunə:** `{PATTERNS[:1]}{command['example']}`\n\n"
         return result
 
