@@ -496,9 +496,10 @@ else:
 async def cyberasistan():
     if BOT_TOKEN:
         return
-    ASISTAN_LOGO = "https://telegra.ph/file/d7b362b0d499ba9c125df.jpg"    
     await bot.start()
     LOGS.info("C Y B Ξ R asistanı ayarlanır..")
+    USER_LOGO = await bot.download_profile_photo(SAHIB_ID, TEMP_DOWNLOAD_DIRECTORY)
+    ASISTAN_LOGO = await bot.upload_file(USER_LOGO)
     DEFAULT_NAME + "-nin asistanı"
     usnm = ISTIFADECI_ADI
     name = DEFAULT_NAME
