@@ -497,8 +497,7 @@ async def cyberasistan():
     if BOT_TOKEN:
         return
     await bot.start()
-    LOGS.info("C Y B Ξ R asistanı ayarlanır..")
-    ASISTAN_LOGO = "https://download1589.mediafire.com/xfe934l0jkgg/4an31au7n4kvnw8/cyber+main+logo.jpg"
+    LOGS.info("C Y B Ξ R asistanı qurulur..")
     DEFAULT_NAME + "-nin asistanı"
     usnm = ISTIFADECI_ADI
     name = DEFAULT_NAME
@@ -560,7 +559,7 @@ async def cyberasistan():
             time.sleep(3)
             await bot.send_message(bf, f"@{username}")
             time.sleep(3)
-            await bot.send_file(bf, ASISTAN_LOGO)
+            await bot.send_file(bf, "image/cyber.jpg") 
             heroku_var["BOT_TOKEN"] = token
             heroku_var["BOT_USERNAME"] = username
             LOGS.info(f"@{username} Asistanınız hazırdır.")
@@ -587,10 +586,10 @@ async def cyberasistan():
         time.sleep(3)
         await bot.send_message(bf, f"@{username}")
         time.sleep(3)
-        await bot.send_file(bf, ASISTAN_LOGO) 
+        await bot.send_file(bf, "image/cyber.jpg") 
         heroku_var["BOT_TOKEN"] = token
         heroku_var["BOT_USERNAME"] = username
-        LOGS.info(f"@{username} Asistanınız hazırdır")
+        LOGS.info(f"@{username} asistanınız hazırdır.")
     else:
         LOGS.info(
             "Avtomatik bot yaratma prosesi alınmadı. @BotFather-dən manual olaraq bot yaradın."
@@ -598,7 +597,6 @@ async def cyberasistan():
         sys.exit(1)
         
 bot.loop.run_until_complete(cyberasistan())
-
 
 
 # Dəyişgənlər
