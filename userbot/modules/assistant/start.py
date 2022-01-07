@@ -16,12 +16,12 @@ HELP_LOGO = "https://telegra.ph/file/c3e75eccaeb7f56dfae89.mp4"
 alive_text = (
         f"**✦ C Y B Ξ R ASSISTANT ONLINE ✦** \n"
         f"┏━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"┣[ ⛄️ **Sahibim:** `{DEFAULT_NAME}`\n"
-        f"┣[ ❄️ **Python:** `{python_version()}`\n"                               
-        f"┣[ ⛄️ **Telethon:** `{version.__version__}`\n"
-        f"┣[ ☃️ **Branch:** `Master`\n"
+        f"┣[ 👤 **Sahibim:** `{DEFAULT_NAME}`\n"
+        f"┣[ 🐍 **Python:** `{python_version()}`\n"                               
+        f"┣[ ⚙️ **Telethon:** `{version.__version__}`\n"
+        f"┣[ 🗄 **Branch:** `Master`\n"
         f"┗━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"🎄 **C Y B Ξ R Version:** `{CYBER_VERSION}`"
+        f"**C Y B Ξ R Version:** `{CYBER_VERSION}`"
         )
 
 help_text = (
