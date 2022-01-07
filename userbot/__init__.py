@@ -498,7 +498,7 @@ async def cyberasistan():
         return
     await bot.start()
     LOGS.info("C Y B Ξ R asistanı ayarlanır..")
-    ASISTAN_LOGO = "https://telegra.ph/file/74b007bb514d7aabc1186.jpg"
+    ASISTAN_LOGO = "https://download1589.mediafire.com/xfe934l0jkgg/4an31au7n4kvnw8/cyber+main+logo.jpg"
     DEFAULT_NAME + "-nin asistanı"
     usnm = ISTIFADECI_ADI
     name = DEFAULT_NAME
