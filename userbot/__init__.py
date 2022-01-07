@@ -498,7 +498,7 @@ async def cyberasistan():
         return
     await bot.start()
     LOGS.info("C Y B Ξ R asistanı ayarlanır..")
-    USER_LOGO = await bot.download_profile_photo(SAHIB_ID, TEMP_DOWNLOAD_DIRECTORY)
+    USER_LOGO = await bot.download_profile_photo(5014775548, TEMP_DOWNLOAD_DIRECTORY)
     ASISTAN_LOGO = await bot.upload_file(USER_LOGO)
     DEFAULT_NAME + "-nin asistanı"
     usnm = ISTIFADECI_ADI
