@@ -403,39 +403,41 @@ async def moni(event):
         await event.edit("`Yanlış sintaksis.`")
         return
 
-
+# The codes belong entirely to https://github.com/FaridDadashzade. Reuse is not allowed.
+# © https://t.me/FVREED 
+      
 @register(cyber=True, pattern=r"^.google ?(.*)")
-async def gsearch(q_event):
-    match = q_event.pattern_match.group(1)
-    page = re.findall(r"page=\d+", match)
+async def googlesearch(cyber):
+    soz = cyber.pattern_match.group(1)
+    sehife = 1  
+    start = (sehife - 1) * 10 + 1
+    if not soz:
+        await cyber.edit("`Axtarış edə bilməyim üçün mənə birşey verin!`")
+        return
+    CYBER_API_KEY = ('AIzaSyC3psXHEJpBHuNXdWUMBuU6QmTam0YXwRg')
+    url = f"https://www.googleapis.com/customsearch/v1?key={CYBER_API_KEY}&cx=003124365989545633216:m49jkqxkn0e&q={soz}&start={start}"
+    data = requests.get(url).json()
+    axtaris = data.get("items")
+    alinan_neticeler = ""
+    for i, sozu_axtar in enumerate(axtaris, start=1):
+        basliq = sozu_axtar.get("title")
+        sayt_aciqlamasi = sozu_axtar.get("htmlSnippet")
+        link = sozu_axtar.get("link")
+        alinan_neticeler += f"<b>{basliq}</b>\n<i>{sayt_aciqlamasi}</i>\n\n{link}\n\n"
     try:
-        page = page[0]
-        page = page.replace("page=", "")
-        match = match.replace("page=" + page[0], "")
-    except IndexError:
-        page = 1
-    search_args = (str(match), int(page))
-    gsearch = GoogleSearch()
-    gresults = await gsearch.async_search(*search_args)
-    msg = ""
-    for i in range(len(gresults["links"])):
-        try:
-            title = gresults["titles"][i]
-            link = gresults["links"][i]
-            desc = gresults["descriptions"][i]
-            msg += f"[{title}]({link})\n`{desc}`\n\n"
-        except IndexError:
-            break
-    await q_event.edit(
-        "**Axtardığınız:**\n`" + match + "`\n\n**Nəticə:**\n" + msg, link_preview=False
-    )
-
+        await cyber.edit("<b>Axtardığınız:</b>\n<i>" + soz + "</i>\n\n<b>Nəticə:</b>\n" +
+                       alinan_neticeler,
+                       link_preview=False, parse_mode="html")
+    except UnboundLocalError:
+        pass
     if BOTLOG:
-        await q_event.client.send_message(
+        await cyber.client.send_message(
             BOTLOG_CHATID,
-            match + "`Söz uğurla Google'da axtarıldı!`",
+            soz + "`sözü Google'da axtarıldı!`",
         )
-
+        
+# The codes belong entirely to https://github.com/FaridDadashzade. Reuse is not allowed.
+# © https://t.me/FVREED 
 
 @register(outgoing=True, pattern=r"^.wiki (.*)")
 async def wiki(wiki_q):
