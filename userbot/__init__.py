@@ -480,9 +480,36 @@ Hesabınızı bot'a çevirə bilərsiniz və bunları istifadə edə bilərsiniz
             "BOTLOG_CHATID dəyişgəni keçərli bir varlıq deyil. "
             "Ortam dəyişgənlərinizi / config.env faylınızı kontrol edin."
         )
-        
-        
 
+async def qrup_yarat(qrup_adi, bot, aciqlama, sekil):
+    try:
+        result = await bot(
+            CreateChannelRequest(
+                title=qrup_adi,
+                about=aciqlama,
+                megagroup=True,
+            )
+        )
+        created_chat_id = result.chats[0].id 
+        result = await bot(
+            ExportChatInviteRequest(
+                peer=created_chat_id,
+            )
+        )
+        if sekil:
+            await bot(
+                EditPhotoRequest(
+                    channel=created_chat_id,
+                    photo=sekil,
+                )
+            )
+    except Exception as e:
+        return "error", str(e) 
+    if not str(created_chat_id).startswith("-100"):
+        created_chat_id = int("-100" + str(created_chat_id))
+    return result, created_chat_id
+
+        
 from random import randint
 import heroku3
 heroku_api = "https://api.heroku.com"
@@ -559,7 +586,26 @@ async def cyberasistan():
             time.sleep(3)
             await bot.send_message(bf, f"@{username}")
             time.sleep(3)
-            await bot.send_file(bf, "image/cyber.jpg") 
+            await bot.send_file(bf, "image/cyber.jpg")
+            time.sleep(3)
+            await bot.send_message(bf, "/setcommands") 
+            time.sleep(3)
+            await bot.send_message(bf, f"@{username}")
+            time.sleep(3)
+            await bot.send_message(
+                bf, 
+                "start - Botunuzu başladın.\
+                \nhelp - Yardım menyusu\
+                \nid - Bir qrup və ya istifadəçi ID almaq üçün.\
+                \ntr - Tərcümə edər.\
+                \npurge - Qeyd etdiyiniz mesajdan sonraki mesajları təmizləyər.\
+                \ndel - Cavab verdiyiniz mesajı silər.\
+                \nban - Bir istifadəçini ban etmək üçün.\
+                \nunban - Bir istifadəçinin banını açar.\
+                \npromote - Bir istifadəçini admin etmək üçün.\
+                \ndemote - Bir istifadəçinin adminlik hüququnu almaq üçün.\
+                \npin - Cavab verdiyiniz mesajı sabitləyər.",
+            )
             heroku_var["BOT_TOKEN"] = token
             heroku_var["BOT_USERNAME"] = username
             LOGS.info(f"@{username} Asistanınız hazırdır.")
@@ -587,6 +633,25 @@ async def cyberasistan():
         await bot.send_message(bf, f"@{username}")
         time.sleep(3)
         await bot.send_file(bf, "image/cyber.jpg") 
+        time.sleep(3)
+        await bot.send_message(bf, "/setcommands") 
+        time.sleep(3)
+        await bot.send_message(bf, f"@{username}")
+        time.sleep(3)
+        await bot.send_message(
+            bf, 
+            "start - Botunuzu başladın.\
+            \nhelp - Yardım menyusu\
+            \nid - Bir qrup və ya istifadəçi ID almaq üçün.\
+            \ntr - Tərcümə edər.\
+            \npurge - Qeyd etdiyiniz mesajdan sonraki mesajları təmizləyər.\
+            \ndel - Cavab verdiyiniz mesajı silər.\
+            \nban - Bir istifadəçini ban etmək üçün.\
+            \nunban - Bir istifadəçinin banını açar.\
+            \npromote - Bir istifadəçini admin etmək üçün.\
+            \ndemote - Bir istifadəçinin adminlik hüququnu almaq üçün.\
+            \npin - Cavab verdiyiniz mesajı sabitləyər.",
+            )
         heroku_var["BOT_TOKEN"] = token
         heroku_var["BOT_USERNAME"] = username
         LOGS.info(f"@{username} asistanınız hazırdır.")
@@ -595,9 +660,8 @@ async def cyberasistan():
             "Avtomatik bot yaratma prosesi alınmadı. @BotFather-dən manual olaraq bot yaradın."
         )
         sys.exit(1)
-        
-bot.loop.run_until_complete(cyberasistan())
 
+bot.loop.run_until_complete(cyberasistan())
 
 # Dəyişgənlər
 MYID = uid

@@ -1,6 +1,6 @@
 ----
 
-<p align="center"><a href="https://t.me/TheCyberUserBot"><img src="https://telegra.ph/file/2b7c70f6a262e6bbd41ad.jpg" width="500"></a></p> 
+<p align="center"><a href="https://t.me/TheCyberUserBot"><img src="https://telegra.ph/file/a44cc6cb6eab362e771a7.jpg" width="500"></a></p> 
 <h1 align="center"><b>C Y B Ξ R USΞRBOT 🇦🇿</b></h1>
 </div>
 <p align="center">
@@ -23,7 +23,7 @@
 
 ## Manual Deploy - Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/FaridDadashzade/Cyber)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/FaridDadashzade/CyberUserBot)
 
 
 ### Hard way
@@ -74,13 +74,11 @@ Help.add()
 ```
 
 
-
 ## Devs:
 
 [FaridDadashzade](https://github.com/FaridDadashzade)
 
 [WhoMiri](https://github.com/whomiri)
-
 
 
 ## Credit
