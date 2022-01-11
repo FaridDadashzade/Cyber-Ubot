@@ -480,36 +480,7 @@ Hesabınızı bot'a çevirə bilərsiniz və bunları istifadə edə bilərsiniz
             "BOTLOG_CHATID dəyişgəni keçərli bir varlıq deyil. "
             "Ortam dəyişgənlərinizi / config.env faylınızı kontrol edin."
         )
-
-async def qrup_yarat(qrup_adi, bot, aciqlama, sekil):
-    try:
-        result = await bot(
-            CreateChannelRequest(
-                title=qrup_adi,
-                about=aciqlama,
-                megagroup=True,
-            )
-        )
-        created_chat_id = result.chats[0].id 
-        result = await bot(
-            ExportChatInviteRequest(
-                peer=created_chat_id,
-            )
-        )
-        if sekil:
-            await bot(
-                EditPhotoRequest(
-                    channel=created_chat_id,
-                    photo=sekil,
-                )
-            )
-    except Exception as e:
-        return "error", str(e) 
-    if not str(created_chat_id).startswith("-100"):
-        created_chat_id = int("-100" + str(created_chat_id))
-    return result, created_chat_id
-
-        
+    
 from random import randint
 import heroku3
 heroku_api = "https://api.heroku.com"
