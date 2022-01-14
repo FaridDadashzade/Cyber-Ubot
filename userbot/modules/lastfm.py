@@ -1,10 +1,10 @@
-# Copyright (C) 2021 CyberUserBot
+# Copyright (C) 2021-2022 CyberUserBot
 # This file is a part of < https://github.com/FaridDadashzade/CyberUserBot/ >
 # Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 from asyncio import sleep
-from pylast import User, WSError
+from pylast import LastFMNetwork, MalformedResponseError, User, WSError, md5
 from re import sub
 from urllib import parse
 from os import environ
@@ -53,8 +53,7 @@ LastLog = False
 
 @register(outgoing=True, pattern="^.lastfm$")
 async def last_fm(lastFM):
-
-    await lastFM.edit("İşleniyor...")
+    await lastFM.edit("Hazırlanır...")
     preview = None
     playing = User(LASTFM_USERNAME, lastfm).get_now_playing()
     username = f"https://www.last.fm/user/{LASTFM_USERNAME}"
@@ -175,7 +174,12 @@ async def get_curr_track(lfmbio):
             if BOTLOG and LastLog:
                 await bot.send_message(BOTLOG_CHATID,
                                        f"Biyoqrafiya dəyişdirilərkən xəta yarandı :\n{err}")
-        except WSError as err:
+        except (
+            FloodWaitError,
+            WSError,
+            MalformedResponseError,
+            AboutTooLongError,
+        ) as err:
             if BOTLOG and LastLog:
                 await bot.send_message(BOTLOG_CHATID,
                                        f"Biyoqrafiya dəyişdirilərkən xəta yarandı: \n{err}")
