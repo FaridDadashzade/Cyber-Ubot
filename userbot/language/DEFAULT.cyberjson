@@ -2,7 +2,7 @@
     "__CYBERJSON__": true,
     "LANGUAGE": "Azərbaycanca",
     "LANGCODE": "az",
-    "AUTHOR": "t.me/luciferxz",
+    "AUTHOR": "@FVREED",
     "STRINGS": {
         "__plugin": {
             "REPLY_FOR_PORT": "`Zəhmət olmasa Plugin-Port üçün bir fayla cavab yazın`",
@@ -30,7 +30,11 @@
             "ALREADY_DELETED": "`Plugin faylı artıq silinib.`",
             "NOT_FOUND_PLUGIN": "`Belə bir plugin bəlkə var idi, bəlkədə yox. Ancaq hazırda olmadığı dəqiqdir.`",
             "PLUG_DELETED": "`Plugin uğurla silindi!` **Botunuz avtomatik yenidən başladılacaq.**",
-            "CYBER_PLUGIN_CAPTION": "Bu [C Y B Ξ R](https://t.me/TheCyberUserBot) pluginidir."
+            "CYBER_PLUGIN_CAPTION": "Bu [C Y B Ξ R](https://t.me/TheCyberUserBot) pluginidir.",
+            "REPLY_PY_FILE": "`Xahiş edirəm bir Python faylına cavab verin!`",
+            "ALREADY_INSTALLED": "`Bu plugin onsuzda yüklənib!\nOnu təkrar yükləməyəcəyəm.`",
+            "PLUGIN_SCANNING": "`Plugin skan edilir...`\n`Biraz gözləyin...`",
+            "TEMP_DOWNLOAD": "__Modul uğurla yükləndi!__\n__Modulu yoxlaya bilərsiniz.__\n__Botu yenidən başlatdığınızda plugin işləməyəcəkdir.__"
         },
         
         "__cyber": {
@@ -100,7 +104,9 @@
             "UNWARN": "Xəbərdarlığınız silindi, amma yenə də diqqətli olun! Yeni vəziyyət:",
             "WARNING": "`Xəbərdarlıq göndərilir...`",
             "WARN": "dəfə xəbərdar edildi; xaiş edirik diqqətli olun!",
-	    "PLEASE_REPLY": "`Şəxsin istifadəçi adını, ID-si ni təqdim edin və ya cavab verin!`"
+	        "PLEASE_REPLY": "`Şəxsin istifadəçi adını, ID-si ni təqdim edin və ya cavab verin!`",
+            "MESSAGE_UNPIN": "`Mesaj uğurla sabitdən qaldırıldı!`",
+            "REPLY_UNPIN_MESSAGE": "Xahiş edirəm bir sabitlənmiş mesaja cavab verin və ya `.unpin all` yazın."
         },
 
         "afk": {

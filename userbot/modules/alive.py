@@ -1,4 +1,4 @@
-# Copyright (C) 2021 CyberUserBot
+# Copyright (C) 2021-2022 CyberUserBot
 # This file is a part of < https://github.com/FaridDadashzade/CyberUserBot/ >
 # Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
@@ -71,29 +71,13 @@ async def get_readable_time(seconds: int) -> str:
 
     return up_time
 
-
-"""
-@register(cyber=True, pattern="^.resalive (.*)")
-async def salive_lang(event):
-    cyber_logo = event.pattern_match.group(1)
-    cyber_config = ALIVE_LOGO
-    if cyber_logo == '':
-        await event.edit("`Xahiş edirəm bir logo linki qeyd edin!`")
-        return False
-    if cyber_config in heroku_var:
-        await event.edit("`Hazırlanır..\n(Biraz gözləyin)`")
-        del heroku_var[cyber_config]
-        return False
-        heroku_var[cyber_config] = cyber_logo
-"""
-
 @register(outgoing=True, disable_errors=True, pattern=r"^\.salive(?: |$)(.*)")
 async def salive(alive):
     user = await bot.get_me()
     islememuddeti = await get_readable_time((time.time() - StartTime))
     kecid = (
         f"**{ALIVE_TEXT}** \n"
-        f"┏━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"┏━━━━━━━━━━━━━━━━━━━━\n"
         f"┣[ 🧭 **Botun işləmə müddəti:** `{islememuddeti}`\n"
         f"┣[ 👤 **Mənim sahibim:** `{user.first_name}`\n"
         f"┣[ 🐍 **Python:** `{python_version()}`\n"                               
@@ -101,7 +85,7 @@ async def salive(alive):
         f"┣[ 🛡 **Plugin sayı:** `{len(CMD_HELP)}`\n"
         f"┣[ 👁‍🗨 **İstifadəçi adı:** @{user.username}\n"
         f"┣[ 🗄 **Branch:** `Master`\n"
-        f"┗━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"┗━━━━━━━━━━━━━━━━━━━━\n"
         f"**C Y B Ξ R Version:** `{CYBER_VERSION}`"
     )
     if LOGO_ALIVE:

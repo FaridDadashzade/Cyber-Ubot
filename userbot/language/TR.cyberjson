@@ -2,7 +2,7 @@
     "__CYBERJSON__": true,
     "LANGUAGE": "Türkçe",
     "LANGCODE": "tr",
-    "AUTHOR": "@TheCyberUserBot",
+    "AUTHOR": "@FVREED",
     "STRINGS": {
         "__plugin": {
             "REPLY_FOR_PORT": "`Plugin-Port için lütfen bir dosyaya yanıt verin.`",
@@ -30,7 +30,10 @@
             "ALREADY_DELETED": "`Plugin dosyası zaten silinmiş.`",
             "NOT_FOUND_PLUGIN": "`Böyle bir plugin belki vardı, belki de yoktu. Ama şu an olmadığı kesin.`",
             "PLUG_DELETED": "`Plugin başarıyla silindi!` **Botunuz otomatik yenidan başlatılacak.**",
-            "CYBER_PLUGIN_CAPTION": "Bu bir [C Y B Ξ R](https://t.me/TheCyberUserBot) pluginidir."
+            "CYBER_PLUGIN_CAPTION": "Bu bir [C Y B Ξ R](https://t.me/TheCyberUserBot) pluginidir.",
+            "ALREADY_INSTALLED": "`Bu eklenti zaten indirildi!\nBunu tekrar yüklemeyeceğim.`",
+            "PLUGIN_SCANNING": "`Plugin skanlanıyor...`\n`Biraz bekleyin...`",
+            "TEMP_DOWNLOAD": "__Modül başarıyla indirildi!__\n__Modülü test ede bilirsiniz.__\n__Botu yeniden başlatdığınızda eklenti çalışmayacaktır.__"
         },
         
         "__cyber": {
@@ -100,7 +103,9 @@
             "UNWARN": "uyarın kaldırıldı ama gene de dikkatli ol lütfen! Yeni durum:",
             "WARNING": "`Uyarı atılıyor...`",
             "WARN": "kere uyarıldı; dikkatli ol lütfen!",
-	    "PLEASE_REPLY": "`Lütfen kullanıcıya yanıt verin ve ya kullanıcı adı yazın!`"
+	        "PLEASE_REPLY": "`Lütfen kullanıcıya yanıt verin ve ya kullanıcı adı yazın!`",
+            "MESSAGE_UNPIN": "`Mesaj, sabitlenen mesajlardan kaldırıldı!`",
+            "REPLY_UNPIN_MESSAGE": "Lütfen sabitlenmiş bir mesajı yanıtlayın veya `.unpin all` yazın."
         },
 
         "afk": {

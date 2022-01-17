@@ -1,6 +1,6 @@
-# Copyright (C) 2021 CyberUserBot
+# Copyright (C) 2021-2022 CyberUserBot
 # This file is a part of < https://github.com/FaridDadashzade/CyberUserBot/ >
-# PLease read the GNU General Public License v3.0 in
+# Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 from asyncio import sleep
@@ -116,14 +116,14 @@ async def unpin(event):
     if event.is_reply:
         msg = event.reply_to_msg_id
     elif match != "all":
-        return await CyberUserBot.edit("Xahiş edirəm bir sabitlənmiş mesaja cavab verin və ya `.unpin all` yazın.")
+        return await CyberUserBot.edit(LANG["REPLY_UNPIN_MESSAGE"])
 
     try:
         await event.client.unpin_message(event.chat_id, msg)
     except BadRequestError:
         return await CyberUserBot.edit(NO_PERM)
 
-    await CyberUserBot.edit("`Mesaj uğurla sabitdən qaldırıldı!`")
+    await CyberUserBot.edit(LANG["MESSAGE_UNPIN"])
     await sleep(5)
     await CyberUserBot.delete()
 
@@ -131,18 +131,14 @@ async def unpin(event):
 @register(outgoing=True, pattern="^.gban(?: |$)(.*)")
 @register(incoming=True, from_users=SUDO_ID, pattern="^.cgban(?: |$)(.*)")
 async def gbanspider(gspdr):
-    """ .gban komutu belirlenen kişiyi küresel olarak yasaklar """
-    # Yetki kontrolu
     chat = await gspdr.get_chat()
     admin = chat.admin_rights
     creator = chat.creator
 
-    # Yönetici değil ise geri dön
     if not admin and not creator:
         await gspdr.edit(NO_ADMIN)
         return
 
-    # Fonksiyonun SQL modu altında çalışıp çalışmadığını kontrol et
     try:
         from userbot.modules.sql_helper.gban_sql import gban
     except:
@@ -155,12 +151,10 @@ async def gbanspider(gspdr):
     else:
         return
 
-    # Əgər istifadəçi whitelistde varsa
     if user.id in WHITELIST:
         await gspdr.edit(LANG['BRAIN'])
         return
 
-    # Başarı olursa bilgi ver
     await gspdr.edit(LANG['BANNING'])
     if gban(user.id) == False:
         await gspdr.edit(

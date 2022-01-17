@@ -30,7 +30,11 @@
             "ALREADY_DELETED": "`Plugin fayli allaqachon yo'q qilingan.`",
             "NOT_FOUND_PLUGIN": "`Qachonlardir bunday plugin mavjud edi. ehtimol hozirda yo'q.  Ammo bu aniq emas.`",
             "PLUG_DELETED": "`Plugin yo'q qilindi!` **Amalga oshiriladigan operatsiyalar uchun qayta yuklashingiz kerak.**",
-            "CYBER_PLUGIN_CAPTION": "Bu [CYBER](https://t.me/TheCyberUserBot) plugini."
+            "CYBER_PLUGIN_CAPTION": "Bu [CYBER](https://t.me/TheCyberUserBot) plugini.",
+            "REPLY_PY_FILE": "`Iltimos, Python fayliga javob bering!`",
+            "ALREADY_INSTALLED": "`Ushbu plagin allaqachon yuklab olingan!\nMen uni boshqa yuklamayman.`",
+            "PLUGIN_SCANNING": "`Plagin skanerlangan...`\n`Bir oz kuting...`",
+            "TEMP_DOWNLOAD": "__Modul yuklab olindi!__\n__Siz modulni tekshirishingiz mumkin.__\n__Botni qayta ishga tushirganingizda plagin ishlamaydi.__"
         },
         "__cyber": {
             "NEED_PLUGIN": "Iltimos Cyber moduli nomini ko'rsating.",
@@ -97,7 +101,9 @@
             "UNWARN": "Sizning ogohlantirishingiz olib tashlandi. Ammo baribir ehtiyot bo'ling!  Yangi vaziyat:",
             "WARNING": "`Ogohlantirish...`",
             "WARN": "vaqt haqida ogohlantirish;  ehtiyot bo'ling iltimos!",
-            "PLEASE_REPLY": "`Shaxsning foydalanuvchi ismi yoki identifikatorini bering yoki javob bering!`"
+            "PLEASE_REPLY": "`Shaxsning foydalanuvchi ismi yoki identifikatorini bering yoki javob bering!`",
+            "MESSAGE_UNPIN": "`Xabar belgilangan xabarlardan olib tashlandi!`",
+            "REPLY_UNPIN_MESSAGE": "Iltimos, mahkamlangan xabarga javob bering yoki `.unpin all` deb yozing."
         },
         "afk": {
             "REASON": "Sabab",

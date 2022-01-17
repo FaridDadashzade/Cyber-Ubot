@@ -1,7 +1,7 @@
 {
     "LANGUAGE": "English",
     "LANGCODE": "en",
-    "AUTHOR": "@upp4r/@selaxg/@willyshakespeare",
+    "AUTHOR": "@upp4r/@selaxg/@willyshakespeare/@FVREED",
     "STRINGS": {
         "__plugin": {
             "REPLY_FOR_PORT": "`Please give a file for Plugin-Port`",
@@ -29,7 +29,11 @@
             "ALREADY_DELETED": "`The Plugin file has already deleted.`",
             "NOT_FOUND_PLUGIN": "`Maybe there was such a plugin, maybe there wasn't. But it's definitely not right now.`",
             "PLUG_DELETED": "`Plugin deleted successfully!` '**Wait a while for your bot to start again.**",
-            "CYBER_PLUGIN_CAPTION": "This is a plugin of [C Y B Ξ R](https://t.me/TheCyberUserBot)."
+            "CYBER_PLUGIN_CAPTION": "This is a plugin of [C Y B Ξ R](https://t.me/TheCyberUserBot).",
+            "REPLY_PY_FILE": "`Please reply to a Python file!`",
+            "ALREADY_INSTALLED": "`This plugin is already downloaded!\nI will not upload it again.`",
+            "PLUGIN_SCANNING": "`The plugin is scanned...`\n`Wait a bit...`",
+            "TEMP_DOWNLOAD": "__The module has been successfully downloaded!__\n__You can check the module.__\n__The plugin will not work when you restart the bot.__"
         },
         "__cyber": {
             "NEED_PLUGIN": "Please specify an C Y B Ξ R module name.",
@@ -96,7 +100,9 @@
             "UNWARN": "your warning has been removed, but be careful please! New status:",
             "WARNING": "`Warning...`",
             "WARN": "times warned; be careful, please!",
-            "PLEASE_REPLY": "`Provide or reply to the person's username or ID!`"
+            "PLEASE_REPLY": "`Provide or reply to the person's username or ID!`",
+            "MESSAGE_UNPIN": "`The message has been removed from the messages pinned!`",
+            "REPLY_UNPIN_MESSAGE": "Please reply to a pinned message or type `.unpin all`."
         },
         "afk": {
             "REASON": "Reason",

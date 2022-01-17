@@ -1,6 +1,6 @@
-# Copyright (C) 2021 CyberUserBot
+# Copyright (C) 2021-2022 CyberUserBot
 # This file is a part of < https://github.com/FaridDadashzade/CyberUserBot/ >
-# PLease read the GNU General Public License v3.0 in
+# Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 from telethon import events
@@ -11,15 +11,14 @@ import os
 
 API = "https://apis.xditya.me/lyrics?song="
 
-@tgbot.on(events.NewMessage(pattern="^/lyrics"))
+@tgbot.on(events.NewMessage(pattern="^/lyrics(?: |$)(.*)"))
 async def lyrics(event):
-    musiqi_adi = await event.get_reply_message()
-    musiqi_sozleri = lyrics(musiqi_adi)
+    musiqi_adi = event.pattern_match.group(1)
+    musiqi_sozleri = sozler(musiqi_adi)
     try: 
         await event.reply(f"{musiqi_sozleri}")
     except Exception as e:
         await event.reply(f"Bağışlayın, {musiqi_adi} mahnısının sözlərini tapa bilmədim.")
-
 
 def axtar(mahni_adi):
         r = requests.get(API + mahni_adi)

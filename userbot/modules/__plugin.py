@@ -1,6 +1,6 @@
-# Copyright (C) 2021 CyberUserBot
+# Copyright (C) 2021-2022 CyberUserBot
 # This file is a part of < https://github.com/FaridDadashzade/CyberUserBot/ >
-# PLease read the GNU General Public License v3.0 in
+# Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 import os
@@ -149,17 +149,17 @@ async def _(event):
     uzanti = plugin_adi.split(".")[1].lower()
     plugin_exe = plugin_adi.split(".")[0]
     if uzanti != "py":
-        await event.edit("`Xahiş edirəm bir Python faylına cavab verin!`")
+        await event.edit(LANG["REPLY_PY_FILE"])
         return
     if os.path.isfile(cyber_path):
-        await event.edit("`Bu plugin onsuzda yüklənib!\nOnu təkrar yükləməyəcəyəm.`")
+        await event.edit(LANG["ALREADY_INSTALLED"])
         return
     b = await event.client.download_media(await event.get_reply_message()) 
     a = open(b, "r") 
     c = a.read() 
     a.close() 
-    a = await event.edit("`Plugin skan edilir...`\n`Biraz gözləyin...`") 
-    for CYBER in DANGERCONFIGS: # thanks to https://github.com/TeamExtremePro/Andencento/blob/9d6dc6719b45984237c7d39b6cc2ae5579a71111/plugins/installer.py#L52 for this line
+    a = await event.edit(LANG["PLUGIN_SCANNING"]) 
+    for CYBER in DANGERCONFIGS:
       if re.search(CYBER, c):
         await event.edit(f"`Plugində` **{CYBER}** `dəyəri aşkar edildi!`\n`Plugin təhlükəli olduğundan onu sildim.`")
         return os.remove(b)
@@ -293,8 +293,7 @@ async def ptest(event):
         await event.edit(f"{LANG['PLUGIN_BUGGED']} {e}")
         return os.remove("./userbot/temp_plugins/" + dosya)
 
-    return await event.edit(f'**Modul uğurla yükləndi!**\
-    \n__Modulu yoxlaya bilərsiniz.\nBotu yenidən başlatdığınızda plugin işləməyəcəkdir.__')
+    return await event.edit(LANG["TEMP_DOWNLOAD"])
 
 async def yoxla(reply_message):
     if reply_message and reply_message.media:
