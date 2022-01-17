@@ -31,6 +31,7 @@
             "NOT_FOUND_PLUGIN": "`Böyle bir plugin belki vardı, belki de yoktu. Ama şu an olmadığı kesin.`",
             "PLUG_DELETED": "`Plugin başarıyla silindi!` **Botunuz otomatik yenidan başlatılacak.**",
             "CYBER_PLUGIN_CAPTION": "Bu bir [C Y B Ξ R](https://t.me/TheCyberUserBot) pluginidir.",
+            "REPLY_PY_FILE": "`Lütfen bir Python dosyasını yanıtlayın!`",
             "ALREADY_INSTALLED": "`Bu eklenti zaten indirildi!\nBunu tekrar yüklemeyeceğim.`",
             "PLUGIN_SCANNING": "`Plugin skanlanıyor...`\n`Biraz bekleyin...`",
             "TEMP_DOWNLOAD": "__Modül başarıyla indirildi!__\n__Modülü test ede bilirsiniz.__\n__Botu yeniden başlatdığınızda eklenti çalışmayacaktır.__"
