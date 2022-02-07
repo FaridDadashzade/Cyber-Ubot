@@ -304,12 +304,10 @@ if not BOT_TOKEN is None:
         "TG_BOT_TOKEN",
         api_id=API_KEY,
         api_hash=API_HASH,
-        connection=ConnectionTcpAbridged,
-        auto_reconnect=True,
-        connection_retries=None
     ).start(bot_token=BOT_TOKEN)
 else:
     tgbot = None
+
 
 def butonlastir(sayfa, moduller):
     Satir = 5
