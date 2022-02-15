@@ -1,21 +1,23 @@
-----
-
-<p align="center"><a href="https://t.me/TheCyberUserBot"><img src="https://telegra.ph/file/a44cc6cb6eab362e771a7.jpg" width="500"></a></p> 
-<h1 align="center"><b>C Y B Ξ R USΞRBOT 🇦🇿</b></h1>
+<div align="center">
+  <a href="https://t.me/TheCyberUserBot"><img src="https://telegra.ph/file/a44cc6cb6eab362e771a7.jpg" width="500"></a>
+  <h1> C Y B Ξ R USΞRBOT 🇦🇿 </h1>
 </div>
 <p align="center">
     C Y B Ξ R UserBot is a project that simplifies the use of Telegram. All rights reserved.
-
+    <br>
+        <a href="https://t.me/TheCyberUserBot">Yeniliklər kanalı.</a> |
+        <a href="https://t.me/TheCyberSupport">Support.</a> 
+    <br>
 </p>
+
+![Docker Pulls](https://img.shields.io/docker/pulls/cyberuserbot/cyberspaceaz?style=flat-square) ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/cyberuserbot/cyberspaceaz?style=flat-square)
 
 ----
 
 
 ### Automatic Setup
 
-**Android:** open Termux paste this code: `bash <(curl -L https://bit.ly/2SuGkcA)`
-
-**iOS:** open iSH paste this code: `apk update && apk add bash && apk add curl && curl -L -o cyber_installer.sh https://git.io/JYKsg && chmod +x cyber_installer.sh && bash cyber_installer.sh`
+**Android:** open Termux paste this code: `bash <(curl -L https://bit.ly/3CwtFIh)`
 
 **Online deploy** 
                   [![Run on Repl.it](https://repl.it/badge/github/FaridDadashzade/CyberInstaller-)](https://repl.it/@FaridDadashzade/installer-1)
