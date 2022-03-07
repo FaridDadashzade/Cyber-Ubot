@@ -70,8 +70,8 @@ Help.add()
 
 ```
      Associated with UserBot; Your Telegram account may be closed.
-     This is an open source project and we have no responsibility as CYBΞR Owners and Administrators.
-     By setting up CYBΞR, you are considered to have accepted these responsibilities.
+     This is an open source project and we have no responsibility as C Y B Ξ R Owners and Administrators.
+     By setting up C Y B Ξ R, you are considered to have accepted these responsibilities.
      
 ```
 
