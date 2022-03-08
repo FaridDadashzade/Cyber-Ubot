@@ -15,6 +15,13 @@ from userbot import (COUNT_PM, CMD_HELP, BOTLOG, BOTLOG_CHATID,
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from userbot.cmdhelp import CmdHelp
+import heroku3
+import asyncio
+import aiohttp
+import ssl
+import requests 
+from userbot import HEROKU_APIKEY, HEROKU_APPNAME 
+from shutil import which
 
 # ██████ LANGUAGE CONSTANTS ██████ #
 
@@ -22,6 +29,39 @@ from userbot.language import get_value
 LANG = get_value("pmpermit")
 
 # ████████████████████████████████ #
+
+heroku_api = "https://api.heroku.com"
+if HEROKU_APPNAME is not None and HEROKU_APIKEY is not None:
+    Heroku = heroku3.from_key(HEROKU_APIKEY)
+    app = Heroku.app(HEROKU_APPNAME)
+    heroku_var = app.config()
+else:
+    app = None
+
+SEÇİMLƏR = ["True", "False"]
+
+# The codes belong entirely to https://github.com/FaridDadashzade. Reuse is not allowed.
+# Başqa botlarda istifadəsi qadağandır!
+# © https://t.me/FVREED
+
+@register(cyber=True, pattern="^.pm ?(.*)")
+async def pm_auto_ban(cyber):
+    secimler = cyber.pattern_match.group(1)
+    if not secimler in SEÇİMLƏR:
+        await cyber.edit("**İstifadəsi:** `.pm True və ya False`")
+        return
+    if secimler == '':
+        await cyber.edit("**İstifadəsi:** `.pm True və ya False`")
+        return
+    await cyber.edit(f"**PM_AUTO_BAN** `{secimler}` **olaraq ayarlandı!**")
+    try:
+        heroku_var["PM_AUTO_BAN"] = secimler
+    except:
+        await cyber.edit("`Bilinməyən bir xəta baş verdi!`")
+
+# The codes belong entirely to https://github.com/FaridDadashzade. Reuse is not allowed.
+# Başqa botlarda istifadəsi qadağandır!
+# © https://t.me/FVREED
 
 @register(incoming=True, disable_edited=True, disable_errors=True)
 async def permitpm(event):
