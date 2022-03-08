@@ -461,6 +461,11 @@ Help.add_command('pinterest', '<link>', 'Pinterest-dən video və ya şəkil yü
 Help.add_info('@TheCyberUserBot')
 Help.add()
 
+Help = CmdHelp('pmautoban')
+Help.add_command('pmautoban', 'True', 'PMAutoBan aktiv edər.')
+Help.add_command('pmautoban', 'False', 'PMAutoBan deaktiv edər.')
+Help.add()
+
 Help = CmdHelp('files')
 Help.add_command('oxu', '<bir fayla cavab>', 'Faylın məzmununu oxuyun və Telegram mesajı olaraq göndərin.')
 Help.add_command('repack', '<bir mətnə cavab> <fayl_adı.py>', 'Cavab verdiyiniz mətni plugin edib atar.')
