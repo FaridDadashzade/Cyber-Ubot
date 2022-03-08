@@ -101,7 +101,5 @@ Thanks for;
 [The Ultroid](https://github.com/TeamUltroid/Ultroid)
 
 ----
-##### If you want to add your own language to the repo, you can help us by clicking the link: [Click here.](https://crowdin.com/project/cyberuserbot)
-
 ##### Regarding copyright, please contact cyberuserbot@gmail.com first.
 ----
