@@ -256,7 +256,7 @@ async def _(event):
         )
     else:
         await event.edit("```Hazırlanır...```")
-    chat = "@pinterest_downloaderbot"
+    chat = "@pinterestdowrobot"
     async with bot.conversation(chat) as conv:
         try:
             msg_start = await conv.send_message("/start")
