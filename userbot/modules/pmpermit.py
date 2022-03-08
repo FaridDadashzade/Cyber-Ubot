@@ -437,17 +437,16 @@ async def unblockpm(unblock):
         )
 
 
-Help = CmdHelp('pmautoban')
-Help.add_command('pmautoban', 'True', 'PMAutoBan aktiv edər.')
-Help.add_command('pmautoban', 'False', 'PMAutoBan deaktiv edər.')
-Help.add()
-
 CmdHelp('pmpermit').add_command(
     'approve', None, '.a kimidə istifadə oluna bilər. Cavab verilən istifadəçiyə PM icazəsi verər.', 
 ).add_command(
     'disapprove', None, '.da kimidə istifadə oluna bilər. Cavab verilən istifadəçiyə PM icazəsini silər.'
 ).add_command(
     'block', '<istifadəçi adı/cavablama>', 'İstifadəçini bloklayar.'
+).add_command(
+    'pmautoban', 'True', 'PMAutoBan aktiv edər.'
+).add_command(
+    'pmautoban', 'False', 'PMAutoBan deaktiv edər..'
 ).add_command(
     'unblock', '<istifadəçi adı/cavablama>', 'İstifadəçinin bloklanmasını silər.'
 ).add_command(
