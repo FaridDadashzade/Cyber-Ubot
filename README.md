@@ -17,7 +17,7 @@
 
 ### Automatic Setup
 
-**Android:** open Termux paste this code: `bash <(curl -L bash <(curl -L https://bit.ly/cyberuserbot)`
+**Android:** open Termux paste this code: `bash <(curl -L https://bit.ly/cyberuserbot)`
 
 **Online deploy** 
                   [![Run on Repl.it](https://repl.it/badge/github/FaridDadashzade/CyberInstaller-)](https://repl.it/@FaridDadashzade/installer-1)
