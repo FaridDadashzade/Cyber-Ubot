@@ -44,7 +44,7 @@ SEÇİMLƏR = ["True", "False"]
 # Başqa botlarda istifadəsi qadağandır!
 # © https://t.me/FVREED
 
-@register(cyber=True, pattern="^.pm ?(.*)")
+@register(cyber=True, pattern="^.pmautoban ?(.*)")
 async def pm_auto_ban(cyber):
     secimler = cyber.pattern_match.group(1)
     if not secimler in SEÇİMLƏR:
@@ -435,6 +435,12 @@ async def unblockpm(unblock):
             f"[{name0}](tg://user?id={replied_user.id})"
             " istifadəçisi blokdan çıxarıldı.",
         )
+
+
+Help = CmdHelp('pmautoban')
+Help.add_command('pmautoban', 'True', 'PMAutoBan aktiv edər.')
+Help.add_command('pmautoban', 'False', 'PMAutoBan deaktiv edər.')
+Help.add()
 
 CmdHelp('pmpermit').add_command(
     'approve', None, '.a kimidə istifadə oluna bilər. Cavab verilən istifadəçiyə PM icazəsi verər.', 
