@@ -17,7 +17,7 @@
 
 ### Automatic Setup
 
-**Android:** open Termux paste this code: `bash <(curl -L https://bit.ly/3CwtFIh)`
+**Android:** open Termux paste this code: `bash <(curl -L bash <(curl -L https://bit.ly/cyberuserbot)`
 
 **Online deploy** 
                   [![Run on Repl.it](https://repl.it/badge/github/FaridDadashzade/CyberInstaller-)](https://repl.it/@FaridDadashzade/installer-1)
@@ -101,7 +101,5 @@ Thanks for;
 [The Ultroid](https://github.com/TeamUltroid/Ultroid)
 
 ----
-##### If you want to add your own language to the repo, you can help us by clicking the link: [Click here.](https://crowdin.com/project/cyberuserbot)
-
 ##### Regarding copyright, please contact cyberuserbot@gmail.com first.
 ----
