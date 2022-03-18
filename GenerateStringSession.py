@@ -1,6 +1,6 @@
-# Copyright (C) 2021 CyberUserBot
+# Copyright (C) 2021-2022 CyberUserBot
 # This file is a part of < https://github.com/FaridDadashzade/CyberUserBot/ >
-# PLease read the GNU General Public License v3.0 in
+# Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 import asyncio
@@ -60,10 +60,10 @@ class InteractiveTelegramClient(TelegramClient):
                 self_user = None
             except PhoneNumberInvalidError:
                 print("[!] Yanlış nömrə yazdınız nümunədəki kimi yazın. Nümunə: +994xxxxxxxxx")
-                exit(1)
+                sys.exit(1)
             except ValueError:
                print("[!] Yanlış nömrə yazdınız nümunədəki kimi yazın. Örnek: +994xxxxxxxxx")
-               exit(1)
+               sys.exit(1)
 
             while self_user is None:
                 code = input('[?] Teleqramdan gələn 5 xanalı kodu qeyd edin: ')
@@ -109,14 +109,14 @@ if __name__ == '__main__':
          rastgele = requests.post("https://my.telegram.org/auth/send_password", data={"phone": numara}).json()["random_hash"]
       except:
          print("[!] Kodu göndərmək olmadı. Telefon nömrənizi yoxlayın.")
-         exit(1)
+         sys.exit(1)
       
       sifre = input("[?] Telegram'dan gələn kodu yazın: ")
       try:
          cookie = requests.post("https://my.telegram.org/auth/login", data={"phone": numara, "random_hash": rastgele, "password": sifre}).cookies.get_dict()
       except:
          print("[!] Böyük ehtimalla kodu səhv yazdınız. Scripti yenidən başladın.")
-         exit(1)
+         sys.exit(1)
       app = requests.post("https://my.telegram.org/apps", cookies=cookie).text
       soup = bs4.BeautifulSoup(app, features="html.parser")
 
@@ -173,9 +173,9 @@ if __name__ == '__main__':
             print("[i] String Key aşağıdadır!\n\n\n" + client.session.save())
          else:
             print("[i] Script dayandırılır...")
-            exit(1)
+            sys.exit(1)
       else:
          print("[!] Bir xəta baş verdi.")
-         exit(1)
+         sys.exit(1)
    else:
       print("[!] Bilinməyən seçim.")

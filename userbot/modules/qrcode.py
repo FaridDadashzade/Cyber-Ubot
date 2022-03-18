@@ -1,9 +1,7 @@
-# Copyright (C) 2021 CyberUserBot
+# Copyright (C) 2021-2022 CyberUserBot
 # This file is a part of < https://github.com/FaridDadashzade/CyberUserBot/ >
 # Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
-
-""" QR kodları"""
 
 import os
 import qrcode
@@ -24,11 +22,9 @@ LANG = get_value("qrcode")
 
 @register(pattern=r"^.decode$", outgoing=True)
 async def parseqr(qr_e):
-    """ .decode """
     downloaded_file_name = await qr_e.client.download_media(
         await qr_e.get_reply_message())
 
-    # QR
     files = {'f': open(downloaded_file_name, 'rb').read()}
     t_response = None
 
@@ -52,7 +48,6 @@ async def parseqr(qr_e):
 
 @register(pattern=r".barcode(?: |$)([\s\S]*)", outgoing=True)
 async def barcode_read(event):
-    """ .barcode  """
     await event.edit(LANG['TRYING'])
     input_str = event.pattern_match.group(1)
     message = f"{LANG['USAGE']} `.barcode <{LANG['TEXT']}>`"
@@ -75,7 +70,7 @@ async def barcode_read(event):
         else:
             message = previous_message.message
     else:
-        event.edit("SÖZ DİZİMİ: `.barcode <əlavə ediləcək uzun mətin>`")
+        event.edit("İstifadəsi: `.barcode <əlavə ediləcək uzun mətin>`")
         return
 
     bar_code_type = "code128"

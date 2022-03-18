@@ -1,15 +1,7 @@
-# Copyright (C) 2021 CyberUserBot
+# Copyright (C) 2021-2022 CyberUserBot
 # This file is a part of < https://github.com/FaridDadashzade/CyberUserBot/ >
 # Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
-
-# ██████ LANGUAGE CONSTANTS ██████ #
-
-from userbot.language import get_value
-LANG = get_value("chat")
-
-# ████████████████████████████████ #
-
 
 from asyncio import sleep
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, bot, BLACKLIST_CHAT
@@ -17,12 +9,13 @@ from userbot.events import register
 from userbot.modules.admin import get_user_from_event
 from userbot.main import PLUGIN_MESAJLAR
 
-# ---------------------------------- #
+# ██████ LANGUAGE CONSTANTS ██████ #
 
 from userbot.language import get_value
 LANG2 = get_value("cyberlangs")
+LANG = get_value("chat")
 
-# ---------------------------------- #
+# ████████████████████████████████ #
 
 @register(outgoing=True, pattern="^.userid$")
 @register(outgoing=True, pattern="^.id$")

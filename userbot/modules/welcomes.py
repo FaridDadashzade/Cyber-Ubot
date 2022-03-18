@@ -1,4 +1,4 @@
-# Copyright (C) 2021 CyberUserBot
+# Copyright (C) 2021-2022 CyberUserBot
 # This file is a part of < https://github.com/FaridDadashzade/CyberUserBot/ >
 # Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
@@ -79,6 +79,7 @@ async def welcome_to_chat(event):
                                                      my_mention=my_mention),
                 file=file_media)
             update_previous_welcome(event.chat_id, current_message.id)
+            
 @register(outgoing=True, pattern=r"^.setwelcome(?: |$)(.*)")
 async def save_welcome(event):
     try:
