@@ -1,9 +1,10 @@
-# Copyright (C) 2021 CyberUserBot
+# Copyright (C) 2022 CyberUserBot
 # This file is a part of < https://github.com/FaridDadashzade/CyberUserBot/ >
 # Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
-import aiohttp
+import json
+import requests
 from userbot.events import register
 from userbot import CMD_HELP
 from userbot.cmdhelp import CmdHelp
@@ -17,47 +18,26 @@ LANG = get_value("github")
 
 @register(pattern=r".git (.*)", outgoing=True)
 async def github(event):
-    URL = f"https://api.github.com/users/{event.pattern_match.group(1)}"
+    URL = requests.get(f"https://api.github.com/users/{event.pattern_match.group(1)}")
     chat = await event.get_chat()
-    async with aiohttp.ClientSession() as session:
-        async with session.get(URL) as request:
-            if request.status == 404:
-                await event.reply("`" + event.pattern_match.group(1) +
-                                  LANG['NOT_FOUND'])
-                return
 
-            result = await request.json()
+    url = URL.json()['html_url']
+    name = URL.json()['name']
+    company = URL.json()['company']
+    bio = URL.json()['bio']
+    created_at = URL.json()['created_at']
 
-            url = result['html_url']
-            name = result['name']
-            company = result['company']
-            bio = result['bio']
-            created_at = result['created_at']
+    REPLY = f"`{event.pattern_match.group(1)} {LANG['INFO']}:`\
+    \n{LANG['NAME']}: `{name}`\
+    \nBio: `{bio}`\
+    \nURL: {url}\
+    \n{LANG['COMPANY']}: `{company}`\
+    \n{LANG['CREATED']}: `{created_at}`"
 
-            REPLY = f"`{event.pattern_match.group(1)} {LANG['INFO']}:`\
-            \n{LANG['NAME']}: `{name}`\
-            \nBio: `{bio}`\
-            \nURL: {url}\
-            \n{LANG['COMPANY']}: `{company}`\
-            \n{LANG['CREATED']}: `{created_at}`"
+    REPLY += f"\n{LANG['REPOS']}\n"
 
-            if not result.get("repos_url", None):
-                await event.edit(REPLY)
-                return
-            async with session.get(result.get("repos_url", None)) as request:
-                result = request.json
-                if request.status == 404:
-                    await event.edit(REPLY)
-                    return
-
-                result = await request.json()
-
-                REPLY += f"\n{LANG['REPOS']}\n"
-
-                for nr in range(len(result)):
-                    REPLY += f"[{result[nr].get('name', None)}]({result[nr].get('html_url', None)})\n"
-
-                await event.edit(REPLY)
+    await event.edit(REPLY) 
+    
 
 CmdHelp('git').add_command(
     'git', '<istifadəçi adı>', 'Seçilən istifadəçinin GitHub məlumatlarını göstərər.', 'git FaridDadashzade'

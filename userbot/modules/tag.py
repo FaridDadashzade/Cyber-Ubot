@@ -1,4 +1,4 @@
-# Copyright (C) 2021 CyberUserBot
+# Copyright (C) 2021-2022 CyberUserBot
 # This file is a part of < https://github.com/FaridDadashzade/CyberUserBot/ >
 # Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
@@ -19,7 +19,7 @@ dayandir = False
 msjcgr = None
 taglimit = 60
 
-@register(outgoing=True, pattern="^.tag(?: |$)(.*)")
+@register(cyber=True, pattern="^.tag(?: |$)(.*)")
 async def _(q):
 	global dayandir
 	global msjcgr
@@ -45,15 +45,15 @@ async def _(q):
 			dayandir=False
 			msjcgr = None
 			break
-		a_+=1
-		await q.client.send_message(q.chat_id, "[{}](tg://user?id={}) {}".format(i.first_name, i.id, seasons))
-		if taglimit <= 60:
+		a_+=1 
+		await q.client.send_message(q.chat_id, "{}\n\n[{}](tg://user?id={})".format(seasons, i.first_name, i.id))
+		if taglimit <= 100:
 			sleep(1)
-		if taglimit > 60:
+		if taglimit > 100:
 			sleep(2)
 
 
-@register(outgoing=True, pattern="^.alladmin(?: |$)(.*)")
+@register(cyber=True, pattern="^.alladmin(?: |$)(.*)")
 async def _(q):
 	global dayandir
 	global msjcgr
@@ -80,13 +80,13 @@ async def _(q):
 			msjcgr = None
 			break
 		a_+=1
-		await q.client.send_message(q.chat_id, "[{}](tg://user?id={}) {}".format(i.first_name, i.id, seasons))
-		if taglimit <= 60:
+		await q.client.send_message(q.chat_id, "{}\n\n[{}](tg://user?id={})".format(seasons, i.first_name, i.id))
+		if taglimit <= 100:
 			sleep(1)
-		if taglimit > 60:
+		if taglimit > 100:
 			sleep(2)
 
-@register(outgoing=True, pattern="^.stop$")
+@register(cyber=True, pattern="^.stop$")
 async def _(q):
 	global dayandir
 	if msjcgr == None:
@@ -97,7 +97,7 @@ async def _(q):
 	await q.edit("`Tag prosesi dayandırıldı!`")
 	
 
-@register(outgoing=True, pattern=".taglimit(?: |$)(.*)$")
+@register(cyber=True, pattern=".taglimit(?: |$)(.*)$")
 async def _(q):
 	global taglimit
 	if q.pattern_match.group(1):
@@ -113,4 +113,4 @@ async def _(q):
 		return
 
 	taglimit=limit
-	await q.edit("`Tag etmə limitiniz {}-ə ayarlandı.`".format(str(limit)))
+	await q.edit("`Tag etmə limitiniz {}'ə ayarlandı.`".format(str(limit)))

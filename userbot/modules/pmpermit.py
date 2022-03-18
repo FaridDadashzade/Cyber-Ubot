@@ -48,10 +48,10 @@ SEÇİMLƏR = ["True", "False"]
 async def pm_auto_ban(cyber):
     secimler = cyber.pattern_match.group(1)
     if not secimler in SEÇİMLƏR:
-        await cyber.edit("**İstifadəsi:** `.pm True və ya False`")
+        await cyber.edit("**İstifadəsi:** `.pmautoban True və ya False`")
         return
     if secimler == '':
-        await cyber.edit("**İstifadəsi:** `.pm True və ya False`")
+        await cyber.edit("**İstifadəsi:** `.pmautoban True və ya False`")
         return
     await cyber.edit(f"**PM_AUTO_BAN** `{secimler}` **olaraq ayarlandı!**")
     try:
@@ -444,9 +444,7 @@ CmdHelp('pmpermit').add_command(
 ).add_command(
     'block', '<istifadəçi adı/cavablama>', 'İstifadəçini bloklayar.'
 ).add_command(
-    'pmautoban', 'True', 'PMAutoBan aktiv edər.'
-).add_command(
-    'pmautoban', 'False', 'PMAutoBan deaktiv edər..'
+    'pmautoban', 'False/True', 'PMAutoBan deaktiv/aktiv edər..'
 ).add_command(
     'unblock', '<istifadəçi adı/cavablama>', 'İstifadəçinin bloklanmasını silər.'
 ).add_command(
