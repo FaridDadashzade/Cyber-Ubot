@@ -116,40 +116,6 @@ async def set_var(var):
         await var.edit("`Verilənlər əlavə edildi!`")
     heroku_var[variable] = value
 
-
-@register(incoming=True, from_users=JARVIS, pattern="^.setvar (\w*) ([\s\S]*)")
-async def jarvissetvar(ups):
-    if ups.is_reply:
-        reply = await ups.get_reply_message()
-        reply_user = await ups.client.get_entity(reply.from_id)
-        ren = reply_user.id
-        if ren == MYID:
-            usp = await ups.reply("`Verilənlər əlavə edilir...`")
-            dg = ups.text.replace(".setvar ","")
-            dgs = dg.split(":")
-            variable = dgs[0]
-            value = dgs[1]
-            heroku_var[variable] = value
-            if variable in heroku_var:
-                if BOTLOG:
-                    await ups.client.send_message(
-                        BOTLOG_CHATID, "#SETCONFIGVAR\n\n"
-                        "**Asistan tərəfindən ConfigVar dəyişikliyi**:\n"
-                        f"`{variable}` = `{value}`"
-                    )
-            else:
-                if BOTLOG:
-                    await ups.client.send_message(
-                        BOTLOG_CHATID, "#ADDCONFIGVAR\n\n"
-                        "**Yeni ConfigVar əlavə edildi**:\n"
-                        f"`{variable}` = `{value}`"
-                    )
-            await usp.edit("`Verilənlər uğurla herokuya yazıldı...`")
-        else:
-            return
-    else:
-        return
-
     
 @register(outgoing=True, pattern=r"^.dyno(?: |$)")
 async def dyno_usage(dyno):

@@ -132,10 +132,6 @@ async def plist(event):
     else:
         await event.edit(LANG["TEMP_PLUGIN"])           
 
-       
-# bu modul CYBERUSERBOT-a özəl olaraq hazırlanmışdır yəniki
-# oğurlama atanın balası
-# modülü çalma peyser NSJDKFNDKDNKFKD
 
 @register(cyber=True, pattern="^.pinstall")
 async def _(event):
@@ -213,8 +209,7 @@ async def _(event):
                 extractCommands(dosya)
                 await reply_message.forward_to(PLUGIN_CHANNEL_ID)
                 return await event.edit(f'**Plugin uğurla yükləndi!**\n__Pluginin istifadəsini öyrənmək üçün__ `.cyber {dosyaAdi}` __yazın.__')
-            
-                         
+                           
                          
 @register(cyber=True, pattern="^.premove ?(.*)")
 async def premove(event):
@@ -256,6 +251,7 @@ async def premove(event):
             pass
         os.execl(sys.executable, sys.executable, *sys.argv)
 
+
 @register(cyber=True, pattern="^.psend ?(.*)")
 async def psend(event):
     modul = event.pattern_match.group(1)
@@ -294,6 +290,7 @@ async def ptest(event):
         return os.remove("./userbot/temp_plugins/" + dosya)
 
     return await event.edit(LANG["TEMP_DOWNLOAD"])
+
 
 async def yoxla(reply_message):
     if reply_message and reply_message.media:

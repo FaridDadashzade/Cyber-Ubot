@@ -3,8 +3,6 @@
 # Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
-# Bu modulu götürən liçni peysərdi varyoxunu sikim #
-
 import os
 import requests
 from userbot import bot, BLACKLIST_CHAT
@@ -16,15 +14,12 @@ from userbot.cmdhelp import CmdHelp
 from userbot.language import get_value
 LANG = get_value("cyberlangs")
 
-# ---------------------------------- #
-
 
 # ------------------------------------------------------ #
 #CYBER_AI_DE = sb(os.environ.get("CYBER_AI_DE", "False"))#
 CYBER_AI_KEY = "82cb8992-fe1e-4924-8299-7f55dd6e40c3"    
 # ------------------------------------------------------ #
 
-@register(cyber=True, pattern=r"^\.scan(?: |$)(.*)")
 @register(cyber=True, pattern=r"^\.detect(?: |$)(.*)")
 async def detect(event):
     if event.chat_id in BLACKLIST_CHAT:
@@ -62,6 +57,7 @@ async def detect(event):
         link_preview=False,
         parse_mode="HTML",
     )
+    await cyber2.delete()
 
 
 Help = CmdHelp('deepai')

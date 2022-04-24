@@ -7,7 +7,6 @@ import requests
 from googletrans import Translator
 from telethon import events
 from telethon.tl.types import User
-
 from userbot import BLACKLIST_CHAT
 from userbot import LOGS, bot, LANGUAGE as DIL
 from userbot.events import register
@@ -19,7 +18,7 @@ LANGUAGE = DIL
 aktivet = []
 LANGUAGES = "AZ"
 
-url = "https://api-tede.herokuapp.com/api/chatbot?message={message}"
+url = "https://apitede.herokuapp.com/api/chatbot?message={message}"
 
 # ---------------------------------- #
 
@@ -58,12 +57,12 @@ async def aktivetme(db, event):
         await event.edit(LANG["CHATBOT_MANUAL"])
 
 
-@register(outgoing=True, pattern=r"^\.chatbot(?: |$)(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\.chatbot(?: |$)(.*)")
 async def chatbot(event):
     await aktivetme(aktivet, event)
 
 
-@register(incoming=True)
+@register(incoming=True, disable_errors=True)
 async def chatbot(event):
     sender = await event.get_sender()
     if not isinstance(sender, User):
@@ -74,17 +73,8 @@ async def chatbot(event):
         rep = await cavablama(event.message.message)
         tr = translator.translate(rep, LANGUAGE)
         if tr:
-            await event.reply(tr.text)
-            
-"""
-@register(outgoing=True, pattern="^.chatbotlang (.*)")
-async def chatbotlang(event):
-    global CHAT_BOT_LANG
-    CHAT_BOT_LANG = event.pattern_match.group(1)
-    await event.edit(f"Chatbot üçün default dil {CHAT_BOT_LANG} olaraq ayarlandı.")
-        """
-             # tezlikle #   
-            
+            await event.reply(tr.text) 
+
 CmdHelp('chatbot').add_command(
 'chatbot on', None, 'ChatBot modulunu aktiv edər.'
     ).add_command(
