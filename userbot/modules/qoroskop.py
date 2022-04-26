@@ -4,7 +4,6 @@
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 import pyaztro
-
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 

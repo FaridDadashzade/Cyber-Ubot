@@ -33,7 +33,6 @@ async def resend(event):
 
 @register(outgoing=True, pattern="^.random")
 async def randomise(items):
-    """ .random  """
     itemo = (items.text[8:]).split()
     if len(itemo) < 2:
         await items.edit(
@@ -47,7 +46,6 @@ async def randomise(items):
 
 @register(outgoing=True, pattern="^.sleep( [0-9]+)?$")
 async def sleepybot(time):
-    """ .sleep """
     if " " not in time.pattern_match.group(1):
         await time.reply(LANG['SLEEP_DESC'])
     else:
@@ -65,13 +63,9 @@ async def sleepybot(time):
 
 @register(outgoing=True, pattern="^.shutdown$")
 async def shutdown(event):
-    """ .shutdown """
     await event.client.send_file(event.chat_id, 'https://www.winhistory.de/more/winstart/mp3/winxpshutdown.mp3', caption=LANG['GOODBYE_MFRS'], voice_note=True)
     await event.delete()
 
-    if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n"
-                                        "Bot söndürüldü.")
     try:
         await bot.disconnect()
     except:
@@ -81,15 +75,10 @@ async def shutdown(event):
 @register(outgoing=True, pattern="^.restart$")
 async def restart(event):
     await event.edit(LANG['RESTARTING'])
-    if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "#RESTART \n"
-                                        "Bot yenidən başladıldı.")
-
     try:
         await bot.disconnect()
     except:
         pass
-
     execl(sys.executable, sys.executable, *sys.argv)
 
 
@@ -107,14 +96,11 @@ async def creator(e):
 async def reedme(e):
     await e.edit(LANG['CREATOR'])
 
-
-# 
 @register(outgoing=True, pattern="^.repeat (.*)")
 async def repeat(rep):
     cnt, txt = rep.pattern_match.group(1).split(' ', 1)
     replyCount = int(cnt)
     toBeRepeated = txt
-
     replyText = toBeRepeated + "\n"
 
     for i in range(0, replyCount - 1):
@@ -125,7 +111,6 @@ async def repeat(rep):
 
 @register(outgoing=True, pattern="^.repo$")
 async def repo_is_here(wannasee):
-    """ .repo """
     await wannasee.edit(LANG['REPO'])
 
 @register(outgoing=True, pattern="^.raw$")
@@ -142,7 +127,7 @@ async def raw(event):
     with io.BytesIO(str.encode(the_real_message)) as out_file:
         out_file.name = "raw_message_data.txt"
         await event.edit(
-            "`Həll edilmiş mesaj üçün userbot loglarını yoxlayın`")
+            "`Botlog qrupunuza göndərildi :)`")
         await event.client.send_file(
             BOTLOG_CHATID,
             out_file,

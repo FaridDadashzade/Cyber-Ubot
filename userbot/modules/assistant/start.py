@@ -9,9 +9,7 @@ from . import tgbot, CYBER_VERSION, DEFAULT_NAME
 from platform import python_version
 from telethon import version
 
-ALIVE_LOGO = "https://telegra.ph/file/c3e75eccaeb7f56dfae89.mp4"
-
-HELP_LOGO = "https://telegra.ph/file/c3e75eccaeb7f56dfae89.mp4"
+CYBER_LOGO = "https://telegra.ph/file/c3e75eccaeb7f56dfae89.mp4"
 
 alive_text = (
         f"**✦ C Y B Ξ R ASSISTANT ONLINE ✦** \n"
@@ -30,7 +28,8 @@ help_text = (
         f"┣[ `/start` - **Start mesajını göndərər.**\n"
         f"┣[ `/id` - **Bir qrup və ya istifadəçi ID almaq üçün.**\n"                               
         f"┣[ `/tr` - **Tərcümə edər.**\n"
-        f"┣[ `/help` - **Bu mesajı atar.**\n"
+        f"┣[ `/tgm` - **Cavab verdiyiniz medianı Telegraph'a yükləyər.**\n"
+        f"┣[ `/tgt` - **Cavab verdiyiniz mətni Telegraph'a yükləyər.**\n"
         f"┣[ `/purge` - **Qeyd etdiyiniz mesajdan sonraki mesajları təmizləyər.**\n"
         f"┣[ `/del` - **Cavab verdiyiniz mesajı silər.**\n"
         f"┣[ `/ban` - **Bir istifadəçini ban etmək üçün.**\n"
@@ -44,9 +43,9 @@ help_text = (
 
 @tgbot.on(events.NewMessage(pattern="^/start"))
 async def start_cyber_bot(event):
-    await tgbot.send_file(event.chat_id, ALIVE_LOGO, caption=alive_text)
+    await tgbot.send_file(event.chat_id, CYBER_LOGO, caption=alive_text, buttons=[[Button.url("C Y B Ξ R", "https://t.me/TheCyberUserBot")]])
 
 
 @tgbot.on(events.NewMessage(pattern="^/help"))
 async def help(event):
-    await tgbot.send_file(event.chat_id, HELP_LOGO, caption=help_text)
+    await tgbot.send_file(event.chat_id, CYBER_LOGO, caption=help_text, buttons=[[Button.url("C Y B Ξ R", "https://t.me/TheCyberUserBot")]])

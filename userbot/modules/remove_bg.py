@@ -20,7 +20,6 @@ LANG = get_value("remove_bg")
 
 @register(outgoing=True, pattern="^.removebg(?: |$)(.*)")
 async def kbg(remob):
-    """ .removebg """
     if REM_BG_API_KEY is None:
         await remob.edit(
             LANG['NEED_API_KEY']

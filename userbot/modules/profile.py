@@ -43,7 +43,6 @@ USERNAME_TAKEN = LANG['USERNAME_TAKEN']
 
 @register(outgoing=True, pattern="^.reserved$")
 async def mine(event):
-    """ .reserved  """
     result = await bot(GetAdminedPublicChannelsRequest())
     output_str = ""
     for channel_obj in result.chats:
@@ -53,7 +52,6 @@ async def mine(event):
 
 @register(outgoing=True, pattern="^.name")
 async def update_name(name):
-    """ .name  """
     newname = name.text[6:]
     if " " not in newname:
         firstname = newname
@@ -70,7 +68,6 @@ async def update_name(name):
 
 @register(outgoing=True, pattern="^.setpfp$")
 async def set_profilepic(propic):
-    """ .profilepic """
     replymsg = await propic.get_reply_message()
     photo = None
     if replymsg.media:
@@ -98,7 +95,6 @@ async def set_profilepic(propic):
 
 @register(outgoing=True, pattern="^.setbio (.*)")
 async def set_biograph(setbio):
-    """ .setbio """
     newbio = setbio.pattern_match.group(1)
     await setbio.client(UpdateProfileRequest(about=newbio))
     await setbio.edit(BIO_SUCCESS)
@@ -106,7 +102,6 @@ async def set_biograph(setbio):
 
 @register(outgoing=True, pattern="^.username (.*)")
 async def update_username(username):
-    """ .username  """
     newusername = username.pattern_match.group(1)
     try:
         await username.client(UpdateUsernameRequest(newusername))
@@ -117,7 +112,6 @@ async def update_username(username):
 
 @register(outgoing=True, pattern="^.count$")
 async def count(event):
-    """ .count  """
     u = 0
     g = 0
     c = 0
@@ -154,7 +148,6 @@ async def count(event):
 
 @register(outgoing=True, pattern=r"^.delpfp")
 async def remove_profilepic(delpfp):
-    """ .delpfp """
     group = delpfp.text[8:]
     if group == 'all':
         lim = 0
@@ -177,6 +170,7 @@ async def remove_profilepic(delpfp):
     await delpfp.client(DeletePhotosRequest(id=input_photos))
     await delpfp.edit(
         LANG['DELPFP'] % len(input_photos))
+
 
 CmdHelp('profile').add_command(
     'username', '<yeni istifadəçi adı>', 'Telegram\'dakı istifadəçi adınızı dəyişdirir.'

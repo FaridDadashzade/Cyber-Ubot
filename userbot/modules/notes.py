@@ -3,8 +3,6 @@
 # Please read the GNU General Public License v3.0 in
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
-""" Notes """
-
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 from asyncio import sleep
@@ -54,7 +52,6 @@ async def remove_notes(clr):
 
 @register(outgoing=True, pattern=r"^.save (\w*)")
 async def add_note(fltr):
-    """ .save  """
     try:
         from userbot.modules.sql_helper.notes_sql import add_note
     except AttributeError:

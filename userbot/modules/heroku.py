@@ -11,19 +11,7 @@ import math
 import os
 import ssl
 import requests
-
-from userbot import (
-    HEROKU_APPNAME,
-    HEROKU_APIKEY,
-    BOTLOG,
-    JARVIS,
-    WHITELIST,
-    MYID,
-    BOTLOG_CHATID,
-    CYBER_VERSION,
-    bot
-)
-
+from userbot import HEROKU_APPNAME, HEROKU_APIKEY, BOTLOG, JARVIS, WHITELIST, MYID, BOTLOG_CHATID, CYBER_VERSION, bot
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
@@ -36,64 +24,22 @@ else:
     app = None
 
 
-@register(outgoing=True,
-          pattern=r"^.(get|del) var(?: |$)(\w*)")
-async def variable(var):
-    exe = var.pattern_match.group(1)
-    if app is None:
-        await var.edit("`[HEROKU]"
-                       "\n**HEROKU_APPNAME** quraşdırın.")
+@register(cyber=True, pattern="^.del var ?(.*)")
+async def del_var(event):
+    deyer = event.pattern_match.group(1)
+    if deyer == '':
+        await var.edit("`Silmək istədiyiniz ConfigVars'ı seçin və mənə bildirin...`")
         return False
-    if exe == "get":
-        await var.edit("`Heroku Məlumatları Gətirilir..`")
-        variable = var.pattern_match.group(2)
-        if variable != '':
-            if variable in heroku_var:
-                if BOTLOG:
-                    await var.client.send_message(
-                        BOTLOG_CHATID, "#CONFIGVAR\n\n"
-                        "**ConfigVar**:\n"
-                        f"`{variable}` = `{heroku_var[variable]}`\n"
-                    )
-                    await var.edit("`BOTLOG qrupuna göndərdim!`")
-                    return True
-                else:
-                    await var.edit("`Zəhmət olmasa BOTLOG grupu təyin edin...`")
-                    return False
-            else:
-                await var.edit("`Error ith Noİnfo`")
-                return True
-        else:
-            configvars = heroku_var.to_dict()
-            if BOTLOG:
-                msg = ''
-                for item in configvars:
-                    msg += f"`{item}` = `{configvars[item]}`\n"
-                await var.client.send_message(
-                    BOTLOG_CHATID, "#CONFIGVARS\n\n"
-                    "**ConfigVars**:\n"
-                    f"{msg}"
-                )
-                await var.edit("`BOTLOG_CHATID alındı...`")
-                return True
-            else:
-                await var.edit("`Zəhmət olmasa BOTLOG 'u True olaraq təyin edin!`")
-                return False
-    elif exe == "del":
-        await var.edit("`Məlumatları silirəm...`")
-        variable = var.pattern_match.group(2)
-        if variable == '':
-            await var.edit("`Silmək istədiyiniz ConfigVars'ı seçin və mənə bildirin...`")
-            return False
-        if variable in heroku_var:
-            await var.edit("`Məlumatlar silindi!`")
-            del heroku_var[variable]
-        else:
-            await var.edit("`Məlumatlar yoxdu!`")
-            return True
+    await event.edit("`Məlumatları silirəm...`")
+    if deyer in heroku_var:
+        await event.edit("`Məlumatlar silindi!`")
+        del heroku_var[deyer]
+    else:
+        await event.edit("`Məlumat tapılmadı!`")
+        return True
 
 
-@register(outgoing=True, pattern=r'^.set var (\w*) ([\s\S]*)')
+@register(cyber=True, pattern=r'^.set var (\w*) ([\s\S]*)')
 async def set_var(var):
     await var.edit("`Verilənlər Herokuya Yazılır...`")
     variable = var.pattern_match.group(1)
@@ -117,9 +63,8 @@ async def set_var(var):
     heroku_var[variable] = value
 
     
-@register(outgoing=True, pattern=r"^.dyno(?: |$)")
+@register(cyber=True, pattern=r"^.dyno(?: |$)")
 async def dyno_usage(dyno):
-    """Bu qisimdə bot istifadə edilmiş dynonu əldə etməyə çalışır"""
     await dyno.edit("`Məlumatlar alınır...`")
     istifadeci = await bot.get_me()
     useragent = ('Mozilla/5.0 (Linux; Android 10; SM-G975F) '
@@ -209,9 +154,7 @@ CmdHelp('heroku').add_command(
     ).add_command(
         'set var', None, 'set var <Yeni Var adı> <Dəyər> Botunuza yeni ConfigVar əlavə edir.'
     ).add_command(
-        'get var', None, 'Mövcud VARlarınızı əldə edin, yalnız botlog qrupunuzda istifadə edin.'
-    ).add_command(
-        'del var', None, 'del var <Var adı> Seçdiyiniz ConfigVarı silər sildikdən sonra botunuza .restart atın.'
+        'del var', None, 'del var <Var adı> Seçdiyiniz ConfigVarı silər.'
     ).add_command(
         'hlog', None, 'Herokudan log atar.'
     ).add()

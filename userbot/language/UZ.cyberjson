@@ -118,7 +118,7 @@
             "BIO": "📅 Sana: {tarih} | ⌚️ Soat: {saat} | ",
             "NICK": "SubhanAllah",
             "SETTED": "`%s sozlandi :)`",
-            "NAME": "⏰%s"
+            "NAME": "⌚️%s"
         },
         "autopp": {
             "VIDEO_ALREADY_CHANGING": "`Profil videongiz allaqachon avtomatik ravishda o'zgarmoqda.`",

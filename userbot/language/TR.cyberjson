@@ -123,7 +123,7 @@
             "BIO": "🇹🇷 Tarih: {tarih} | ⌚️ Saat: {saat} | ",
             "NICK": "@TheCyberUserBot",
             "SETTED": "`%s ayarlandı :)`",
-            "NAME": "⏰%s"
+            "NAME": "⌚️%s"
         },
 
         "autopp": {

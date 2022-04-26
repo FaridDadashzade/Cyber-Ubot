@@ -91,7 +91,6 @@ async def barcode_read(event):
 
 @register(pattern=r".makeqr(?: |$)([\s\S]*)", outgoing=True)
 async def make_qr(makeqr):
-    """ .makeqr  """
     input_str = makeqr.pattern_match.group(1)
     message = f"{LANG['USAGE']}: `.makeqr <{LANG['TEXT']}>`"
     reply_msg_id = None
@@ -128,6 +127,7 @@ async def make_qr(makeqr):
                                   reply_to=reply_msg_id)
     os.remove("img_file.webp")
     await makeqr.delete()
+
 
 CmdHelp('qrcode').add_command(
     'barcode', '<məzmun>', 'Verilən məzmundan bir barkod edin.', 'barcode www.google.com'

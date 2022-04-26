@@ -64,7 +64,6 @@ async def get_chatinfo(event):
 
 
 async def fetch_info(chat, event):
-    # chat.chats is a list so we use get_entity() to avoid IndexError
     chat_obj_info = await event.client.get_entity(chat.full_chat.id)
     broadcast = chat_obj_info.broadcast if hasattr(chat_obj_info, "broadcast") else False
     chat_type = "Channel" if broadcast else "Group"
@@ -103,17 +102,16 @@ async def fetch_info(chat, event):
     username = chat_obj_info.username if hasattr(chat_obj_info, "username") else None
     bots_list = chat.full_chat.bot_info  # this is a list
     bots = 0
-    supergroup = "<b>Evet</b>" if hasattr(chat_obj_info, "megagroup") and chat_obj_info.megagroup else "No"
-    slowmode = "<b>Evet</b>" if hasattr(chat_obj_info, "slowmode_enabled") and chat_obj_info.slowmode_enabled else "No"
+    supergroup = "<b>Bəli</b>" if hasattr(chat_obj_info, "megagroup") and chat_obj_info.megagroup else "No"
+    slowmode = "<b>Bəli</b>" if hasattr(chat_obj_info, "slowmode_enabled") and chat_obj_info.slowmode_enabled else "No"
     slowmode_time = chat.full_chat.slowmode_seconds if hasattr(chat_obj_info, "slowmode_enabled") and chat_obj_info.slowmode_enabled else None
-    restricted = "<b>Evet</b>" if hasattr(chat_obj_info, "restricted") and chat_obj_info.restricted else "No"
-    verified = "<b>Evet</b>" if hasattr(chat_obj_info, "verified") and chat_obj_info.verified else "No"
+    restricted = "<b>Bəli</b>" if hasattr(chat_obj_info, "restricted") and chat_obj_info.restricted else "No"
+    verified = "<b>Bəli</b>" if hasattr(chat_obj_info, "verified") and chat_obj_info.verified else "No"
     username = "@{}".format(username) if username else None
     creator_username = "@{}".format(creator_username) if creator_username else None
     #end of spaghetti block
     
     if admins is None:
-        # use this alternative way if chat.full_chat.admins_count is None, works even without being an admin
         try:
             participants_admins = await event.client(GetParticipantsRequest(channel=chat.full_chat.id, filter=ChannelParticipantsAdmins(),
                                                                             offset=0, limit=0, hash=0))
@@ -180,12 +178,12 @@ async def fetch_info(chat, event):
         caption += f"Cəzalanan: {restricted}\n"
         if chat_obj_info.restricted:
             caption += f"> Platform: {chat_obj_info.restriction_reason[0].platform}\n"
-            caption += f"> Sebeb: {chat_obj_info.restriction_reason[0].reason}\n"
+            caption += f"> Səbəb: {chat_obj_info.restriction_reason[0].reason}\n"
             caption += f"> Yazı: {chat_obj_info.restriction_reason[0].text}\n\n"
         else:
             caption += "\n"
     if hasattr(chat_obj_info, "scam") and chat_obj_info.scam:
-    	caption += "Scam: <b>Evet</b>\n\n"
+    	caption += "Scam: <b>Bəli</b>\n\n"
     if hasattr(chat_obj_info, "verified"):
         caption += f"Telegram tərəfindən doğrulandı: {verified}\n\n"
     if description:

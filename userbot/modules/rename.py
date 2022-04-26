@@ -6,7 +6,6 @@
 import os
 import time
 from datetime import datetime
-
 from userbot.cmdhelp import CmdHelp
 from userbot import CYBER_VERSION
 from datetime import date
@@ -15,7 +14,6 @@ from userbot.events import register
 from userbot.utils import progress
 
 thumb_image_path = TEMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
-
 
 @register(outgoing=True, pattern=r"^\.rename(?: |$)(.*)")
 async def rename(event):

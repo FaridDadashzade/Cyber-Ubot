@@ -107,7 +107,6 @@ async def purgeall(event):
 
 @register(cyber=True, pattern="^.edit")
 async def editer(edit):
-    """ .editme """
     message = edit.text
     chat = await edit.get_input_chat()
     self_id = await edit.client.get_peer_id('me')
@@ -121,7 +120,7 @@ async def editer(edit):
         i = i + 1
     if BOTLOG:
         await edit.client.send_message(BOTLOG_CHATID,
-                                       "Mesaj düzəltmə sorğusu uğurla edildi")
+                                       "Mesaj düzəltmə sorğusu uğurla edildi.")
 
 CmdHelp('purge').add_command(
     'purge', None, 'Hədəflənən cavabdan başlayaraq bütün mesajları təmizləyər.'

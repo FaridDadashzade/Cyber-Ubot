@@ -4,11 +4,9 @@
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 from datetime import datetime as dt
-
 from pytz import country_names as c_n
 from pytz import country_timezones as c_tz
 from pytz import timezone as tz
-
 from userbot import CMD_HELP, COUNTRY, TZ_NUMBER
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
@@ -47,7 +45,6 @@ async def get_tz(con):
 
 @register(outgoing=True, pattern="^.time(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
 async def time_func(tdata):
-    """ .time """
     con = tdata.pattern_match.group(1).title()
     tz_num = tdata.pattern_match.group(2)
 
@@ -105,7 +102,6 @@ async def time_func(tdata):
 
 @register(outgoing=True, pattern="^.date(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
 async def date_func(dat):
-    """ .date """
     con = dat.pattern_match.group(1).title()
     tz_num = dat.pattern_match.group(2)
 
@@ -163,5 +159,5 @@ async def date_func(dat):
 CmdHelp('time').add_command(
     'time', '<ölkə adı/kodu> <saat dilimi nömrəsi>', 'Bir ölkənin saatınıı göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, Hamısı birdən göstərilir və seçim sənə buraxılır.'
 ).add_command(
-    'date', '<ölkə adı/kodu> <saat dilimi nömrəsi>', 'Bir ölkenin tarixini göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, Hamısı birdən göstərilir və seçim sənə buraxılır.'
+    'date', '<ölkə adı/kodu> <saat dilimi nömrəsi>', 'Bir ölkənin tarixini göstərər. Əgər bir ölkə birdən çox saat diliminə sahibdirsə, Hamısı birdən göstərilir və seçim sənə buraxılır.'
 ).add()
