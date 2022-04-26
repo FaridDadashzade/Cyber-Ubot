@@ -7,6 +7,7 @@ import asyncio
 import os
 from userbot import bot
 from userbot.events import register
+from userbot.cmdhelp import CmdHelp
 
 @register(cyber=True, pattern="^.meadmin ?(.*)")
 async def _(event):
