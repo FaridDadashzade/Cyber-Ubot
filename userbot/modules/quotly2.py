@@ -17,6 +17,7 @@ from userbot.events import register
 from userbot.utils import progress
 from userbot.cmdhelp import CmdHelp
 from userbot import bot
+
 COLORS = [
     "#F07975",
     "#F49F69",
@@ -56,7 +57,6 @@ async def process(msg, user, client, reply, replied=None):
         "./temp/Roboto-Italic.ttf",
     )
 
-    # Importıng fonts and gettings the size of text
     font = ImageFont.truetype(
         "./temp/Roboto-Medium.ttf",
         43,
@@ -73,7 +73,6 @@ async def process(msg, user, client, reply, replied=None):
         "./temp/Roboto-Italic.ttf", 33, encoding="utf-16")
     fallback = ImageFont.truetype("./temp/Quivira.otf", 43, encoding="utf-16")
 
-    # Splitting text
     maxlength = 0
     width = 0
     text = []
@@ -110,7 +109,6 @@ async def process(msg, user, client, reply, replied=None):
         pass
     titlewidth = font2.getsize(title)[0]
 
-    # Get user name
     lname = "" if not user.last_name else user.last_name
     tot = user.first_name + " " + lname
 
@@ -121,13 +119,8 @@ async def process(msg, user, client, reply, replied=None):
     width += titlewidth + 30 if titlewidth > width - \
         namewidth else -(titlewidth - 30)
     height = len(text) * 40
-
-    # Profile Photo BG
     pfpbg = Image.new("RGBA", (125, 600), (0, 0, 0, 0))
-
-    # Draw Template
     top, middle, bottom = await drawer(width, height)
-    # Profile Photo Check and Fetch
     yes = False
     color = random.choice(COLORS)
     async for photo in client.iter_profile_photos(user, limit=1):
@@ -138,18 +131,16 @@ async def process(msg, user, client, reply, replied=None):
         os.remove(pfp)
         paste.thumbnail((105, 105))
 
-        # Mask
         mask_im = Image.new("L", paste.size, 0)
         draw = ImageDraw.Draw(mask_im)
         draw.ellipse((0, 0, 105, 105), fill=255)
 
-        # Apply Mask
         pfpbg.paste(paste, (0, 0), mask_im)
     else:
         paste, color = await no_photo(user, tot)
         pfpbg.paste(paste, (0, 0))
 
-    # Creating a big canvas to gather all the elements
+
     canvassize = (
         middle.width + pfpbg.width,
         top.height + middle.height + bottom.height,
@@ -159,7 +150,7 @@ async def process(msg, user, client, reply, replied=None):
 
     y = 80
     if replied:
-        # Creating a big canvas to gather all the elements
+
         replname = "" if not replied.sender.last_name else replied.sender.last_name
         reptot = replied.sender.first_name + " " + replname
         font2.getsize(reptot)[0]
@@ -257,7 +248,7 @@ async def process(msg, user, client, reply, replied=None):
         canvas.paste(bottom, (pfpbg.width, top.height + middle.height))
         y = 85
 
-    # Writing User's Name
+
     space = pfpbg.width + 30
     namefallback = ImageFont.truetype(
         "./temp/Quivira.otf", 43, encoding="utf-16")
@@ -278,7 +269,7 @@ async def process(msg, user, client, reply, replied=None):
         draw.text((canvas.width - titlewidth - 20, 25),
                   title, font=font2, fill="#898989")
 
-    # Writing all separating emojis and regular texts
+
     x = pfpbg.width + 30
     bold, mono, italic, link = await get_entity(reply)
     index = 0
@@ -334,7 +325,6 @@ async def process(msg, user, client, reply, replied=None):
 
 
 async def drawer(width, height):
-    # Top part
     top = Image.new("RGBA", (width, 20), (0, 0, 0, 0))
     draw = ImageDraw.Draw(top)
     draw.line((10, 0, top.width - 20, 0), fill=(29, 29, 29, 255), width=50)
@@ -342,10 +332,7 @@ async def drawer(width, height):
     draw.pieslice((top.width - 75, 0, top.width, 50),
                   270, 360, fill=(29, 29, 29, 255))
 
-    # Middle part
     middle = Image.new("RGBA", (top.width, height + 75), (29, 29, 29, 255))
-
-    # Bottom part
     bottom = ImageOps.flip(top)
 
     return top, middle, bottom

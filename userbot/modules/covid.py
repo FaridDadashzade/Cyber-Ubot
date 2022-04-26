@@ -24,11 +24,11 @@ async def corona(event):
         output_text += f"`⚰️ Ümumi ölüm sayı: {country_data['deaths']} (+{country_data['new_deaths']})`\n"
         output_text += f"`😔 Yeni yoluxma: {country_data['new_cases']}`\n"
         output_text += f"`😇 Sağalan: {country_data['recovered']}`\n"
-        output_text += f"Bu məlumatlar [Worldometer](https://www.worldometers.info/coronavirus/country/{country}) saytından alınır."
+        output_text += f"\n**Bu məlumatlar** [Worldometer](https://www.worldometers.info/coronavirus/country/{country}) **saytından alındı.**"
     else:
-        output_text = "Bu ölkə üçün heç bir məlumat tapılmadı!"
+        output_text = "**Bu ölkə üçün heç bir məlumat tapılmadı!**"
 
-    await event.edit(f"`{country} üçün məlumatlar:`\n\n{output_text}")
+    await event.edit(f"`{country}` **üçün məlumatlar:**\n\n{output_text}")
 
 
 Help = CmdHelp('covid')

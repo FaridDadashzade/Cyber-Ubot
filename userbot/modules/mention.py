@@ -45,4 +45,4 @@ async def mention(event):
 
 
 Help = CmdHelp('mention')
-Help.add_command('@istifadeçiadı[istədiyiniz ad/söz]',  None, 'İstifadəçilərə istədiyiniz kimi ad verin.\n⚠️Nümunə: @TheCyberUserBot[CYBER]').add()
+Help.add_command('@istifadeçiadı[istədiyiniz ad/söz]',  None, 'İstifadəçilərə istədiyiniz kimi ad verin.\n⚠️Nümunə: @TheCyberUserBot[C Y B Ξ R]').add()

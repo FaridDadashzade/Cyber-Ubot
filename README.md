@@ -10,18 +10,23 @@
     <br>
 </p>
 
-![Docker Pulls](https://img.shields.io/docker/pulls/cyberuserbot/cyberspaceaz?style=flat-square) ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/cyberuserbot/cyberspaceaz?style=flat-square)
+
+![Docker Pulls](https://img.shields.io/docker/pulls/cyberuserbot/cyberspaceaz?style=flat-square)
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/cyberuserbot/cyberspaceaz?style=flat-square)
+ 
 
 ----
 
 
 ### Automatic Setup
 
-**Android:** open Termux paste this code: `bash <(curl -L https://bit.ly/cyberuserbot)`
+**Android:** open Termux paste this code: `bash <(curl -L https://cutt.ly/KAVCCG4)`
 
 **Online deploy** 
-                  [![Run on Repl.it](https://repl.it/badge/github/FaridDadashzade/CyberInstaller-)](https://repl.it/@FaridDadashzade/installer-1)
+[![Run on Repl.it](https://repl.it/badge/github/FaridDadashzade/CyberInstaller-)](https://repl.it/@FaridDadashzade/installer-1)
 
+**In Telegram**
+Set up Cyber via Telegram bot: <a href="https://t.me/cyberinstallerbot"><img src="https://telegra.ph/file/2f554c165f2679cadbbe3.jpg" width="40" height="40"></a>
 
 ## Manual Deploy - Heroku
 

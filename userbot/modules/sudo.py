@@ -49,7 +49,6 @@ async def sudoelave(event):
     heroku_var[cyber] = yenisudo
     
 
-    
 @register(outgoing=True,
           pattern=r"^.sudosil")
 async def sudosil(event):

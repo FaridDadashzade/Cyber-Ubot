@@ -123,7 +123,7 @@
             "BIO": "🇦🇿 Tarix: {tarih} | ⌚️ Saat: {saat} | ",
             "NICK": "@TheCyberUserBot",
             "SETTED": "`%s nizamlandı :)`",
-            "NAME": "⏰%s"
+            "NAME": "⌚️%s"
         },
 
         "autopp": {
@@ -189,10 +189,10 @@
 
         "cyberlangs": {
             "SALIVE": "Gif-li alive mesajı",
-	    "PROHIBITED_COMMAND": "```Bunu C Y B Ξ R Support 🇦🇿 qrupunda edə bilməzsiniz.```",
-	    "CHATBOT_DEACTIVE": "```Chatbot deaktivdir.```",
-            "CHATBOT_ACTIVE": "```Chatbot aktiv edildi.```",
-            "CHATBOT_MANUAL": "```**İstifadəsi:**\n.chatbot <on/off>```"
+	    "PROHIBITED_COMMAND": "`Bunu C Y B Ξ R Support 🇦🇿 qrupunda edə bilməzsiniz.`",
+	    "CHATBOT_DEACTIVE": "`Chatbot deaktivdir.`",
+            "CHATBOT_ACTIVE": "`Chatbot aktiv edildi.`",
+            "CHATBOT_MANUAL": "**İstifadəsi:**\n`.chatbot <on/off>`"
         },
 
         "deepfry":{

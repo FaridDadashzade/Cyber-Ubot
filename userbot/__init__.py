@@ -68,7 +68,7 @@ if LANGUAGE not in ["EN", "TR", "AZ", "UZ", "DEFAULT", "IN"]:
     LANGUAGE = "DEFAULT"
     
 # CYBER VERSION
-CYBER_VERSION = "v3.2"
+CYBER_VERSION = "v3.5"
 
 # SUDO VERSION
 SUDO_VERSION = "v1.1"
@@ -567,6 +567,8 @@ async def cyberasistan():
                 \nhelp - Yardım menyusu\
                 \nid - Bir qrup və ya istifadəçi ID almaq üçün.\
                 \ntr - Tərcümə edər.\
+                \ntgm - Cavab verdiyiniz medianı Telegraph'a yükləyər.\
+                \ntgt - Cavab verdiyiniz mətni Telegraph'a yükləyər.\
                 \npurge - Qeyd etdiyiniz mesajdan sonraki mesajları təmizləyər.\
                 \ndel - Cavab verdiyiniz mesajı silər.\
                 \nban - Bir istifadəçini ban etmək üçün.\
@@ -613,6 +615,8 @@ async def cyberasistan():
             \nhelp - Yardım menyusu\
             \nid - Bir qrup və ya istifadəçi ID almaq üçün.\
             \ntr - Tərcümə edər.\
+            \ntgm - Cavab verdiyiniz medianı Telegraph'a yükləyər.\
+            \ntgt - Cavab verdiyiniz mətni Telegraph'a yükləyər.\
             \npurge - Qeyd etdiyiniz mesajdan sonraki mesajları təmizləyər.\
             \ndel - Cavab verdiyiniz mesajı silər.\
             \nban - Bir istifadəçini ban etmək üçün.\

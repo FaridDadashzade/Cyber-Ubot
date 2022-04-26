@@ -134,8 +134,7 @@ def register(**args):
                     ftext += "================================"
 
                     command = "git log --pretty=format:\"%an: %s\" -5"
-
-                    ftext += "\n\n\nSon 5 dəyişiklik:\n"
+                    ftext += "\n\nSon 5 dəyişiklik:\n"
 
                     process = await asyncsubshell(command,
                                                   stdout=asyncsub.PIPE,

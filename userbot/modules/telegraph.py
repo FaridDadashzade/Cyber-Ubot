@@ -4,14 +4,11 @@
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 import os
-
 from PIL import Image
 from telegraph import Telegraph, exceptions, upload_file
-
 from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
-
 
 telegraph = Telegraph()
 r = telegraph.create_account(short_name="telegraph")

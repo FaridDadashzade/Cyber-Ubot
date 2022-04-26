@@ -117,7 +117,7 @@
             "BIO": "📅 Date: {tarih} | ⌚️ Time: {saat} | ",
             "NICK": "@TheCyberUserBot",
             "SETTED": "`%s set :)`",
-            "NAME": "⏰%s"
+            "NAME": "⌚️%s"
         },
         "autopp": {
             "VIDEO_ALREADY_CHANGING": "`It looks like profile video is already changing automatically. `",
@@ -180,7 +180,7 @@
             "PROHIBITED_COMMAND": "```You cannot do this in the C Y B Ξ R Support 🇦🇿 group.```",
             "CHATBOT_DEACTIVE": "```Chatbot has been shut down.```",
             "CHATBOT_ACTIVE": "```Chatbot is active.```",
-            "CHATBOT_MANUAL": "```**Usage:**\n.chatbot <on/off>```"
+            "CHATBOT_MANUAL": "**Usage:**\n`.chatbot <on/off>`"
         },
         "deepfry": {
             "CANT_DEEPFRY": "`I can't do this with a deepfry!`",

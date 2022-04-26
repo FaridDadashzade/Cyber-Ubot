@@ -17,7 +17,7 @@ LANG = get_value("cyberlangs")
 
 dayandir = False
 msjcgr = None
-taglimit = 60
+taglimit = 100
 
 @register(cyber=True, pattern="^.tag(?: |$)(.*)")
 async def _(q):
