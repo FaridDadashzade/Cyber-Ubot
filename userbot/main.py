@@ -293,7 +293,7 @@ async def startupcyber():
         if QRUP != 0:
             await bot.send_message(
                 QRUP,
-                f"**Salam! Mən C Y B Ξ R UserBot**\n**Botumuzu qurduğunuz üçün təşəkkür edirəm!**\n**Botunuz aktivdir.**\n\n**C Y B Ξ R Version:** **{CYBER_VERSION}**\n**Plugin sayı: {len(CMD_HELP)}**\n**Sahib: {CYBER_NAME}**\n**Plugin kanalı:** @TheCyberPlugin\n**Guides:** @TheCyberGuides\n**Şəxsi asistanınız:** {BOT_USERNAME}\n\n**Yardıma ehtiyyacınız olarsa @TheCyberSupport qrupuna yazın :)**",
+                f"**Salam! Mən C Y B Ξ R UserBot**\n**Botumuzu qurduğunuz üçün təşəkkür edirəm!**\n**Botunuz aktivdir.**\n\n**C Y B Ξ R Version:** **{CYBER_VERSION}**\n**Plugin sayı: {len(CMD_HELP)}**\n**Sahib: {CYBER_NAME}**\n**Plugin kanalı:** @TheCyberPlugin\n**Guides:** @TheCyberGuides\n**Şəxsi asistanınız:** @{BOT_USERNAME}\n\n**Yardıma ehtiyyacınız olarsa @TheCyberSupport qrupuna yazın :)**",
             )
     except Exception as e:
         LOGS.info(str(e))
