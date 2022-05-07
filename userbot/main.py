@@ -228,8 +228,7 @@ try:
             KanalId = "me"
 
         for plugin in bot.iter_messages(KanalId, filter=InputMessagesFilterDocument):
-            if plugin.file.name and (len(plugin.file.name.split('.')) > 1) \
-                and plugin.file.name.split('.')[-1] == 'py':
+            if plugin.file.name.split('.')[-1] == 'py':
                 Split = plugin.file.name.split('.')
 
                 if not os.path.exists("./userbot/modules/" + plugin.file.name):
