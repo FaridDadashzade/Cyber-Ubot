@@ -86,7 +86,7 @@ async def _(q):
 		if taglimit > 100:
 			sleep(2)
 
-@register(cyber=True, pattern="^.stop$")
+@register(cyber=True, pattern="^.cancel$")
 async def _(q):
 	global dayandir
 	if msjcgr == None:
