@@ -30,7 +30,7 @@ pylast
 pySmartDL
 python-barcode
 python-dotenv
-youtube-dl>=2021.2.10
+youtube-dl==2021.12.17
 youtube-search
 pytz
 qrcode
