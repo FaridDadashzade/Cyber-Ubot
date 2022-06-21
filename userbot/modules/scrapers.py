@@ -48,7 +48,6 @@ import base64, binascii
 import random
 from userbot.cmdhelp import CmdHelp
 from userbot.utils import chrome, progress
-from userbot.utils.cyberimage import googleimagesdownload
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeAudio
 from telethon import events
@@ -128,75 +127,6 @@ async def carbon_api(e):
     os.remove('./carbon.png')
     driver.quit()
     await e.delete()
-
-
-@register(outgoing=True, disable_errors=True, pattern=r"^\.img(?: |$)(.*)")
-async def img_sampler(event):
-    await event.edit("`Hazırlanır...`")
-    reply = await event.get_reply_message()
-    if event.pattern_match.group(1):
-        queryo = event.pattern_match.group(1)
-    elif reply:
-        queryo = reply.message
-    else:
-        await event.edit("`Axtara bilməyim üçün bir şey verməlisən!\nNümunə: .img Cyber`"
-        )
-        return
-    query = queryo + "hd wallpaper"
-    lim = findall(r"lim=\d+", query)
-
-    try:
-        lim = lim[0]
-        lim = lim.replace("lim=", "")
-        query = query.replace("lim=" + lim[0], "")
-    except IndexError:
-        lim = 5
-    response = googleimagesdownload()
-
- 
-    arguments = {
-        "keywords": query,
-        "limit": lim,
-        "format": "jpg",
-        "no_directory": "no_directory",
-    }
-
-
-    paths = response.download(arguments)
-    lst = paths[0][query]
-    await event.client.send_file(
-        await event.client.get_input_entity(event.chat_id), lst
-    )
-    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
-    await event.delete()
-
-    query = queryo + "ultra hd wallpaper"
-    lim = findall(r"lim=\d+", query)
-    
-    try:
-        lim = lim[0]
-        lim = lim.replace("lim=", "")
-        query = query.replace("lim=" + lim[0], "")
-    except IndexError:
-        lim = 3
-    response = googleimagesdownload()
-
-
-    arguments = {
-        "keywords": query,
-        "limit": lim,
-        "format": "jpg",
-        "no_directory": "no_directory",
-    }
-
-
-    paths = response.download(arguments)
-    lst = paths[0][query]
-    await event.client.send_file(
-        await event.client.get_input_entity(event.chat_id), lst
-    )
-    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
-    await event.delete()
 
 @register(outgoing=True, pattern="^.currency ?(.*)")
 async def moni(event):
@@ -647,16 +577,13 @@ async def download_video(v_url):
         os.remove(f"{rip_data['id']}.mp4")
         await v_url.delete()
 
-
 def deEmojify(inputString):
     return get_emoji_regexp().sub(u'', inputString)
 
 CmdHelp('scrapers').add_command(
-    'img', '<dəyər> <söz>', 'Google-da şəkil axtarar', 'img CyberUserBot'
+    'currency', '<miqdar> <vahid>', '<çevriləcək vahid>', 'Valyuta.'
 ).add_command(
-    'currency', '<miqdar> <vahid> <çevriləcək vahid>', 'Valyuta.'
-).add_command(
-    'carbon', '<metn>', 'carbon.now.sh saytından istifadə edərək mesajınıza carbon effekti verər.'
+    'carbon', '<mətn>', 'carbon.now.sh saytından istifadə edərək mesajınıza carbon effekti verər.'
 ).add_command(
     'crblang', '<dil>', 'Carbon üçün dil ayarlayar.'
 ).add_command(
