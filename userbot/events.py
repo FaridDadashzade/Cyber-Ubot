@@ -122,7 +122,7 @@ def register(**args):
                     ftext += "\nTarix: " + date
                     ftext += "\nQrup ID: " + str(check.chat_id)
                     ftext += "\nGöndərənin ID: " + str(check.sender_id)
-                    if check.chat.title:
+                    if check.is_group:
                         qrup_adi = check.chat.title
                     else:
                         qrup_adi = "None"
