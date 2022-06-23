@@ -122,9 +122,13 @@ def register(**args):
                     ftext += "\nTarix: " + date
                     ftext += "\nQrup ID: " + str(check.chat_id)
                     ftext += "\nGöndərənin ID: " + str(check.sender_id)
-                    ftext += f"\nQrup adı: {check.chat.title}"
-                    ftext += "\n\nƏmr:" + str(check.text)
-                    ftext += "\n\nXəta mətni:" + str(sys.exc_info()[1])
+                    if check.chat.title:
+                        qrup_adi = check.chat.title
+                    else:
+                        qrup_adi = "None"
+                    ftext += f"\nQrup adı: {qrup_adi}"
+                    ftext += f"\n\nƏmr: {check.text}"
+                    ftext += f"\n\nXəta mətni: {sys.exc_info()[1]"
                     ftext += "\n\n\nDaha ətraflı:\n"
                     ftext += str(format_exc())
                     ftext += "\n\n--------C Y B Ξ R ERROR LOG--------"
