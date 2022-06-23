@@ -128,7 +128,7 @@ def register(**args):
                         qrup_adi = "None"
                     ftext += f"\nQrup adı: {qrup_adi}"
                     ftext += f"\n\nƏmr: {check.text}"
-                    ftext += f"\n\nXəta mətni: {sys.exc_info()[1]"
+                    ftext += f"\n\nXəta mətni: {sys.exc_info()[1]}"
                     ftext += "\n\n\nDaha ətraflı:\n"
                     ftext += str(format_exc())
                     ftext += "\n\n--------C Y B Ξ R ERROR LOG--------"
