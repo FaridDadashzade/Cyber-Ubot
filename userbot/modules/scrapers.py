@@ -27,7 +27,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 from requests import get
-from search_engine_parser import GoogleSearch
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googletrans import LANGUAGES, Translator
