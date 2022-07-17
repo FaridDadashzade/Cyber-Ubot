@@ -583,6 +583,7 @@ async def sekil_axtar(event):
     axtaris = f'"{axtaris_name}"'
     axtarilir = await event.edit("`{}` üçün şəkil axtarılır..".format(axtaris_name))
     downloader.download(axtaris, limit=5,  output_dir='sekil_axtaris', adult_filter_off=True, force_replace=False, timeout=5, verbose=True)
+    os.chdir(f'./sekil_axtaris/{axtaris}')
     toplam_fayl = []
     fayl_tipleri = ("*.png", "*.jpeg", "*.jpg")
     for fayllar in fayl_tipleri:
