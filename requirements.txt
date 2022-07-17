@@ -3,7 +3,6 @@ aria2p
 async_generator
 bs4
 beautifulsoup4
-bing-image-downloader
 covid
 cloudscraper
 dnspython
