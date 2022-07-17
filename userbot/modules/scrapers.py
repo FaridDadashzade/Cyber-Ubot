@@ -573,7 +573,7 @@ async def download_video(v_url):
         os.remove(f"{rip_data['id']}.mp4")
         await v_url.delete()
 
-@register(cyber=True, pattern="^.img ?(.*)")
+@register(cyber=True, disable_errors=True, pattern="^.img ?(.*)")
 async def sekil_axtar(event):
     axtaris_name = event.pattern_match.group(1)
     if not axtaris_name:
