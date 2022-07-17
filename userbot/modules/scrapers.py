@@ -592,9 +592,7 @@ async def sekil_axtar(event):
         await event.client.send_file(event.chat_id, toplam_fayl, caption="**Powered by @TheCyberUserBot**")
         await axtarilir.delete()
     except:
-        await event.edit("**Şəkil tapılmadı!**")
-    
-    os.system("rm -rf sekil_axtaris")        
+        await event.edit("**Şəkil tapılmadı!**")        
 
 def deEmojify(inputString):
     return get_emoji_regexp().sub(u'', inputString)
