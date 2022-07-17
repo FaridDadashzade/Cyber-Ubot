@@ -9,6 +9,7 @@ import requests
 import asyncio
 import shutil
 from bs4 import BeautifulSoup
+from bing_image_downloader import downloader
 from shutil import rmtree
 import re
 from PIL import Image
@@ -67,7 +68,6 @@ async def setlang(prog):
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
     await prog.edit(f"Karbon modulu üçün default dil {CARBONLANG} olaraq ayarlandı.")
-
 
 @register(outgoing=True, pattern="^.carbon")
 async def carbon_api(e):
@@ -221,49 +221,26 @@ async def wiki(wiki_q):
             BOTLOG_CHATID, f"{match}` teriminin Wikipedia sorğusu uğurla hazırlandı!`")
 
 
-
-
-@register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
-async def text_to_speech(event):
-    if event.fwd_from:
-        return
-    ttss = event.pattern_match.group(1)
-    rep_msg = None
+@register(cyber=True, pattern=r"^.tts(?: |$)([\s\S]*)")
+async def gtts(event):
+    gtts_yazı = event.pattern_match.group(1)
+    cavab_verilen_msg = None
+    if not gtts_yazı:
+        return await event.edit("`Səsə çevirməyim üçün əmrin yanında bir mesaj yazmalısınız.`")
+    tts = gTTS(gtts_yazı, lang=TTS_LANG)
     if event.is_reply:
-        rep_msg = await event.get_reply_message()
-    if len(ttss) < 1:
-        if event.is_reply:
-            sarki = rep_msg.text
-        else:
-            await event.edit("`Səsə çevirməyim üçün əmrin yanında bir mesaj yazmalısınız.`")
-            return
+        cavab_verilen_msg = await event.get_reply_message()
+    tts.save('cybertts.ogg')
+    if os.path.isfile('cybertts.ogg'):
+        await event.client.send_file(event.chat_id, file="cybertts.ogg", voice_note=True, reply_to=cavab_verilen_msg)
+        await event.delete()
+        os.remove('cybertts.ogg')
+    else:
+        await event.edit("`Bilinməyən bir xəta baş verdi.`")
 
-    await event.edit(f"__Səsə çevirilir...__")
-    chat = "@MrTTSbot"
-    async with bot.conversation(chat) as conv:
-        try:     
-            await conv.send_message(f"/tomp3 {ttss}")
-        except YouBlockedUserError:
-            await event.reply(f"`Hmm deyəsən` {chat} `əngəlləmisən. Xahiş edirəm bloku aç.`")
-            return
-        ses = await conv.wait_event(events.NewMessage(incoming=True,from_users=1678833172))
-        await event.client.send_read_acknowledge(conv.chat_id)
-        indir = await ses.download_media()
-        voice = await asyncio.create_subprocess_shell(f"ffmpeg -i '{indir}' -c:a libopus 'MrTTSbot.ogg'")
-        await voice.communicate()
-        if os.path.isfile("MrTTSbot.ogg"):
-            await event.client.send_file(event.chat_id, file="MrTTSbot.ogg", voice_note=True, reply_to=rep_msg)
-            await event.delete()
-            os.remove("MrTTSbot.ogg")
-        else:
-            await event.edit("`Bir xəta baş verdi!`")
-
-
-        if BOTLOG:
-            await event.client.send_message(
-                BOTLOG_CHATID, "Uğurla səsə çevirildi!")
-
-
+    if BOTLOG:
+        await event.client.send_message(BOTLOG_CHATID, "#TTS\n\n`{}` sözü uğurla səsə çevirildi.".format(gtts_yazı))
+        
 @register(outgoing=True, pattern="^.imdb (.*)")
 async def imdb(e):
     try:
@@ -576,6 +553,29 @@ async def download_video(v_url):
         os.remove(f"{rip_data['id']}.mp4")
         await v_url.delete()
 
+@register(cyber=True, pattern="^.img ?(.*)")
+async def sekil_axtar(event):
+    axtaris_name = event.pattern_match.group(1)
+    if not axtaris_name:
+        await event.edit("`Axtarış edə bilməyim üçün bir ad qeyd edin.`")
+        return
+
+    axtaris = f'"{axtaris_name}"'
+    axtarilir = await event.edit("`{}` üçün şəkil axtarılır..".format(axtaris_name))
+    downloader.download(axtaris, limit=5,  output_dir='sekil_axtaris', adult_filter_off=True, force_replace=False, timeout=5, verbose=True)
+    os.chdir(f'./sekil_axtaris/{axtaris}')
+    toplam_fayl = []
+    fayl_tipleri = ("*.png", "*.jpeg", "*.jpg")
+    for fayllar in fayl_tipleri:
+        toplam_fayl.extend(glob.glob(fayllar))
+    try:
+        await event.client.send_file(event.chat_id, toplam_fayl, caption="**Powered by @TheCyberUserBot**")
+        await axtarilir.delete()
+    except:
+        await event.edit("**Şəkil tapılmadı!**")
+    
+    os.system("rm -rf sekil_axtaris")        
+
 def deEmojify(inputString):
     return get_emoji_regexp().sub(u'', inputString)
 
@@ -587,6 +587,8 @@ CmdHelp('scrapers').add_command(
     'crblang', '<dil>', 'Carbon üçün dil ayarlayar.'
 ).add_command(
     'google', '<söz>', 'Googleda axtarış etmənizə yardım edəcək modul.'
+).add_command(
+    'img', '<söz>', 'Googledən yazdığınız sözə uyğun şəkillər əldə edin.'
 ).add_command(
     'wiki', '<term>', 'Wikipedia-da axtarış edər.'
 ).add_command(

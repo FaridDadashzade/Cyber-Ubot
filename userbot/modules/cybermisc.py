@@ -7,6 +7,7 @@ import requests
 import re
 import datetime
 import logging
+import random
 import bs4
 import os
 import asyncio
@@ -21,6 +22,7 @@ from userbot.cmdhelp import CmdHelp
 from userbot import bot, WHITELIST
 from telethon.tl.types import UserStatusEmpty, UserStatusLastMonth, UserStatusLastWeek, UserStatusOffline, UserStatusOnline, UserStatusRecently, ChatBannedRights, ChannelParticipantsKicked
 from telethon.tl.functions.users import GetFullUserRequest
+from telethon.tl.types import ChannelParticipantsAdmins
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
@@ -32,7 +34,6 @@ from userbot import BOTLOG_CHATID, BOTLOG, SUDO_ID
 
 from userbot.language import get_value
 LANG = get_value("admin")
-
 
 async def get_user_from_event(event):
     args = event.pattern_match.group(1).split(':', 1)
@@ -225,7 +226,7 @@ async def _(event):
         )
     else:
         await event.edit("```Hazırlanır...```")
-    chat = "@instadowbot"
+    chat = "@instabot"
     async with bot.conversation(chat) as conv:
         try:
             msg_start = await conv.send_message("/start")
@@ -290,7 +291,7 @@ async def _(event):
         )
         silinen_msjlar = "Bu qrupdaki silinmiş 10 mesaj:\n\n"
         for i in a:
-            silinen_msjlar += "\n💥{}".format(i.old.message) #thx https://github.com/H1M4N5HU0P/MAFIA-USERBOT/blob/97a6874172ee3e2e1a6fe647ea925abd14cba3fb/userbot/plugins/admin.py#L380
+            silinen_msjlar += "\n💥{}".format(i.old.message)
         await event.edit(silinen_msjlar)
     else:
         await event.edit("Bunu etmək üçün admin olmalısınız."
@@ -300,7 +301,6 @@ async def _(event):
             await event.delete()
         except:
             pass
-	
 
 @register(outgoing=True, groups_only=True, disable_errors=True, pattern=r"^\.unbanall(?: |$)(.*)")
 async def _(cyber):
@@ -319,8 +319,6 @@ async def _(cyber):
             pass
     await cyber.edit("`Qadağan olunmuş istifadəçilər siyahıdan silindi...`")
 	
-	
-	
 @register(outgoing=True, disable_errors=True, pattern=r"^\.oxu(?: |$)(.*)")
 @register(outgoing=True, disable_errors=True, pattern=r"^\.open(?: |$)(.*)")
 async def _(event):
@@ -337,7 +335,6 @@ async def _(event):
         await a.delete()
     os.remove(b)
 
-
 @register(outgoing=True, disable_errors=True, pattern=r"^\.repack(?: |$)(.*)")
 async def _(event):
     await event.delete()
@@ -353,7 +350,6 @@ async def _(event):
     await event.client.send_file(event.chat_id, input_str)
     await a.delete()
     os.remove(input_str)
-	
 	
 @register(outgoing=True, pattern=r"^\.pdf(?: |$)(.*)")
 async def _(event):
@@ -434,25 +430,48 @@ async def sendbot(cyber):
           await cyber.client.delete_messages(conv.chat_id,
                                                 [msg.id, response.id])
 
-		
-	
+@register(cyber=True, pattern="^.couples$")
+async def shipping(event):
+    istifadeciler = []
+    try:
+        istifadeciler.remove(usr.id)
+    except:
+        pass
+    async for usr in bot.iter_participants(event.chat_id):
+        istifadeciler.append(usr.id)
+    if len(istifadeciler) < 2: 
+        await event.edit("Qrupda kifayət qədər istifadəçi yoxdur.")
+        return 
+    birinci_istifadeci = random.choice(istifadeciler)
+    ikinci_istifadeci = random.choice(istifadeciler)
+    while birinci_istifadeci == ikinci_istifadeci: 
+        birinci_istifadeci = random.choice(istifadeciler)
+    try:
+        birinci = await event.client.get_entity(birinci_istifadeci)
+        ikinci = await event.client.get_entity(ikinci_istifadeci)
+        esq_faizi = random.randint(0, 100)
+        birinci_user = f'[{birinci.first_name}](tg://user?id={birinci.id})'
+        ikinci_user = f'[{ikinci.first_name}](tg://user?id={ikinci.id})'
+        cutluk = "__**Cütlük uğurla seçildi!**__\n\n**{} + {}** = ❤️\n\n❤️ **Nəticə:** `{}%`".format(birinci_user, ikinci_user, esq_faizi)
+        await event.edit(cutluk)
+        istifadeciler.remove(usr.id)
+    except Exception as xeta:
+        await event.edit("Xəta: {}".format(xeta))
+
 Help = CmdHelp('cybermisc')
 Help.add_command('undelete', None, 'Bir qrupda silinmiş 10 mesajı göndərər.')
 Help.add_command('unbanall', None, 'Qrupda qadağan edilmiş bütün istifadəçilərin qadağasını silər.')
 Help.add_command('sendbot', '<@botun-istifadeci-adi> <mesaj>', 'Yazdığınız əmri qeyd etdiyiniz bota göndərər və botun cavabını atar')
 Help.add()
 
-
 Help = CmdHelp('pm')
 Help.add_command('pm', '<@istifadeci-adi> <mesaj>', 'Qeyd etdiyiniz mesajı istədiyiniz şəxsə göndərər.')
 Help.add()
-
 
 Help = CmdHelp('banall')
 Help.add_command('banall', None, 'Admin olduğunuz qrupda insanları qrupdan avtomatik ban edər.')
 Help.add_info('@TheCyberUserBot məsuliyyət daşımır.')
 Help.add()
-
 
 Help = CmdHelp('social')
 Help.add_command('tik', '<link>', 'TikTok-dan video yükləyər.')
@@ -466,3 +485,7 @@ Help.add_command('oxu', '<bir fayla cavab>', 'Faylın məzmununu oxuyun və Tele
 Help.add_command('repack', '<bir mətnə cavab> <fayl_adı.py>', 'Cavab verdiyiniz mətni plugin edib atar.')
 Help.add_command('pdf', '<bir mediaya və ya mətnə cavab>', 'Cavab verdiyiniz mətni və ya şəkili pdf-yə çevirər.')
 Help.add()
+
+CmdHelp('couples').add_command(
+    'couples', None, 'Təsadüfi seçilən iki nəfərin eşq faizini yoxlayın.'
+).add()
