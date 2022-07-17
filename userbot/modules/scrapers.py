@@ -221,25 +221,45 @@ async def wiki(wiki_q):
             BOTLOG_CHATID, f"{match}` teriminin Wikipedia sorğusu uğurla hazırlandı!`")
 
 
-@register(cyber=True, pattern=r"^.tts(?: |$)([\s\S]*)")
-async def gtts(event):
-    gtts_yazı = event.pattern_match.group(1)
-    cavab_verilen_msg = None
-    if not gtts_yazı:
-        return await event.edit("`Səsə çevirməyim üçün əmrin yanında bir mesaj yazmalısınız.`")
-    tts = gTTS(gtts_yazı, lang=TTS_LANG)
+@register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
+async def text_to_speech(event):
+    if event.fwd_from:
+        return
+    ttss = event.pattern_match.group(1)
+    rep_msg = None
     if event.is_reply:
-        cavab_verilen_msg = await event.get_reply_message()
-    tts.save('cybertts.ogg')
-    if os.path.isfile('cybertts.ogg'):
-        await event.client.send_file(event.chat_id, file="cybertts.ogg", voice_note=True, reply_to=cavab_verilen_msg)
-        await event.delete()
-        os.remove('cybertts.ogg')
-    else:
-        await event.edit("`Bilinməyən bir xəta baş verdi.`")
+        rep_msg = await event.get_reply_message()
+    if len(ttss) < 1:
+        if event.is_reply:
+            sarki = rep_msg.text
+        else:
+            await event.edit("`Səsə çevirməyim üçün əmrin yanında bir mesaj yazmalısınız.`")
+            return
 
-    if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "#TTS\n\n`{}` sözü uğurla səsə çevirildi.".format(gtts_yazı))
+    await event.edit(f"__Səsə çevirilir...__")
+    chat = "@MrTTSbot"
+    async with bot.conversation(chat) as conv:
+        try:     
+            await conv.send_message(f"/tomp3 {ttss}")
+        except YouBlockedUserError:
+            await event.reply(f"`Hmm deyəsən` {chat} `əngəlləmisən. Xahiş edirəm bloku aç.`")
+            return
+        ses = await conv.wait_event(events.NewMessage(incoming=True,from_users=1678833172))
+        await event.client.send_read_acknowledge(conv.chat_id)
+        indir = await ses.download_media()
+        voice = await asyncio.create_subprocess_shell(f"ffmpeg -i '{indir}' -c:a libopus 'MrTTSbot.ogg'")
+        await voice.communicate()
+        if os.path.isfile("MrTTSbot.ogg"):
+            await event.client.send_file(event.chat_id, file="MrTTSbot.ogg", voice_note=True, reply_to=rep_msg)
+            await event.delete()
+            os.remove("MrTTSbot.ogg")
+        else:
+            await event.edit("`Bir xəta baş verdi!`")
+
+
+        if BOTLOG:
+            await event.client.send_message(
+                BOTLOG_CHATID, "Uğurla səsə çevirildi!")
         
 @register(outgoing=True, pattern="^.imdb (.*)")
 async def imdb(e):
