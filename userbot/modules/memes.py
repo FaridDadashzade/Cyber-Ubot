@@ -8,19 +8,14 @@ from random import choice, getrandbits, randint
 from re import sub
 import time
 import asyncio
-
 from collections import deque
-
 import requests
-
 from cowpy import cow
-
 from userbot import CMD_HELP, ZALG_LIST
 from userbot.events import register
 from userbot.modules.admin import get_user_from_event
 from userbot.cmdhelp import CmdHelp
 
-# ================= CONSTANT =================
 EMOJIS = [
     "😂",
     "😂",
@@ -307,7 +302,7 @@ CRI = [
 ]
 
 SLAP_TEMPLATES = [
-     "{victim} istifadəçisini {item} ilə {hits} .",
+    "{victim} istifadəçisini {item} ilə {hits} .",
     "{victim} istifadəçisini {item} ilə üzünə {hits} .",
     "{victim} istifadəçisini {item} ilə biraz {hits} .",
     "{victim} istifadəçisinə {item} {throws} .",
@@ -321,7 +316,7 @@ SLAP_TEMPLATES = [
 ]
 
 ITEMS = [
-        "dəmir tava",
+    "dəmir tava",
     "böyük alabalığ",
     "beyzbol çubuğu",
     "kriket çubuğu",
@@ -367,8 +362,6 @@ HIT = [
     "keçirdir",
 ]
 
-# ===========================================
-
 @register(outgoing=True, pattern="^.heyvan ?(.*)")
 async def hayvan(e):
     arg = e.pattern_match.group(1)
@@ -394,7 +387,7 @@ async def hayvan(e):
         file=foto
     )
 
-@register(outgoing=True, pattern="^.qərar$")
+@register(outgoing=True, pattern="^.`qərar`$")
 async def karar(e):
     msaj = ""
     if e.reply_to_msg_id:
@@ -437,7 +430,6 @@ async def univsaye(cowmsg):
 
 @register(outgoing=True, pattern="^:/$", ignore_unsafe=True)
 async def kek(keks):
-    """  ;)"""
     uio = ["/", "\\"]
     for i in range(1, 15):
         time.sleep(0.3)
@@ -446,7 +438,6 @@ async def kek(keks):
 
 @register(pattern="^.slap(?: |$)(.*)", outgoing=True)
 async def who(event):
-    """ .slap, """
     replied_user = await get_user_from_event(event)
     if replied_user:
         replied_user = replied_user[0]
@@ -464,7 +455,6 @@ async def who(event):
 
 
 async def slap(replied_user, event):
-    """ !! """
     user_id = replied_user.id
     first_name = replied_user.first_name
     username = replied_user.username
@@ -479,7 +469,7 @@ async def slap(replied_user, event):
     hit = choice(HIT)
     throw = choice(THROW)
 
-    caption = "C Y B E R " + temp.format(
+    caption = "C Y B Ξ R " + temp.format(
         victim=slapped, item=item, hits=hit, throws=throw)
 
     return caption
@@ -505,11 +495,9 @@ async def fun(e):
 async def facepalm(e):
     await e.edit("🤦‍♂")
 
-
 @register(outgoing=True, pattern="^.cry$")
 async def cry(e):
     await e.edit(choice(CRI))
-
 
 @register(outgoing=True, pattern="^.cp(?: |$)(.*)")
 async def copypasta(cp_e):
@@ -545,7 +533,6 @@ async def copypasta(cp_e):
 
 @register(outgoing=True, pattern="^.vapor(?: |$)(.*)")
 async def vapor(vpr):
-    """ ! """
     reply_text = []
     textx = await vpr.get_reply_message()
     message = vpr.pattern_match.group(1)
@@ -570,7 +557,6 @@ async def vapor(vpr):
 
 @register(outgoing=True, pattern="^.str(?: |$)(.*)")
 async def stretch(stret):
-    """ ."""
     textx = await stret.get_reply_message()
     message = stret.text
     message = stret.pattern_match.group(1)
@@ -619,13 +605,11 @@ async def zal(zgfy):
 
 @register(outgoing=True, pattern="^.hi$")
 async def hoi(hello):
-    """ salamda salam """
     await hello.edit(choice(HELLOSTR))
 
 
 @register(outgoing=True, pattern="^.owo(?: |$)(.*)")
 async def faces(owo):
-    """ UwU """
     textx = await owo.get_reply_message()
     message = owo.pattern_match.group(1)
     if message:
@@ -648,7 +632,6 @@ async def faces(owo):
 
 @register(outgoing=True, pattern="^.react$")
 async def react_meme(react):
-    """ . """
     await react.edit(choice(FACEREACTS))
 
 
@@ -662,14 +645,12 @@ async def shrugger(shg):
 async def runner_lol(run):
     await run.edit(choice(RUNS_STR))
 
-
 @register(outgoing=True, pattern="^oof$")
 async def oof(e):
     t = "oof"
     for j in range(16):
         t = t[:-1] + "of"
         await e.edit(t)
-
                       
 @register(outgoing=True, pattern="^Oof$")
 async def Oof(e):
@@ -678,41 +659,14 @@ async def Oof(e):
         t = t[:-1] + "of"
         await e.edit(t)
 
-
 @register(outgoing=True, pattern="^skrrt$")
 async def oof(e):
     t = "skrrt"
     for j in range(16):
         t = t[:-1] + "rt"
         await e.edit(t)
-        
 
-@register(outgoing=True, pattern="^Skrrt$")
-async def oof(e):
-    t = "Skrrt"
-    for j in range(16):
-        t = t[:-1] + "rt"
-        await e.edit(t)
-
-
-@register(outgoing=True, pattern="^.fuk")
-async def fuk(event):
-    if event.fwd_from:
-        return
-    animation_interval = 0.1
-    animation_ttl = range(0, 101)
-    animation_chars = [
-            "🍆       🍑️",
-            "🍆     🍑️",
-            "🍆  🍑️",
-            "🍆🍑️💦"
-    ]
-    for i in animation_ttl:
-        await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 4])
-
-
-@register(outgoing=True, pattern="^.urek (.*)")
+@register(outgoing=True, pattern="^.heart (.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -723,33 +677,6 @@ async def _(event):
         await event.edit("".join(deq))
         deq.rotate(1)
     await event.edit("❤️🧡💛" + input_str + "💚💙💜🖤")
-
-@register(outgoing=True, pattern="^.mizah$")
-async def mizahshow(e):
-    await e.edit(
-    "⚠️⚠️⚠️MmMmMmMizahh Şoww😨😨😨😨😱😱😱😱😱 \n"
-    "😱😱⚠️⚠️ 😂😂😂😂😂😂😂😂😂😂😂😂😂😂😱😵 \n"
-    "😂😂👍👍👍👍👍👍👍👍👍👍👍👍👍 MiZah \n"
-    "ŞəLaLesNdƏn b1r yUdm aLdım✔️✔️✔️✔️ \n"
-    "AHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHAHAHHAHAHAHAHA \n"
-    "HAHAHAHAHAHAHHAHAHAHAHAHAHA😂😂😂😂😂😂😂😂 \n"
-    "😂 GÜLDÜM ALA GÜLDÜÜM \n"
-    "hALaL LaN ✔️✔️✔️✔️✔️✔️✔️✔️👏👏👏👏👏👏👏👏 \n"
-    "👏 ƏfSaNə mMmMiZah şooooovv 👏👏👏👏👏😂😂😂😂 \n"
-    "😂😂😂😂😂😂⚠️ \n"
-    "💯💯💯💯💯💯💯💯💯 \n"
-    "DSTM EYNI BİİİZ 😂😂😂👏👏 \n"
-    "💯💯⚠️⚠️♿️AÇ YOLU POST SAHİBİ VE ONU ♿️QORUYANLAR \n"
-    "GƏLİR ♿️♿️ DÜÜTT♿️ \n"
-    "DÜÜÜÜT♿️DÜÜT♿️💯💯⚠️ \n"
-    "♿️GÜLMƏLİDİ ♿️ \n"
-    "CJWJCJWJXJJWDJJQUXJAJXJAJXJWJFJWJXJAJXJWJXJWJFIWIXJQJJQJASJAXJ \n"
-    "AJXJAJXJJAJXJWJFWJJFWIIFIWICIWIFIWICJAXJWJFJEICIIEICIEIFIWICJSXJJS \n"
-    "CJEIVIAJXBWJCJIQICIWJX💯💯💯💯💯💯😂😂😂😂😂😂😂 \n"
-    "😂⚠️😂😂😂😂😂😂⚠️⚠️⚠️😂😂😂😂♿️♿️♿️😅😅 \n"
-    "😅😂👏💯⚠️👏♿️🚨"
-    )    
-
 
 @register(outgoing=True, pattern="^.moon$")
 async def moon(event):
@@ -777,7 +704,6 @@ async def clock(event):
 
 @register(outgoing=True, pattern="^.mock(?: |$)(.*)")
 async def spongemocktext(mock):
-    """ . """
     reply_text = []
     textx = await mock.get_reply_message()
     message = mock.pattern_match.group(1)
@@ -797,25 +723,6 @@ async def spongemocktext(mock):
             reply_text.append(charac)
 
     await mock.edit("".join(reply_text))
-
-
-@register(outgoing=True, pattern="^.clap(?: |$)(.*)")
-async def claptext(memereview):
-    """ ! """
-    textx = await memereview.get_reply_message()
-    message = memereview.pattern_match.group(1)
-    if message:
-        pass
-    elif textx:
-        message = textx.text
-    else:
-        await memereview.edit("`Hıh, boş yerə alqışlamıram! 😒`")
-        return
-    reply_text = "👏 "
-    reply_text += message.replace(" ", " 👏 ")
-    reply_text += " 👏"
-    await memereview.edit(reply_text)
-
 
 @register(outgoing=True, pattern=r"^.f (.*)")
 async def payf(event):
@@ -851,30 +758,9 @@ async def bosluk(event):
     await event.delete()
     await event.reply('ㅤ')
 
-@register(outgoing=True, pattern="^.lfy (.*)")
-async def let_me_google_that_for_you(lmgtfy_q):
-    textx = await lmgtfy_q.get_reply_message()
-    qry = lmgtfy_q.pattern_match.group(1)
-    if qry:
-        query = str(qry)
-    elif textx:
-        query = textx
-        query = query.message
-    query_encoded = query.replace(" ", "+")
-    lfy_url = f"http://lmgtfy.com/?s=g&iie=1&q={query_encoded}"
-    payload = {'format': 'json', 'url': lfy_url}
-    r = requests.get('http://is.gd/create.php', params=payload)
-    await lmgtfy_q.edit(f"Hazırdır kef elə.\
-    \n[{query}]({r.json()['shorturl']})")
-
-
 @register(pattern=r".scam(?: |$)(.*)", outgoing=True)
 async def scam(event):
-    """ !! """
-    options = [
-        'typing', 'contact', 'game', 'location', 'voice', 'round', 'video',
-        'photo', 'document', 'cancel'
-    ]
+    options = ['typing', 'contact', 'game', 'location', 'voice', 'round', 'video', 'photo', 'document', 'cancel']
     input_str = event.pattern_match.group(1)
     args = input_str.split()
     if len(args) == 0:
@@ -901,10 +787,8 @@ async def scam(event):
     except BaseException:
         return
 
-
 @register(pattern=r".type(?: |$)(.*)", outgoing=True)
 async def typewriter(typew):
-    """ . """
     textx = await typew.get_reply_message()
     message = typew.pattern_match.group(1)
     if message:
@@ -936,11 +820,11 @@ CmdHelp('memes').add_command(
 ).add_command(
     'qərar', None, 'Qərar verin.'
 ).add_command(
-    '-_-', None, 'Tamamdır.\n-Birdənəm ustam'
+    '-_-', None, 'Tamamdır.'
 ).add_command(
     ';_;', None, 'Animasiya.'
 ).add_command(
-    'cp', '<cavab>', 'Emoji falan əlavə edir.'
+    'cp', '<cavab>', 'Emoji əlavə edir.'
 ).add_command(
     'vapor', '<mesaj/cavab>', 'Vaporlaşdırın!'
 ).add_command(
@@ -948,17 +832,13 @@ CmdHelp('memes').add_command(
 ).add_command(
     '10iq', None, 'mesaj yazır....'
 ).add_command(
-    'mizah', None, 'Mizah animasyonu.'
-).add_command(
     'zal', '<cavablama/mesaj>', 'Çox qarmaşıq! Hər şey çox qarmaşıq.'
 ).add_command(
-    'oof', None, 'of dana'
+    'oof', None, 'Off'
 ).add_command(
     'skrrt', None, 'sıkırt'
 ).add_command(
-    'fuk', None, '+18'
-).add_command(
-    'urek', '<ad>', 'Sevginizi göstərin.'
+    'heart', '<ad>', 'Sevginizi göstərin.'
 ).add_command(
     'fp', None, 'Utanmaq.'
 ).add_command(
@@ -970,7 +850,7 @@ CmdHelp('memes').add_command(
 ).add_command(
     'owo', None, 'OwoooooWoooo'
 ).add_command(
-    'react', None, 'Dıtıyızırbotun hər şeyə hərəkət verməsini düzəldin.'
+    'react', None, 'Reaksiya :)'
 ).add_command(
     'slap', '<cavab>', 'Təsadufi şeylərlə şillələmək üçün mesaja cavab verin.'
 ).add_command(
@@ -982,17 +862,11 @@ CmdHelp('memes').add_command(
 ).add_command(
     'mock', '<cavab/mesaj>', 'Elə və real əyləncəni tap.'
 ).add_command(
-    'clap', None, 'Məni, yapraqlar deyil Yuzurbotlar alqışlıyır!'
-).add_command(
     'f', '<mesaj>', 'F'
 ).add_command(
     'type', '<yazı>', 'Daktilo kimi yazı yazın.'
 ).add_command(
-    'lfy', '<sorğu>', 'Buraxın Google bunu sizin üçün araşdırsın.'
-).add_command(
-    'scam', '<hərəkət> <vaxt>', 'Saxta hərəkətlər yaradın.\nMövcus hərəkətlər: (typing, contact, game, location, voice, round, video, photo, document, cancel)'
-).add_command(
-    'lfy', '<sorğu>', 'Buraxın Google bunu sizin üçün araşdırsın.'
+    'scam', '<hərəkət> <vaxt>', 'Saxta hərəkətlər yaradın.\nMövcud hərəkətlər: (typing, contact, game, location, voice, round, video, photo, document, cancel)'
 ).add_command(
     'boşluq', None, 'Boş mesaj.'
 ).add_command(

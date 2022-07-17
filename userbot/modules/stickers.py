@@ -7,15 +7,18 @@ import io
 import math
 import urllib.request
 from PIL import Image
-
+import os 
+import cloudscraper
+from bs4 import BeautifulSoup as bs
+import time
 from telethon.tl.types import DocumentAttributeFilename, MessageMediaPhoto, InputPeerNotifySettings
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-
 from userbot import CMD_HELP, bot, PAKET_ISMI
 from userbot.events import register
 from userbot.main import PLUGIN_MESAJLAR
 from telethon import events
+import random
 from userbot.cmdhelp import CmdHelp
 
 PACK_FULL = "Whoa! That's probably enough stickers for one pack, give it a break. \
@@ -29,7 +32,6 @@ LANG = get_value("stickers")
 
 # ████████████████████████████████ #
 
-
 @register(outgoing=True, pattern="^.ogurla($| )?((?![0-9]).+?)? ?([0-9]*)?")
 @register(outgoing=True, pattern="^.dızla($| )?((?![0-9]).+?)? ?([0-9]*)?")
 @register(outgoing=True, pattern="^.kang($| )?((?![0-9]).+?)? ?([0-9]*)?")
@@ -41,13 +43,18 @@ async def kang(event):
         try:
             user.first_name.decode('ascii')
             pack_username = user.first_name
-        except UnicodeDecodeError: # User's first name isn't ASCII, use ID instead
+        except (UnicodeDecodeError, AttributeError):
             pack_username = user.id
-    else: pack_username = user.username
+    else:
+        pack_username = user.id
+
 
     textx = await event.get_reply_message()
+    if not textx:
+        await event.edit(LANG['GIVE_STICKER'])
+        return
     emoji = event.pattern_match.group(2)
-    number = int(event.pattern_match.group(3) or 1) # If no number specified, use 1
+    number = int(event.pattern_match.group(3) or 1)
     new_pack = False
 
     if textx.photo or textx.sticker: message = textx
@@ -71,15 +78,21 @@ async def kang(event):
         sticker.seek(0)
         img.save(sticker, "PNG")
 
-    # The user didn't specify an emoji...
+
     if not emoji:
-        if message.file.emoji: # ...but the sticker has one
+        if message.file.emoji: 
             emoji = message.file.emoji
-        else: # ...and the sticker doesn't have one either
-            emoji = "✨"
+        else: 
+            random_emoji = "🐵 🦁 🐯 🐱 🐶 🐺 🐻 🐨 🐼 🐹 🐭 🐰 🦊 🦝 🐮 🐷 🐽 🐗 🦓 🦄 🐴 🐸 🐲 🦎 🐉 🦖 🦕 🐢 🐊 🐍 🐁 🐀 🐇 🐈 🐩 🐕 🦮 🐕‍🦺 🐅 🐆 🐎 🐖 🐄 🐂 🐃 🐏 🐑 🐐 🦌 🦙 🦥 🦘 🐘 🦏 🦛 🦒 🐒 🦍 🦧 🐪 🐫 🐿️ 🦨 🦡 🦔 🦦 🦇 🐓 🐔 🐣 🐤 🐥 🐦 🦉 🦅 🦜 🕊️ 🦢 🦩 🦚 🦃 🦆 🐧🦈 🐬 🐋 🐳 🐟 🐠 🐡 🦐 🦞 🦀 🦑 🐙 🦪 🦂 🕷️ 🦋 🐞 🐝 🦟 🦗 🐜 🐌 🐚 🕸️ 🐛 🐾 😀 😃 😄 😁 😆 😅 😂 🤣 😭 😗 😙 😚 😘 🥰 😍 🤩 🥳 🤗 🙃 🙂 ☺️ 😊 😏 😌 😉 🤭 😶 😐 😑 😔 😋 😛 😝 😜 🤪 🤔 🤨 🧐 🙄 😒 😤 😠 🤬 ☹️ 🙁 😕 😟 🥺 😳 😬 🤐 🤫 😰 😨 😧 😦 😮 😯 😲 😱 🤯 😢 😥 😓 😞 😖 😣 😩 😫 🤤 🥱 😴 😪 🌛 🌜 🌚 🌝 🌞 🤢 🤮 🤧 🤒 🍓 🍒 🍎 🍉 🍑 🍊 🥭 🍍 🍌 🌶 🍇 🥝 🍐 🍏 🍈 🍋 🍄 🥕 🍠 🧅 🌽 🥦 🥒 🥬 🥑 🥯 🥖 🥐 🍞 🥜 🌰 🥔 🧄 🍆 🧇 🥞 🥚 🧀 🥓 🥩 🍗 🍖 🥙 🌯 🌮 🍕 🍟 🥨 🥪 🌭 🍔 🧆 🥘 🍝 🥫 🥣 🥗 🍲 🍛 🍜 🍢 🥟 🍱 🍚 🥡 🍤 🍣 🦞 🦪 🍘 🍡 🥠 🥮 🍧 🍧 🍨".split(" ")
+            emoji = random.choice(random_emoji)
+    
+    if user.username:
+        hashtag = "@"
+    else:
+        hashtag = ""
 
     packname = f"a{user.id}_by_{pack_username}_{number}{'_anim' if is_anim else ''}"
-    packtitle = (f"@{user.username or user.first_name} {PAKET_ISMI} "
+    packtitle = (f"{hashtag}{user.username or user.first_name} {PAKET_ISMI} "
                 f"{number}{' animasyonlu' if is_anim else ''}")
     response = urllib.request.urlopen(
             urllib.request.Request(f'http://t.me/addstickers/{packname}'))
@@ -91,21 +104,16 @@ async def kang(event):
         await newpack(is_anim, sticker, emoji, packtitle, packname, message)
     else:
         async with bot.conversation("Stickers") as conv:
-            # Cancel any pending command
             await conv.send_message('/cancel')
             await conv.get_response()
 
-            # Send the add sticker command
             await conv.send_message('/addsticker')
             await conv.get_response()
 
-            # Send the pack name
             await conv.send_message(packname)
             x = await conv.get_response()
 
-            # Check if the selected pack is full
             while x.text == PACK_FULL:
-                # Switch to a new pack, create one if it doesn't exist
                 number += 1
                 packname = f"a{user.id}_by_{pack_username}_{number}{'_anim' if is_anim else ''}"
                 packtitle = (f"@{user.username or user.first_name} {PAKET_ISMI} "
@@ -117,12 +125,10 @@ async def kang(event):
 
                 await conv.send_message(packname)
                 x = await conv.get_response()
-                if x.text == "Invalid pack selected.": # That pack doesn't exist
+                if x.text == "Invalid pack selected.":
                     await newpack(is_anim, sticker, emoji, packtitle, packname)
 
-                    # Read all unread messages
                     await bot.send_read_acknowledge("stickers")
-                    # Unmute Stickers bot back
                     muted = await bot(UpdateNotifySettingsRequest(
                         peer=429000,
                         settings=InputPeerNotifySettings(mute_until=None))
@@ -135,7 +141,6 @@ async def kang(event):
                         parse_mode='md')
                     return
 
-            # Upload the sticker file
             if is_anim:
                 upload = await message.client.upload_file(sticker, file_name="AnimatedSticker.tgs")
                 await conv.send_file(upload, force_document=True)
@@ -165,17 +170,13 @@ async def kang(event):
                     await bot.send_read_acknowledge(891811251)
                     await event.client.forward_messages("stickers", response.message, 891811251)
 
-            # Send the emoji
             await conv.send_message(emoji)
             await conv.get_response()
 
-            # Finish editing the pack
             await conv.send_message('/done')
             await conv.get_response()
 
-    # Read all unread messages
     await bot.send_read_acknowledge(429000)
-    # Unmute Stickers bot back
     muted = await bot(UpdateNotifySettingsRequest(
         peer=429000,
         settings=InputPeerNotifySettings(mute_until=None))
@@ -190,22 +191,18 @@ async def kang(event):
 
 async def newpack(is_anim, sticker, emoji, packtitle, packname, message):
     async with bot.conversation("stickers") as conv:
-        # Cancel any pending command
         await conv.send_message('/cancel')
         await conv.get_response()
 
-        # Send new pack command
         if is_anim:
             await conv.send_message('/newanimated')
         else:
             await conv.send_message('/newpack')
         await conv.get_response()
 
-        # Give the pack a name
         await conv.send_message(packtitle)
         await conv.get_response()
 
-        # Upload sticker file
         if is_anim:
             upload = await bot.upload_file(sticker, file_name="AnimatedSticker.tgs")
             await conv.send_file(upload, force_document=True)
@@ -228,33 +225,50 @@ async def newpack(is_anim, sticker, emoji, packtitle, packname, message):
                 response = await conv.wait_event(events.NewMessage(incoming=True,from_users=891811251))
                 await bot.send_read_acknowledge(891811251)
                 await bot.forward_messages("stickers", response.message, 891811251)
-
-        # Send the emoji
         await conv.send_message(emoji)
         await conv.get_response()
-
-        # Publish the pack
         await conv.send_message("/publish")
         if is_anim:
             await conv.get_response()
             await conv.send_message(f"<{packtitle}>")
         await conv.get_response()
-
-        # Skip pack icon selection
         await conv.send_message("/skip")
         await conv.get_response()
-
-        # Send packname
         await conv.send_message(packname)
         await conv.get_response()
 
 async def resize_photo(photo):
-    """ Resize the given photo to 512x512 """
     image = Image.open(photo)
     scale = 512 / max(image.width, image.height)
     new_size = (int(image.width*scale), int(image.height*scale))
     image = image.resize(new_size, Image.ANTIALIAS)
     return image
+
+
+combot_stickers_url = "https://combot.org/telegram/stickers?q="
+
+@register(cyber=True, pattern=r".cstick ?(.*)")
+async def cstick(event):
+    stiker_paketi_adi = event.pattern_match.group(1)
+    if not stiker_paketi_adi:
+        await event.edit("`Xahiş edirəm bir stiker paketi adı daxil edin!`\n**İstifadəsi:** `.cstick salam`")
+    scraper = cloudscraper.create_scraper()
+    text = scraper.get(combot_stickers_url + stiker_paketi_adi).text
+    soup = bs(text, 'lxml') 
+    neticeler = soup.find_all("a", {"class": "sticker-pack__btn"})
+    paket_adi = soup.find_all("div", "sticker-pack__title")
+
+    netice = f"`{stiker_paketi_adi}` **üçün axtarış:**\n"
+
+    if not neticeler:
+        return await event.edit("`Təəssüfki belə bir stiker tapılmadı.`")
+
+    for nəticə, ad in zip(neticeler, paket_adi):
+        link = nəticə["href"]
+        netice += f"\n• [{ad.get_text()}]({link})"
+        await event.edit("{}\n\nPowered by @TheCyberUserBot".format(netice))
+        time.sleep(0.7)
+
 
 CmdHelp('stickers').add_command(
     'ogurla', None, 'Bu əmr vasitəsilə bir stikerə və ya şəkilə yanıt verib onu öz paketinizə əlavə edə bilərsiniz.'
@@ -265,3 +279,7 @@ CmdHelp('stickers').add_command(
 ).add_command(
     'ogurla', '<emoji(lər)> <nömrə>', 'Stikeri ya da şəkili qeyd edilən paketə əlavə edər və qeyd etdiyiniz emoji stikerin emojisi olaraq istifadə edilir.'
 ).add()
+
+Help = CmdHelp('cstick')
+Help.add_command('cstick', '<stiker paketi adı>', 'Combot saytından yazdığınız sözə uyğun stikerləri gətirər.')
+Help.add()
