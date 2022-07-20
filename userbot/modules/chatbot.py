@@ -18,7 +18,7 @@ LANGUAGE = DIL
 aktivet = []
 LANGUAGES = "AZ"
 
-url = "https://apitede.herokuapp.com/api/chatbot?message={message}"
+url = "http://api.brainshop.ai/get?bid=168019&key=axrPMxmyHVdc37Sv&uid=cyberuserbot&msg={message}"
 
 # ---------------------------------- #
 
@@ -32,7 +32,7 @@ async def cavablama(message):
     try:
         data = requests.get(link)
         if data.status_code == 200:
-            return (data.json())["msg"]
+            return (data.json())["cnt"]
         LOGS.info("Xəta baş verdi!")
     except Exception:
         LOGS.info("Xəta: {str(e)}")
