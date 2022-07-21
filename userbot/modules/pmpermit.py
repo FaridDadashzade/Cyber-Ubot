@@ -239,7 +239,6 @@ async def auto_accept(event):
 
 @register(outgoing=True, pattern="^.notifoff$")
 async def notifoff(noff_event):
-    """ .notifoff  """
     try:
         from userbot.modules.sql_helper.globals import addgvar
     except AttributeError:
@@ -251,7 +250,6 @@ async def notifoff(noff_event):
 
 @register(outgoing=True, pattern="^.notifon$")
 async def notifon(non_event):
-    """ .notifon """
     try:
         from userbot.modules.sql_helper.globals import delgvar
     except:
@@ -347,16 +345,26 @@ async def disapprovepm(disapprvpm):
             " istifadəçisinin PM atma icazəsi silindi.",
         )
 
-
 @register(outgoing=True, pattern="^.block$")
 async def blockpm(block):
-    """ .block """
+    if block.is_private:
+        if block.reply_to_msg_id:
+            replied_user = await block.client.get_entity(block.chat_id)
+            if block.chat_id in WHITELIST:
+                await block.edit("`C Y B Ξ R İdarəçisini bloklaya bilmərəm.`")
+                return 
+            await block.client(BlockRequest(replied_user.id))
+            await block.edit("`İstifadəçi uğurla bloklandı!`")
+            if BOTLOG:
+                await block.client.send_message(BOTLOG_CHATID, f"#BLOKLANDI\nİstifadəçi: `{block.chat_id}`")
+                return
+
     if block.reply_to_msg_id:
         reply = await block.get_reply_message()
         replied_user = await block.client.get_entity(reply.from_id)
         if replied_user.id in BRAIN_CHECKER or replied_user.id in WHITELIST:
             await block.edit(
-                "`C Y B E R İdarəçisini bloklaya bilmərəm.`"
+                "`C Y B Ξ R idarəçisini bloklaya bilmərəm.`"
             )
             return
 
@@ -380,7 +388,7 @@ async def blockpm(block):
     else:
         if block.chat_id in BRAIN_CHECKER:
             await block.edit(
-                "`C Y B E R İdarəçisini bloklaya bilmərəm.`"
+                "`C Y B Ξ R idarəçisini bloklaya bilmərəm.`"
             )
             return
 
@@ -414,11 +422,8 @@ async def blockpm(block):
             BOTLOG_CHATID,
             "#BLOKLANDI\n" + "İstifadəçi: " + mention,
         )
-
-
 @register(outgoing=True, pattern="^.unblock$")
 async def unblockpm(unblock):
-    """ .unblock """
     if unblock.reply_to_msg_id:
         reply = await unblock.get_reply_message()
         replied_user = await unblock.client.get_entity(reply.from_id)
