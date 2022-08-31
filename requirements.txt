@@ -40,7 +40,7 @@ speedtest-cli>=2.1.3
 sqlalchemy==1.3.23
 spotdl
 selenium==4.2.0
-telethon==1.24.0
+telethon==1.25.0
 telethon-session-sqlalchemy
 wikipedia>=1.4.0
 spotify_token
