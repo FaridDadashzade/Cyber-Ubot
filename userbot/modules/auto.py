@@ -85,11 +85,13 @@ async def reauto(resauto):
         firstname = cyberad
         lastname = ""
         about = about
-    await resauto.client(
-        UpdateProfileRequest(first_name=firstname, last_name=lastname, about=about))
-    await resauto.edit("`Hesabınız uğurla əvvəlki halına qaytarıldı.`")
-    await bot.disconnect()
-    os.execl(sys.executable, sys.executable, *sys.argv)
+    try:
+      await resauto.client(UpdateProfileRequest(first_name=firstname, last_name=lastname, about=about))
+      await resauto.edit("`Hesabınız uğurla əvvəlki halına qaytarıldı.`")
+      await bot.disconnect()
+      os.execl(sys.executable, sys.executable, *sys.argv)
+    except: 
+      pass
 
 Help = CmdHelp('auto')
 Help.add_command('auto', 'ad ya da bio', 'Avtomatik saata görə dəyişdirər', 'auto ad')
