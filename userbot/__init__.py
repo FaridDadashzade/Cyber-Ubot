@@ -344,8 +344,10 @@ with bot:
     first_name = me.first_name
     DEFAULT_NAME = first_name
     ISTIFADECI_ADI = me.username
+
     bioqrafiya = bot(GetFullUserRequest(uid))
-    DEFAULT_BIO = bioqrafiya.about
+    
+    DEFAULT_BIO = bioqrafiya.full_user.about
     ALIVE_NAME = DEFAULT_NAME
     cyber_m = me.id
     SAHIB_ID = me.id
