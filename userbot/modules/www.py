@@ -6,7 +6,6 @@
 from datetime import datetime
 import speedtest
 from telethon import functions
-from userbot import CMD_HELP, JARVIS, MYID
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
