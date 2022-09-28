@@ -6,7 +6,6 @@
 from asyncio import sleep
 from telethon.errors import rpcbaseerrors
 from userbot import BOTLOG, BOTLOG_CHATID
-from telethon.tl.functions.channels import DeleteUserHistoryRequest
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
