@@ -31,7 +31,7 @@ async def clone(event):
     if replied_user is None:
         await event.edit(str(error_i_a))
         return False
-    user_id = replied_user.user.id
+    user_id = replied_user.from_id
     profile_pic = await event.client.download_profile_photo(user_id, TEMP_DOWNLOAD_DIRECTORY)
     first_name = html.escape(replied_user.user.first_name)
     if first_name is not None:
@@ -42,9 +42,9 @@ async def clone(event):
         last_name = last_name.replace("\u2060", "")
     if last_name is None:
       last_name = "⁪⁬⁮⁮⁮⁮ ‌‌‌‌"
-    user_bio = replied_user.about
+    user_bio = replied_user.full_user.about
     if user_bio is not None:
-        user_bio = html.escape(replied_user.about)
+        user_bio = html.escape(replied_user.full_user.about)
     await event.client(functions.account.UpdateProfileRequest(
         first_name=first_name
     ))
@@ -56,7 +56,7 @@ async def clone(event):
     ))
     n = 1
     pfile = await event.client.upload_file(profile_pic)
-    await event.client(functions.photos.UploadProfilePhotoRequest(  # pylint:disable=E0602
+    await event.client(functions.photos.UploadProfilePhotoRequest( 
         pfile
     ))
 
