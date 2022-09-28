@@ -7,6 +7,7 @@ import html
 import os
 from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
+from telethon.errors import AboutTooLongError
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 from userbot.events import register
@@ -14,6 +15,12 @@ from telethon.tl import functions
 from userbot import TEMP_DOWNLOAD_DIRECTORY, bot, DEFAULT_BIO, DEFAULT_NAME, BRAIN_CHECKER, WHITELIST, SUPPORT
 from userbot.cmdhelp import CmdHelp
 
+# ██████ LANGUAGE CONSTANTS ██████ #
+
+from userbot.language import get_value
+LANG = get_value("admin")
+
+# ████████████████████████████████ #
 
 @register(outgoing=True, pattern="^.klon ?(.*)")
 @register(outgoing=True, pattern="^.clone ?(.*)")
@@ -27,7 +34,7 @@ async def clone(event):
             await event.edit("Bağışlayın, ama bir C Y B Ξ R UserBot adminini klonlamayacağam!")
             return
     reply_message = await event.get_reply_message()
-    replied_user, error_i_a = await get_full_user(event)
+    replied_user, error_i_a = await get_user_from_event(event)
     if replied_user is None:
         await event.edit(str(error_i_a))
         return False
@@ -145,6 +152,42 @@ async def get_full_user(event):
                 return replied_user, None
             except Exception as e:
                 return None, e
+
+
+async def get_user_from_event(event):
+    args = event.pattern_match.group(1).split(' ', 1)
+    extra = None
+    if event.reply_to_msg_id and not len(args) == 2:
+        previous_message = await event.get_reply_message()
+        user_obj = await event.client.get_entity(previous_message.from_id)
+        extra = event.pattern_match.group(1)
+    elif args:
+        user = args[0]
+        if len(args) == 2:
+            extra = args[1]
+
+        if user.isnumeric():
+            user = int(user)
+
+        if not user:
+            await event.edit(LANG['PLEASE_REPLY'])
+            return
+
+        if event.message.entities is not None:
+            probable_user_mention_entity = event.message.entities[0]
+
+            if isinstance(probable_user_mention_entity,
+                          MessageEntityMentionName):
+                user_id = probable_user_mention_entity.user_id
+                user_obj = await event.client.get_entity(user_id)
+                return user_obj, extra
+        try:
+            user_obj = await event.client.get_entity(user)
+        except Exception as err:
+            await event.edit(str(err))
+            return None
+
+    return user_obj, extra
 
             
 Help = CmdHelp('klon')
