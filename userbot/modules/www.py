@@ -4,7 +4,6 @@
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 from datetime import datetime
-import speedtest
 from telethon import functions
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
@@ -19,28 +18,6 @@ LANG = get_value("www")
 
 def convert(speed):
     return round(int(speed) / 1048576, 2)
-
-@register(outgoing=True, pattern="^.speed$")
-async def speedtst(spd):
-    await spd.edit(LANG['SPEED'])
-    speed = speedtest.Speedtest()
-    speed.get_best_server()
-    speed.download()
-    speed.upload()
-    result = speed.results.dict()
-    await spd.edit("`"
-                   f"{LANG['STARTED_TIME']}"
-                   f"{result['timestamp']} \n\n"
-                   f"{LANG['DOWNLOAD_SPEED']}"
-                   f"{convert(result['download'])} \n"
-                   f"{LANG['UPLOAD_SPEED']}"
-                   f"{convert(result['upload'])} \n"
-                   "Ping: "
-                   f"{result['ping']} \n"
-                   f"{LANG['ISP']}"
-                   f"{result['client']['isp']}"
-                   "`")
-
 
 def speed_convert(size):
     power = 2**10
