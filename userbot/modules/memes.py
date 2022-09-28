@@ -629,12 +629,6 @@ async def faces(owo):
     reply_text += " " + choice(UWUS)
     await owo.edit(reply_text)
 
-
-@register(outgoing=True, pattern="^.react$")
-async def react_meme(react):
-    await react.edit(choice(FACEREACTS))
-
-
 @register(outgoing=True, pattern="^.shg$")
 async def shrugger(shg):
     r""" ¯\_(ツ)_/¯ """
@@ -849,8 +843,6 @@ CmdHelp('memes').add_command(
     'hi', None, 'Salam verin.'
 ).add_command(
     'owo', None, 'OwoooooWoooo'
-).add_command(
-    'react', None, 'Reaksiya :)'
 ).add_command(
     'slap', '<cavab>', 'Təsadufi şeylərlə şillələmək üçün mesaja cavab verin.'
 ).add_command(
