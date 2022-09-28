@@ -31,7 +31,7 @@ async def clone(event):
     if replied_user is None:
         await event.edit(str(error_i_a))
         return False
-    user_id = replied_user.from_id
+    user_id = replied_user.id
     profile_pic = await event.client.download_profile_photo(user_id, TEMP_DOWNLOAD_DIRECTORY)
     first_name = html.escape(replied_user.user.first_name)
     if first_name is not None:
