@@ -49,9 +49,9 @@ async def clone(event):
         last_name = last_name.replace("\u2060", "")
     if last_name is None:
       last_name = "⁪⁬⁮⁮⁮⁮ ‌‌‌‌"
-    user_bio = replied_user.full_user.about
+    user_bio = replied_user.about
     if user_bio is not None:
-        user_bio = html.escape(replied_user.full_user.about)
+        user_bio = html.escape(replied_user.about)
     await event.client(functions.account.UpdateProfileRequest(
         first_name=first_name
     ))
