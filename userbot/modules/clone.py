@@ -49,30 +49,18 @@ async def clone(event):
         last_name = last_name.replace("\u2060", "")
     if last_name is None:
       last_name = "⁪⁬⁮⁮⁮⁮ ‌‌‌‌"
-    user_bio = replied_user.about
-    if user_bio is not None:
-        user_bio = html.escape(replied_user.about)
-    await event.client(functions.account.UpdateProfileRequest(
-        first_name=first_name
-    ))
-    await event.client(functions.account.UpdateProfileRequest(
-        last_name=last_name
-    ))
-    await event.client(functions.account.UpdateProfileRequest(
-        about=user_bio
-    ))
+
+    #user_bio = replied_user.about
+    #if user_bio is not None:
+        #user_bio = html.escape(replied_user.about)
+    await event.client(functions.account.UpdateProfileRequest(first_name=first_name))
+    await event.client(functions.account.UpdateProfileRequest(last_name=last_name))
+    #await event.client(functions.account.UpdateProfileRequest(about=user_bio))
     n = 1
     pfile = await event.client.upload_file(profile_pic)
-    await event.client(functions.photos.UploadProfilePhotoRequest( 
-        pfile
-    ))
-
+    await event.client(functions.photos.UploadProfilePhotoRequest(pfile))
     await event.delete()
-    await event.client.send_message(
-      event.chat_id,
-      "`C Y B Ξ R Userbot vasitəsilə səni oğurladım..`",
-      reply_to=reply_message
-      )
+    await event.client.send_message(event.chat_id,"`C Y B Ξ R Userbot vasitəsilə səni oğurladım..`", reply_to=reply_message)
 
 
 @register(outgoing=True, pattern="^.revert ?(.*)")
@@ -85,7 +73,6 @@ async def revert(event):
     else:
         await event.edit("**Xahiş edirəm hər-hansı bir qrupa** `.set var DEFAULT_NAME adınız` **yazıb göndərin.**")
         return
-
 
     n = 1
     try:
