@@ -40,7 +40,7 @@ async def clone(event):
         return False
     user_id = replied_user.id
     profile_pic = await event.client.download_profile_photo(user_id, TEMP_DOWNLOAD_DIRECTORY)
-    first_name = html.escape(replied_user.user.first_name)
+    first_name = html.escape(replied_user.full_user.first_name)
     if first_name is not None:
         first_name = first_name.replace("\u2060", "")
     last_name = replied_user.user.last_name
