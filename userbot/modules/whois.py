@@ -8,7 +8,7 @@ from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
@@ -57,7 +57,6 @@ async def who(event):
 
 
 async def get_user(event):
-    """ C Y B Σ R """
     if event.reply_to_msg_id and not event.pattern_match.group(1):
         previous_message = await event.get_reply_message()
         replied_user = await event.client(
@@ -92,7 +91,6 @@ async def get_user(event):
 
 
 async def fetch_info(replied_user, event):
-    """ C Y B Σ R """
     replied_user_profile_photos = await event.client(
         GetUserPhotosRequest(user_id=replied_user.user.id,
                              offset=42,

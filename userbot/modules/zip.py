@@ -8,17 +8,12 @@ import os
 import time
 import zipfile
 from userbot.cmdhelp import CmdHelp
-from userbot import CYBER_VERSION, DEFAULT_NAME
 from datetime import date
-
 from userbot import TEMP_DOWNLOAD_DIRECTORY, ZIP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 from userbot.utils import progress
 
-# ====================
 today = date.today()
-# ====================
-
 
 @register(outgoing=True, pattern=r"^\.sıxışdır(?: |$)(.*)")
 async def _(event):
@@ -139,7 +134,6 @@ async def remove_dir(rm):
 
 
 def zipdir(path, ziph):
-    # CYBERUSERBOT #
     for root, _, files in os.walk(path):
         for file in files:
             ziph.write(os.path.join(root, file))

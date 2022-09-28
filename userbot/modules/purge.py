@@ -5,7 +5,8 @@
 
 from asyncio import sleep
 from telethon.errors import rpcbaseerrors
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from userbot import BOTLOG, BOTLOG_CHATID
+from telethon.tl.functions.channels import DeleteUserHistoryRequest
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
@@ -41,34 +42,24 @@ async def fastpurger(purg):
         purg.chat_id, LANG['PURGED'].format(str(count)))
 
     if BOTLOG:
-        await purg.client.send_message(
-            BOTLOG_CHATID,
-            "Hədəflənən " + str(count) + " mesaj uğurla silindi.")
+        await purg.client.send_message(BOTLOG_CHATID, "Hədəflənən " + str(count) + " mesaj uğurla silindi.")
     await sleep(2)
     await done.delete()
-
 
 @register(cyber=True, pattern="^.purgeme")
 async def purgeme(delme):
     message = delme.text
     count = int(message[9:])
     i = 1
-
-    async for message in delme.client.iter_messages(delme.chat_id,
-                                                    from_user='me'):
+    async for message in delme.client.iter_messages(delme.chat_id, from_user='me'):
         if i > count + 1:
             break
         i = i + 1
         await message.delete()
 
-    smsg = await delme.client.send_message(
-        delme.chat_id,
-        LANG['PURGED_ME'].format(str(count))
-    )
+    smsg = await delme.client.send_message(delme.chat_id, LANG['PURGED_ME'].format(str(count)))
     if BOTLOG:
-        await delme.client.send_message(
-            BOTLOG_CHATID,
-            "Hədəflənən " + str(count) + " mesaj uğurla silindi.")
+        await delme.client.send_message(BOTLOG_CHATID, "Hədəflənən " + str(count) + " mesaj uğurla silindi.")
     await sleep(2)
     i = 1
     await smsg.delete()
@@ -76,13 +67,15 @@ async def purgeme(delme):
 @register(cyber=True, pattern="^.del$")
 async def delete_it(delme):
     msg_src = await delme.get_reply_message()
+    if not msg_src:
+        await delme.edit("Silə bilməyim üçün bir mesaja cavab verin!")
+        return
     if delme.reply_to_msg_id:
         try:
             await msg_src.delete()
             await delme.delete()
             if BOTLOG:
-                await delme.client.send_message(
-                    BOTLOG_CHATID, "Hədəflənən mesajın silinməsi uğurla başa çatdı")
+                await delme.client.send_message(BOTLOG_CHATID, "Hədəflənən mesajın silinməsi uğurla başa çatdı")
         except rpcbaseerrors.BadRequestError:
             if BOTLOG:
                 await delme.client.send_message(
@@ -96,10 +89,8 @@ async def purgeall(event):
     sender = (await event.get_reply_message()).sender
     try:
         await event.client(DeleteUserHistoryRequest(event.chat_id, sender.id))
-        await event.edit(
-            f"`{sender.first_name} adlı istifadəçinin bütün mesajları silindi!`",
-        )
-        await asyncio.sleep(2)
+        await event.edit(f"`{sender.first_name}` adlı istifadəçinin bütün mesajları silindi!",)
+        await sleep(2)
     except BaseException:
         pass
     await event.delete()
@@ -119,8 +110,7 @@ async def editer(edit):
             break
         i = i + 1
     if BOTLOG:
-        await edit.client.send_message(BOTLOG_CHATID,
-                                       "Mesaj düzəltmə sorğusu uğurla edildi.")
+        await edit.client.send_message(BOTLOG_CHATID, "Mesaj düzəltmə sorğusu uğurla icra edildi.")
 
 CmdHelp('purge').add_command(
     'purge', None, 'Hədəflənən cavabdan başlayaraq bütün mesajları təmizləyər.'
