@@ -16,7 +16,7 @@ import asyncio
 from telethon.tl.types import InputMessagesFilterDocument
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from telethon.tl.functions.channels import GetMessagesRequest
-from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_CHANNEL_ID, CMD_HELP, LANGUAGE, CYBER_VERSION, PATTERNS, BOTLOG_CHATID, BOTLOG, StartTime, BOT_USERNAME
+from . import BRAIN_CHECKER, LOGS, bot, CMD_HELP, LANGUAGE, CYBER_VERSION, PATTERNS, BOTLOG_CHATID, BOTLOG, StartTime, BOT_USERNAME
 from .modules import ALL_MODULES
 import userbot.modules.sql_helper.mesaj_sql as MSJ_SQL
 import userbot.modules.sql_helper.galeri_sql as GALERI_SQL
@@ -35,6 +35,7 @@ from userbot import DEFAULT_NAME, SAHIB_ID, SON_GORULME
 from time import time
 import userbot.events
 
+PLUGIN_CHANNEL_ID = "me"
 
 CYBER_NAME = f"[{DEFAULT_NAME}](tg://user?id={SAHIB_ID})"
 QRUP = BOTLOG_CHATID

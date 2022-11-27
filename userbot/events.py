@@ -22,6 +22,8 @@ from telethon import events
 import importlib
 from userbot import bot, BOTLOG_CHATID, CYBER_VERSION, LOGSPAMMER, PATTERNS, JARVIS, MYID, SUDO_ID, tgbot
 
+def start_cyber_assistant():
+    print("Cyber")
 
 def register(**args):
     pattern = args.get('pattern', None)
