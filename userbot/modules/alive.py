@@ -10,6 +10,7 @@ import ssl
 import requests
 from asyncio import create_subprocess_exec as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
+from userbot import SAHIB_ID, DEFAULT_NAME, BOTLOG_CHATID, BOTLOG
 from shutil import which
 from os import remove
 from userbot import (
@@ -25,7 +26,6 @@ from userbot import CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 from userbot.main import PLUGIN_MESAJLAR
-from userbot import SAHIB_ID, DEFAULT_NAME, BOTLOG_CHATID, BOTLOG
 from platform import python_version
 from telethon import version
 
