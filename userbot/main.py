@@ -313,23 +313,6 @@ async def FotoDegistir (foto):
     except:
         return False
 
-aktiv_et = "ON"
-
-async def asistan_aktiv_et():
-    if aktiv_et == "ON":
-        import glob
-
-        path = "userbot/modules/assistant/*.py"
-        fayl = glob.glob(path)
-        for name in fayl:
-            with open(name) as f:
-                path1 = Path(f.name)
-                shortname = path1.stem
-                start_cyber_assistant(shortname.replace(".py", ""))
-    else:
-        print("Asistan qurularkən xəta baş verdi.")
-
-
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
     
