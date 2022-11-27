@@ -4,7 +4,6 @@
 # <https://www.github.com/FaridDadashzade/CyberUserBot/blob/master/LICENSE/>.
 
 import time
-import heroku3
 import asyncio
 import aiohttp
 import ssl
@@ -26,7 +25,7 @@ from userbot import CMD_HELP
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 from userbot.main import PLUGIN_MESAJLAR
-from userbot import SAHIB_ID, DEFAULT_NAME, HEROKU_APPNAME, HEROKU_APIKEY, BOTLOG_CHATID, BOTLOG
+from userbot import SAHIB_ID, DEFAULT_NAME, BOTLOG_CHATID, BOTLOG
 from platform import python_version
 from telethon import version
 
@@ -37,14 +36,6 @@ LANG = get_value("cyberlangs")
 
 LOGO_ALIVE = PLUGIN_MESAJLAR['salive']
 CYBER_NAME = f"[{DEFAULT_NAME}](tg://user?id={SAHIB_ID})"
-
-heroku_api = "https://api.heroku.com"
-if HEROKU_APPNAME is not None and HEROKU_APIKEY is not None:
-    Heroku = heroku3.from_key(HEROKU_APIKEY)
-    app = Heroku.app(HEROKU_APPNAME)
-    heroku_var = app.config()
-else:
-    app = None
 
 
 async def get_readable_time(seconds: int) -> str:

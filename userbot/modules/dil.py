@@ -11,23 +11,14 @@ from re import search
 from json import loads, JSONDecodeError
 from userbot.language import LANGUAGE_JSON
 from os import remove
-import heroku3
 import asyncio
 import aiohttp
 import ssl
 import requests
 from userbot.events import register 
 from userbot.cmdhelp import CmdHelp
-from userbot import HEROKU_APIKEY, HEROKU_APPNAME 
 from shutil import which
 
-heroku_api = "https://api.heroku.com"
-if HEROKU_APPNAME is not None and HEROKU_APIKEY is not None:
-    Heroku = heroku3.from_key(HEROKU_APIKEY)
-    app = Heroku.app(HEROKU_APPNAME)
-    heroku_var = app.config()
-else:
-    app = None
 
 DIL_SIYAHISI = ["AZ", "TR", "EN", "IN", "UZ"]
 
@@ -93,29 +84,6 @@ async def dil(event):
             f"\n\n**C Y B Ξ R USERBOT**"
         )
 
-# The codes belong entirely to https://github.com/FaridDadashzade. Reuse is not allowed.
-# Başqa botlarda istifadəsi qadağandır!
-# © https://t.me/FVREED 
-
-@register(cyber=True, pattern="^.dil deyis ?(.*)")
-@register(cyber=True, pattern="^.dil değiş ?(.*)")
-async def dil_deyis(cyber):
-    dil_adi = cyber.pattern_match.group(1)
-    if not dil_adi in DIL_SIYAHISI: # yazdiginiz dil adi dil siyahisinda yoxdursa return
-        await cyber.edit("**Xahiş edirəm düzgün bir dil adı qeyd edin!**\n**Dil siyahısı:** `AZ, TR, EN, IN, UZ`")
-        return
-    if dil_adi == '': # dil adi qeyd olunmayibsa return
-        await cyber.edit("**Xahiş edirəm düzgün bir dil adı qeyd edin!**\n**Dil siyahısı:** `AZ, TR, EN, IN, UZ`")
-        return
-    await cyber.edit(f"**Botunuzun dili** `{dil_adi}` **olaraq ayarlandı!**")
-    try:
-        heroku_var["LANGUAGE"] = dil_adi
-    except:
-        await cyber.edit("`Dil dəyişdirmə prosesi zamanı xəta baş verdi!`")
-
-# The codes belong entirely to https://github.com/FaridDadashzade. Reuse is not allowed.
-# Başqa botlarda istifadəsi qadağandır!
-# © https://t.me/FVREED 
 
 CmdHelp('dil').add_command(
     'dil', None, 'Yüklədiyiniz dil haqqında məlumat verər.'
@@ -123,6 +91,4 @@ CmdHelp('dil').add_command(
     'dil info', None, 'Cavab verdiyiniz dil faylı haqqında məlumat verər.'
 ).add_command(
     'dil install', None, 'Cavab verdiyiniz dil faylını yükləyər.'
-).add_command(
-    'dil deyis', None, 'Botunuzun dilini dəyişdirər.' 
 ).add()
