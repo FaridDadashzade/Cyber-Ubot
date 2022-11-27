@@ -20,7 +20,6 @@ gTTS
 hachoir
 httplib2
 humanize
-heroku3
 lxml==4.6.3
 git+https://github.com/johnwmillr/LyricsGenius.git
 lyricsgenius
