@@ -163,6 +163,7 @@ CHROME_DRIVER = os.environ.get("CHROME_DRIVER", None)
 GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", None)
 
 PLUGINID = os.environ.get("PLUGIN_CHANNEL_ID", "me")
+PLUGIN_CHANNEL_ID = os.environ.get("PLUGIN_CHANNEL_ID", "me")
 
 # OpenWeatherMap API Key
 OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", "d1f00b521eb58c2a2721dfefacc66c3a")
