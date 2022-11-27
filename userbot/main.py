@@ -34,7 +34,7 @@ import userbot.cmdhelp
 from userbot import DEFAULT_NAME, SAHIB_ID, SON_GORULME
 from time import time
 import userbot.events
-from userbot.events import start_cyber_assistant
+
 
 CYBER_NAME = f"[{DEFAULT_NAME}](tg://user?id={SAHIB_ID})"
 QRUP = BOTLOG_CHATID
