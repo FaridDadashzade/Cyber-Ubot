@@ -34,9 +34,8 @@ from userbot.language import get_value
 LANG = get_value("cyberlangs")
 # ---------------------------------- #
 
-LOGO_ALIVE = PLUGIN_MESAJLAR['salive']
+LOGO_ALIVE = "https://telegra.ph/file/c3e75eccaeb7f56dfae89.mp4"
 CYBER_NAME = f"[{DEFAULT_NAME}](tg://user?id={SAHIB_ID})"
-
 
 async def get_readable_time(seconds: int) -> str:
     count = 0
@@ -124,5 +123,4 @@ async def jarvisalive(jarvis):
 
 Help = CmdHelp('salive')
 Help.add_command('salive', None, 'Gif-li alive mesajı.', 'salive')
-Help.add_command('change salive', '<media/link>', 'Logo dəyişdirər.', 'change salive')
 Help.add()
