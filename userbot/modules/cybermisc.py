@@ -195,7 +195,7 @@ async def _(event):
         )
     else:
         await event.edit("```Hazırlanır...```")
-    chat = "@SaveOFFbot"
+    chat = "@AllSaverAZBot"
     async with bot.conversation(chat) as conv:
         try:
             msg_start = await conv.send_message("/start")
@@ -226,7 +226,7 @@ async def _(event):
         )
     else:
         await event.edit("```Hazırlanır...```")
-    chat = "@instabot"
+    chat = "@AllSaverAZBot"
     async with bot.conversation(chat) as conv:
         try:
             msg_start = await conv.send_message("/start")
@@ -257,7 +257,7 @@ async def _(event):
         )
     else:
         await event.edit("```Hazırlanır...```")
-    chat = "@pinterestdowrobot"
+    chat = "@AllSaverAZBot"
     async with bot.conversation(chat) as conv:
         try:
             msg_start = await conv.send_message("/start")
